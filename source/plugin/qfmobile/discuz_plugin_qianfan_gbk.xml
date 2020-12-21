@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<root>
+
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+
+	<item id="Version"><![CDATA[X3.2]]></item>
+
+	<item id="Time"><![CDATA[2016-02-24 14:48]]></item>
+
+	<item id="From"><![CDATA[Discuz! Board (http://bbs.dz.com/)]]></item>
+
+	<item id="Data">
+
+		<item id="plugin">
+
+			<item id="available"><![CDATA[1]]></item>
+
+			<item id="adminid"><![CDATA[1]]></item>
+
+			<item id="name"><![CDATA[qianfan]]></item>
+
+			<item id="identifier"><![CDATA[qianfan]]></item>
+
+			<item id="description"><![CDATA[]]></item>
+
+			<item id="datatables"><![CDATA[]]></item>
+
+			<item id="directory"><![CDATA[qianfan/]]></item>
+
+			<item id="copyright"><![CDATA[qianfan]]></item>
+
+			<item id="version"><![CDATA[1.3.2]]></item>
+
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[mobilehook]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[28]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[admincp]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[hook]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+
+		</item>
+
+		<item id="version"><![CDATA[X3.2]]></item>
+
+		<item id="language">
+
+			<item id="scriptlang">
+
+				<item id="qianfan_config"><![CDATA[ÅäÖÃ]]></item>
+
+				<item id="qianfan_cloud_host"><![CDATA[ÔÆ·þÎñÆ÷½Ó¿ÚÓòÃû]]></item>
+
+				<item id="qianfan_cloud_host_comment"><![CDATA[ÔÆ·þÎñÆ÷½Ó¿ÚÓòÃû£¬½áÎ²Çë¼Ó ¡°/¡±]]></item>
+
+				<item id="qianfan_cloud_secretkey"><![CDATA[Í¨ÐÅÃØÔ¿]]></item>
+
+				<item id="qianfan_cloud_secretkey_comment"><![CDATA[ÂÛÌ³ÓëÔÆ·þÎñÆ÷Í¨ÐÅÃØÔ¿£¬Îñ±ØÌîÐ´£¬±£»¤ÂÛÌ³°²È«£¬ÇëÍ×ÉÆ±£´æ£¬ÇÐÎðÐ¹Â¶]]></item>
+				
+				<item id="qianfan_cloud_reads"><![CDATA[ÔÄ¶ÁÅäÖÃ]]></item>
+				
+				<item id="qianfan_cloud_reads_comment"><![CDATA[ÅäÖÃµãÒ»´ÎË¢ÐÂµÄÔÄ¶ÁÁ¿,ÅäÖÃ²ÎÊýÁÐÈç£º
+				×Ö·û´®ÐÎÊ½:2,3,4,7,12,5,1
+				¹Ì¶¨ÔÄ¶ÁÁ¿ÐÎÊ½:3
+				]]></item>
+				
+				<item id="qianfan_allow_notice"><![CDATA[ÊÇ·ñ¿ªÆôÔÆÍ¨Öª]]></item>
+
+				<item id="qianfan_allow_notice_comment"><![CDATA[ÊÇ·ñÔÊÐí±¾µØÍ¨ÖªÔÆ·þÎñÆ÷£¬¿ªÆôºó£¬¿ÉÊµÏÖ½«±¾µØÌû×ÓÍÆËÍµ½¿Í»§¶ËÊ×Ò³µÈ¹¦ÄÜ£¬Çë½÷É÷¿ªÆô£¬»á¶Ô·þÎñÆ÷²úÉúÒ»¶¨µÄ¸ºµ£]]></item>
+
+				<item id="qianfan_fid_push"><![CDATA[²ÎÓëÍÆËÍµÄ°æ¿éID]]></item>
+
+				<item id="qianfan_fid_push_comment"><![CDATA[ÇëÌîÐ´°æ¿éID£¬±»ÌîÐ´µÄ°æ¿éÄÚµÄÌû×Ó£¬ÄÜÍÆËÍµ½¿Í»§¶ËÖÐ£¬ÇÒÌû×Ó×÷ÕßÄÜÔÚ¿Í»§¶ËÖÐÊÕµ½±»»Ø¸´µÄÌáÐÑ¡£Ò»ÐÐÌîÐ´Ò»¸ö°æ¿éID]]></item>
+
+				<item id="qianfan_reply_notice"><![CDATA[ÊÇ·ñ¿ªÆô»ØÌû/µãÔÞÌáÐÑ]]></item>
+
+				<item id="qianfan_reply_notice_comment"><![CDATA[Ñ¡Ôñ¿ªÆôºó£¬±»»Ø¸´/µãÔÞµÄÓÃ»§¿ÉÒÔÔÚAPPÄÚÊÕµ½ÏûÏ¢Í¨Öª£¬¿ªÆô´Ë¹¦ÄÜ£¬»á¶Ô·þÎñÆ÷²úÉúÒ»¶¨µÄ¸ºµ££»×¢Òâ£ºÈç¹û°æ¿éÉèÖÃÁË»Ø¸´ÐèÒªÉóºË£¬Ôò»Ø¸´Í¨ÖªÎÞ·¨Õý³£ÔË×÷]]></item>
+
+				<item id="qianfan_thread_replypush"><![CDATA[Ìû×Ó»Ø¸´ÍÆËÍ·§Öµ]]></item>
+
+				<item id="qianfan_thread_replypush_comment"><![CDATA[Ìû×Ó»Ø¸´ÊýÁ¿µ½´ïÄ³¸öÖµºó£¬×Ô¶¯ÍÆËÍµ½¿Í»§¶ËÊ×Ò³£¬Ò»ÐÐÌîÐ´Ò»¸öÊýÖµ;×¢Òâ£ºÈç¹û°æ¿éÉèÖÃÁË»Ø¸´ÐèÒªÉóºË£¬Ôò¸Ã¹¦ÄÜÎÞ·¨Õý³£ÔË×÷]]></item>
+
+				<item id="qianfan_save"><![CDATA[±£´æ]]></item>
+
+				<item id="qianfan_directory_right_fail"><![CDATA[ÇëÈ·±£{PATH1}ºÍ{PATH2}´æÔÚ£¬²¢¾ßÓÐÐ´È¨ÏÞ]]></item>
+
+				<item id="qianfan_nav_title"><![CDATA[²å¼þÉèÖÃ]]></item>
+
+				<item id="qianfan_nav_config"><![CDATA[²ÎÊýÅäÖÃ]]></item>
+
+				<item id="qianfan_nav_mobilebind"><![CDATA[ÊÖ»ú°ó¶¨ÁÐ±í]]></item>
+				<item id="qianfan_nav_thirdbind"><![CDATA[µÚÈý·½°ó¶¨ÁÐ±í]]></item>
+				<item id="qianfan_unbind_thirdbind_success"><![CDATA[½â³ýµÚÈý·½°ó¶¨³É¹¦]]></item>
+
+				<item id="qianfan_input_searchmobile_placeholder"><![CDATA[ÊÖ»úºÅ/uid/Î¢ÐÅunionid]]></item>
+
+				<item id="qianfan_unbind_mobile"><![CDATA[½â³ý°ó¶¨]]></item>
+
+				<item id="qianfan_unbind_mobile_success"><![CDATA[ÊÖ»ú½â³ý°ó¶¨³É¹¦]]></item>
+
+				<item id="qianfan_user_delete"><![CDATA[ÓÃ»§Î´±»¼¤»î»òÒÑ±»É¾³ý]]></item>
+				<item id="qianfan_search_id"><![CDATA[°Ù¶ÈÕ¾ÄÚËÑË÷ID]]></item>
+				<item id="qianfan_search_id_comment"><![CDATA[°²×°discuzÓ¦ÓÃÉÌµê(°Ù¶Èsitemap)²å¼þ,ÆôÓÃ²å¼þ£¬1-2Ììºó¼´¿ÉËÑË÷£¬È»ºóÔÚ°Ù¶ÈÕ¾ÄÚËÑË÷urlÖÐÕÒµ½ËÑË÷ID£¬¾ßÌå¿ÉÒÔ²Î¿¼http://www.qianfanyun.com/help/40]]></item>				
+				<item id="qianfan_thread_match"><![CDATA[Ìû×ÓURLÆ¥Åä]]></item>
+				<item id="qianfan_thread_match_comment"><![CDATA[ÌîÐ´Õ¾µãÌû×ÓÍ¨ÓÃURL£¬ÓÃÓÚÆ¥ÅäÌû×ÓID£¬ÀýÈç http://www.hualongxiang.com/read.php?tid={ID}£¬https://bbs.qianfanyun.com/forum.php?mod=viewthread&tid={ID}]]></item>
+				<item id="qianfan_special_group"><![CDATA[APPÐÂÎÅÌû·¢ÌûÈËËùÊôÓÃ»§×é]]></item>
+
+				<item id="qianfan_special_group_comment"><![CDATA[ÉèÖÃÒ»¸öÓÃ»§×é£¬ÊôÓÚ¸ÃÓÃ»§×éµÄÓÃ»§·¢²¼µÄÌû×ÓÔÚAPPÉÏ½«ÒÔÐÂÎÅ±êÇ©ÏÔÊ¾£¬Ìû×ÓÏêÇéÒ³²»»áÏÔÊ¾ÓÃ»§Í·Ïñ£¬Ö»»áÏÔÊ¾·¢²¼ÕßÃû³Æ]]></item>
+
+				<item id="qianfan_search_sort"><![CDATA[APPÌû×ÓËÑË÷½á¹ûÅÅÐò¹æÔò]]></item>
+
+				<item id="qianfan_search_sort_def"><![CDATA[Æ¥Åä¶È]]></item>
+
+				<item id="qianfan_search_sort_postdate"><![CDATA[·¢±íÊ±¼ä]]></item>
+
+				<item id="qianfan_search_sort_reply"><![CDATA[»Ø¸´Êý]]></item>
+
+				<item id="qianfan_search_sort_comment"><![CDATA[Ä¬ÈÏ°´ÕÕÆ¥Åä¶ÈÅÅÐò]]></item>
+
+				<item id="qianfan_open_image_auth"><![CDATA[APPÕÒ»ØÃÜÂëÊÇ·ñ¿ªÆôÍ¼Æ¬ÑéÖ¤Âë]]></item>
+				<item id="qianfan_mobile_source"><![CDATA[ÓÃ»§ÊÖ»úºÅ´æ´¢·½Ê½]]></item>
+				<item id="qianfan_mobile_source_bbs"><![CDATA[ÂÛÌ³±í]]></item>
+				<item id="qianfan_mobile_source_qianfan"><![CDATA[Ç§·«ÊÖ»ú±í]]></item>
+				<item id="qianfan_mobile_source_comment"><![CDATA[ÓÉÓÚÔ­ÉúdiscuzÂÛÌ³ÓÃ»§¿ÉËæÒâÐÞ¸ÄÊÖ»úºÅ£¬ÎÞÌØÊâÒªÇó£¬½¨ÒéÊ¹ÓÃÇ§·«±í¡££¨ÖØÒªËµÃ÷:Á½ÖÖ±íÊý¾Ý²»»¥Í¨£¬ÇëÎðËæÒâÐÞ¸Ä£©]]></item>
+
+				<item id="open_image_auth_comment"><![CDATA[Ä¬ÈÏ¹Ø±Õ£¬Èç¹û¿ªÆôÍ¼Æ¬ÑéÖ¤Âë£¬ÇëÈ·±£ÂÛÌ³µÄÓòÃû´¦ÔÚÓòÃû°×Ãûµ¥ÖÐ]]></item>
+				<item id="qianfan_search_user_type"><![CDATA[ËÑË÷ÓÃ»§ÊÇ·ñÈ«Æ¥Åä]]></item>
+				<item id="qianfan_search_user_type_comment"><![CDATA[Ä¬ÈÏÓÒÆ¥Åä£¬Èç¹û¿ªÆôÈ«Æ¥Åä£¬ËÑË÷Æ¥Åä¶È¸ü¸ß£¬µ«¶Ô·þÎñÆ÷Ôì³É¸ü´ó¸ºµ£]]></item>
+				<item id="post_edit_succeed"><![CDATA[Ìû×Ó±à¼­³É¹¦£¬ÏÖÔÚ½«×ªÈëÖ÷ÌâÒ³£¬ÇëÉÔºò¡­¡­<script type="text/javascript"> QFH5.jumpThread({tid})</script>]]></item>
+				<item id="edit_newthread_mod_succeed"><![CDATA[±à¼­ºóµÄÖ÷ÌâÐèÒªÉóºË£¬ÇëµÈ´ýÉóºËÍ¨¹ý<script type="text/javascript"> QFH5.jumpThread({tid})</script>]]></item>
+				<item id="qianfan_html_edit"><![CDATA[ÇëÇ°ÍùAPP±à¼­]]></item>
+				<item id="qianfan_htmledit"><![CDATA[ÔÊÐípc¸»ÎÄ±¾±à¼­µÄÓÃ»§]]></item>
+				<item id="qianfan_html_desciption"><![CDATA[ÌîÐ´Ö¸¶¨ÓÃ»§uid¿ÉÒÔpc¶Ë±à¼­Ç§·«¸»ÎÄ±¾Ìû×Ó£¬×Ö·û´®ÐÎÊ½:2,3,4,7 £¬ÂÛÌ³¹ÜÀíÔ±Ä¬ÈÏ¿ªÆô¡£ÆäËûÓÃ»§£¬ÔòÌáÊ¾ÇëÇ°ÍùAPP±à¼­¡£]]></item>
+			</item>
+
+			<item id="templatelang">
+
+				<item id="find_pwd_seotitle"><![CDATA[ÕÒ»ØÃÜÂë]]></item>
+
+			</item>
+
+		</item>
+
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>		
+
+	</item>
+
+</root>

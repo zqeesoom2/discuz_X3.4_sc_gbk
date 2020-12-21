@@ -1,0 +1,32 @@
+<ul>
+    <li {if $_GET['act']=='member'}class="a"{/if}><a href="plugin.php?id=violation&act=member" >发布的信息</a></li>
+	 {if $_G['adminid']==1}<li {if $_GET['act']=='collection_list'}class="a"{/if}><a href="plugin.php?id=violation&act=collection_list" >我的收藏</a></li>{/if}
+    {if file_exists("source/plugin/violation/template/com/admin.php")}
+    {if $_G['adminid']==1}
+    <li {if $_GET['act']=='adminlp'}class="a"{/if}><a href="plugin.php?id=violation&act=adminlp" >管理二手车信息</a></li>
+    {/if}
+    {/if}
+    {if $_G['adminid']==1}
+    {if file_exists("source/plugin/violation/template/com/user.php")}
+    <li {if $_GET['act']=='adminuser'}class="a"{/if}><a href="plugin.php?id=violation&act=adminuser" >用户管理</a></li>
+    {/if}
+    {/if}
+    {if file_exists("source/plugin/violation/template/com/reflash.php")}
+    {if $_G['adminid']==1}
+    <li {if $_GET['act']=='adminreflash'}class="a"{/if}><a href="plugin.php?id=violation&act=adminreflash" >刷新记录</a></li>
+    {/if}
+    {/if}
+    {if file_exists("source/plugin/violation/template/com/top.php")}
+    {if $_G['adminid']==1}
+    <li {if $_GET['act']=='admintop'}class="a"{/if}><a href="plugin.php?id=violation&act=admintop" >置顶记录</a></li>
+    {/if}
+    {/if}
+	{if file_exists("source/plugin/violation/template/com/attes.php")}
+	 {if $_G['adminid']==1}
+	<li {if $_GET['act']=='attes'}class="a"{/if}><a href="plugin.php?id=violation&act=attes" >我的认证</a></li>
+	{/if}
+	{/if}
+	{if $_G['cache']['plugin']['aljyy'][$pluginid]}
+		{template aljgl:mnav_all}
+	{/if}
+</ul>

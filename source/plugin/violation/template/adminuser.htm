@@ -1,0 +1,37 @@
+{template common/header}
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="./" class="nvhm" title="{$_G['setting']['bbname']}">{$_G['setting']['bbname']}</a> <em>&amp;rsquot;</em>
+        <a href="<!--{if $config['isrewrite']}-->{$config['re_index']}<!--{else}-->plugin.php?id=aljesc<!--{/if}-->">$config['daohang']</a>
+</div>
+</div>
+
+<div id="ct" class="ct2_a wp cl">
+<div class="appl">
+<div class="tbn">
+<h2 class="mt bbda">$config['daohang']</h2>
+{template violation:mnav}
+</div>
+</div>
+<div class="mn pbm" style="border:none; margin:0">
+<div class="tbmu cl">
+<a href="plugin.php?id=aljesc&act=post" class="y pn pnc"><strong>发布信息</strong></a>
+<table cellspacing="0" cellpadding="0" class="dt">
+<tbody><tr>
+<th>UID</th><th>用户名</th><th>信息数量</th><th>更新数量</th><th>置顶数量</th><th>最后活动时间</th>
+</tr>
+{loop $users $user}
+<tr >
+    <td>{$user['uid']}</td>
+    <td>{$user['username']}</td>
+    <td>{$user['count']}</td>
+    <td>{$user['updatecount']}</td>
+    <td>{$user['top']}</td>
+    <td>{eval echo dgmdate($user['last']);}</td>
+</tr>
+{/loop}
+</tbody></table>
+<div style="margin-top:10px;">$paging</div>
+</div>
+</div>	</div>
+{template common/footer}

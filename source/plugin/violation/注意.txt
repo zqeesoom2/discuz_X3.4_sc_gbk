@@ -1,0 +1,36 @@
+注意： url中的 pmod=admin 改 pmod=data
+
+账号管理：
+admin2 密码是admin  用户组是新手上路
+超级管理 admin 密码都一样
+
+allen_ftp 图片上传到FTP这里有问题 violation.inc.php 245行。
+php.ini要打开： extension=php_ftp.dll
+
+rotatePicture函数处理 ISO旋转图片-???度
+
+图片二维码 缩放 参考 violation.inc.php 93行。 
+
+图片大小限制 参考 violation.inc.php 507行。 
+
+管理员是否要审核信息，默认是, 发布信息免审核用户组 violation.inc.php 337行。
+
+允许用户组发布 violation.inc.php 431行。
+
+generatethread()发布，同步到版本的处理函数，参考com目录下的tongbu.php
+
+include template('violation:post');//这里会自动判断是手机版不是电脑版本
+如果是手机访问会自动跳转到\template\touch\post.htm
+如果是PC访问会自动跳转到\template\post.htm 
+另外一种方式：
+ if($_G['mobile']) {
+        include template('violation:view');
+    } else { 
+        include template('diy:aljesc_view', null, 'source/plugin/violation/template');
+//PC版的模板：source/plugin/violation/template/aljesc_view.html
+    }
+
+
+
+
+

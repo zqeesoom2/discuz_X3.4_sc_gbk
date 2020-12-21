@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="{$Fn_HB_Share->Config[StaticPath]}/css/idangerous.swiper.css?{VERHASH}">
+<link rel="stylesheet" href="{$Fn_HB_Share->Config[StaticPath]}/css/animation.css?{VERHASH}">
+<link rel="stylesheet" href="{$Fn_HB_Share->Config[StaticPath]}/css/style.css?{VERHASH}">
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/jquery-1.9.1.min.js?{VERHASH}"></script>
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/jquery.form.js?{VERHASH}"></script>
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/rem.js?{VERHASH}"></script>
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/fastclick.js?{VERHASH}"></script>
+<!--{if $Appbyme}-->
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/appbyme.js"></script>
+<script>connectSQJavascriptBridge(function(){});</script>
+<!--{elseif $MagApp}-->
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/mag.js"></script>
+<script>
+$(function(){
+  mag.ready(function(){
+	mag.setData({
+	  shareData: {
+		  title: '{$Fn_HB_Share->Config[WxShare][WxTitle]}',
+		  des: '{$Fn_HB_Share->Config[WxShare][WxDes]}',
+		  picurl: '{$Fn_HB_Share->Config[WxShare][WxImg]}',
+		  linkurl: '{$Fn_HB_Share->Config[WxShare][WxUrl]}'
+		}
+	});
+	<!--{if in_array($_GET['m'],array('poster'))}-->
+	mag.hideMore();
+	<!--{/if}-->
+  })
+});
+</script>
+<!--{elseif $QFApp}-->
+<script>
+function QFH5ready(){
+	<!--{if in_array($_GET['m'],array('poster'))}-->
+	QFH5.setMenu(1);
+	<!--{/if}-->
+	QFH5.setShareInfo("{$Fn_HB_Share->Config[WxShare][WxTitle]}","{$Fn_HB_Share->Config[WxShare][WxImg]}","{$Fn_HB_Share->Config[WxShare][WxDes]}","{$Fn_HB_Share->Config[WxShare][WxUrl]}",function(state,data){});
+	QFH5.setTitle("{$navtitle}");
+}
+</script>
+<!--{elseif $WxApp}-->
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+	//debug:true,
+	debug: false,
+	appId: '{$Fn_HB_Share->Config[SignPackage][appId]}',
+	timestamp: {$Fn_HB_Share->Config[SignPackage][timestamp]},
+	nonceStr: '{$Fn_HB_Share->Config[SignPackage][nonceStr]}',
+	signature: '{$Fn_HB_Share->Config[SignPackage][signature]}',
+	jsApiList: [
+	// 所有要调用的 API 都要加到这个列表中
+	'checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'hideMenuItems', 'showMenuItems', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem', 'translateVoice', "openLocation", "getLocation", "chooseImage", "previewImage", "uploadImage"]
+});
+</script>
+<!--{/if}-->
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/jquery.similar.msgbox.js"></script>
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/idangerous.swiper.min.js"></script>
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/common.js"></script>
+<script>
+var Config = new Object();
+Config.MsgBox_ok = '{$Fn_HB_Share->Config[LangVar][MsgBox_ok]}';
+Config.MsgBox_no = '{$Fn_HB_Share->Config[LangVar][MsgBox_no]}';
+</script>
+<style>
+<!--{if !checkmobile()}-->
+.wrap{width:6.4rem;}
+<!--{/if}-->
+.Color{color:#f5402f;}
+.BorderColor{border-color:#f5402f;}
+.Bg,#mb_btn_ok,.MyWinningLogList ul li .State0{background:#f5402f;color:#fff;}
+</style>

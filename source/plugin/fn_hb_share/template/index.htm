@@ -1,0 +1,620 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1.0,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{$navtitle}</title>
+<meta name="keywords" content="{$metakeywords}">
+<meta name="description" content="{$metadescription}">
+<?php include template('fn_hb_share:head');?>
+</head>
+<body>
+<div class="wrap">
+  <div class="Banner"><a<!--{if $Item[param][bannerlink]}--> href="{$Item[param][bannerlink]}" class="AppLink"<!--{/if}-->><img src="{$Item[param][banner]}"></a></div>
+  <div class="MainBg"></div>
+  <div class="WrapMain" style="padding-bottom:0.3rem;">
+    <!--{if $Item[param][app] && !$Appbyme && !$QFApp && !$MagApp}-->
+	<!--{if !$Item[param][noapp]}-->
+	<div class="FnBtn FnOpen">{$Fn_HB_Share->Config[LangVar][FnOpen]}</div>
+	<!--{/if}-->
+	<!--{else}-->
+	<!--{if $Item[start_dateline] > time()}-->
+	<div class="FnBtn CountDownTime NoBtn">{$Fn_HB_Share->Config[LangVar][CountDownTimeText]}<span class="days">00</span>{$Fn_HB_Share->Config[LangVar][Day]}<span class="hours">00</span>{$Fn_HB_Share->Config[LangVar][Hours]}<span class="minutes">00</span>{$Fn_HB_Share->Config[LangVar][Minutes]}<span class="seconds">00</span>{$Fn_HB_Share->Config[LangVar][Seconds]}</div>
+	<script src="{$Fn_HB_Share->Config[StaticPath]}/js/time.js"></script>
+	<script>$('.CountDownTime').downCount({date: '<!--{eval echo date("m/d/Y H:i:s",$Item[start_dateline]);}-->',offset: {$Fn_HB_Share->Config['PluginVar']['DownTimeNum']}},function(){
+		$('.fixed_box').show();
+		window.location.reload(true);
+	});</script>
+	<!--{elseif time() > $Item[end_dateline]}-->
+	<div class="FnBtn NoBtn">{$Fn_HB_Share->Config[LangVar][EndErr]}</div>
+	<!--{elseif $MyHbCount >= $Item[param][number] && $_G[uid]}-->
+	<div class="FnBtn NoBtn">{$Fn_HB_Share->Config[LangVar][AlreadyReceived]}</div>
+	<!--{else}-->
+	<div class="FnBtn <!--{if $QFApp && $Item[param][address]}-->GpsLoad<!--{else}-->FnOpen<!--{/if}-->"><!--{if $QFApp && $Item[param][address]}-->{$Fn_HB_Share->Config[LangVar][GpsLoad]}<!--{else}-->{$Fn_HB_Share->Config[LangVar][FnOpen]}<!--{/if}--></div>
+	<!--{/if}-->
+	<!--{/if}-->
+	<!--{if $Item[param][surplus] && time() < $Item[end_dateline]}-->
+	<div class="Prompt">{$Item[param][surplus]}</div>
+	<!--{/if}-->
+	
+	<!--{if $MyHbListTo}-->
+	<div class="MyHBMain">
+		<div class="CommonTitle"><span>{$Fn_HB_Share->Config[LangVar][MyStateNo]}</span></div>
+		<div class="MyHBMainList">
+			<ul>
+				<!--{loop $MyHbListTo $Key $Val}-->
+				<li><img src="{$Fn_HB_Share->Config[StaticPath]}/images/hb.png"><div class="Money"><em>{$Val[money]}</em>{$Fn_HB_Share->Config[LangVar][Yuan]}</div><div class="State State{$Val[state]}" DataId="{$Val[id]}" DataAId="{$Val[aid]}">{$Fn_HB_Share->Config[LangVar][HbStateBtn][$Val[state]]}</div></li>
+				<!--{/loop}-->
+			</ul>
+			<div class="both"></div>
+		</div>
+	</div>
+	<!--{/if}-->
+
+    <div class="Nav"> 
+	<!--{loop $Navs $Key $Val}-->
+	<!--{if $Val == 1}-->
+	<span<!--{if !$Key}--> class="Hover"<!--{/if}-->>{$Item['param']['businesstitle']}</span>
+	<!--{elseif $Val == 2}-->
+	<span<!--{if !$Key}--> class="Hover"<!--{/if}-->>{$Item['param']['winninglogtitle']}</span> 
+	<!--{elseif $Val == 3}-->
+	<span<!--{if !$Key}--> class="Hover"<!--{/if}-->>{$Item['param']['ruletitle']}</span>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</div>
+    <div class="BodyMain">
+	  <!--{loop $Navs $Key $Val}-->
+	  <!--{if $Val == 1}-->
+	  <!--{if $Businesss}-->
+	  <div class="BoxMain Businesss"<!--{if !$Key}--> style="display:block;"<!--{/if}-->>
+		<!--{if count($Businesss) > 1}-->
+		<div class="swiper-container">
+		  <div class="swiper-wrapper">
+			<!--{loop $Businesss $Val}-->
+			<!--{eval $Array = array_filter(explode('|',$Val));}-->
+			<div class="swiper-slide">
+			  <!--{if $Array[1]}-->
+			  <a href="{$Array[1]}" class="AppLink"><img src="{$Array[0]}"></a>
+			  <!--{else}-->
+			  <img src="{$Array[0]}">
+			  <!--{/if}-->
+			</div>
+			<!--{/loop}-->
+		  </div>
+		  <div class="pagination"></div>
+		</div>
+		<!--{else}-->
+		<!--{eval $Array = array_filter(explode('|',$Businesss[0]));}-->
+		<!--{if $Array[1]}-->
+		<a href="{$Array[1]}" class="AppLink"><img src="{$Array[0]}"></a>
+		<!--{else}-->
+		<img src="{$Array[0]}">
+		<!--{/if}-->
+		<!--{/if}-->
+	  </div>
+	  <!--{else}-->
+	  <div class="BoxMain Content"<!--{if !$Key}--> style="display:block;"<!--{/if}-->>{$Item[param][business]}</div>
+	  <!--{/if}-->
+	  <!--{elseif $Val == 2}-->
+	  <div class="BoxMain WinningLog"<!--{if !$Key}--> style="display:block;"<!--{/if}-->>
+		<!--{if $HbShareList || $MyHbListStateTo}-->
+        <div class="WinningLogList" DataPage="1">
+          <ul>
+			<!--{loop $MyHbListStateTo $Key $Val}-->
+            <li DataUid="{$Val[uid]}">
+              <div class="Face"><img src="{$Fn_HB_Share->Config[PluginVar][FaceName]}/avatar.php?uid={$Val[uid]}&size=middle"></div>
+			  <div class="NameTime"><div class="Name">{$Val[username]}</div><div class="Time"><!--{eval echo date("Y-m-d H:i:s",$Val[dateline]);}--></div></div>
+              <div class="Money"><em>{$Val[money]}</em>{$Fn_HB_Share->Config[LangVar][Yuan]}({$Fn_HB_Share->Config[LangVar][Own]})</div>
+            </li>
+			<!--{/loop}-->
+		    <!--{loop $HbShareList $Key $Val}-->
+            <li DataUid="{$Val[uid]}">
+              <div class="Face"><img src="{$Fn_HB_Share->Config[PluginVar][FaceName]}/avatar.php?uid={$Val[uid]}&size=middle"></div>
+			  <div class="NameTime"><div class="Name">{$Val[username]}</div><div class="Time">{$Val[dateline]}</div></div>
+              <div class="Money"><em>{$Val[money]}</em>{$Fn_HB_Share->Config[LangVar][Yuan]}</div>
+            </li>
+			<!--{/loop}-->
+          </ul>
+          <div class="both"></div>
+        </div>
+		<!--{if $HbShareList}-->
+        <div class="BoxMore"><span class="More MoreClick">{$Fn_HB_Share->Config[LangVar][More]}</span></div>
+		<!--{/if}-->
+		<!--{else}-->
+		<div class="NoDataWinningLogList"><span class="iconfont">&#xe613;</span>{$Fn_HB_Share->Config[LangVar][NoDataWinningLogList]}</div>
+		<!--{/if}-->
+      </div>
+	  <!--{elseif $Val == 3}-->
+	  <div class="BoxMain Content"<!--{if !$Key}--> style="display:block;"<!--{/if}-->>{$Item[param][rule]}</div>
+	  <!--{/if}-->
+	  <!--{/loop}-->
+    </div>
+  </div>
+  <!--{if $Item[param][app] && !$Appbyme && !$QFApp && !$MagApp}-->
+  <div class="FixedMask FixedMaskHB">
+	 <table cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+            <div class="FixedMaskContent">
+				<img src="{$Fn_HB_Share->Config[StaticPath]}/images/hbbg.png">
+				<span class="CloseBtn"></span>
+				<div class="Content">
+					<div class="Title">{$Fn_HB_Share->Config[LangVar][FixedMaskHBTitle]}</div>
+					<div class="Money"><em><!--{if $Item[param][apprand]}--><!--{eval $AppRandArr = array_filter(explode("-",$Item[param][apprand]));echo $Fn_HB_Share->RandomFloat($AppRandArr[0],$AppRandArr[1]);}--><!--{else}-->???<!--{/if}--></em>{$Fn_HB_Share->Config[LangVar][Yuan]}</div>
+					<div class="Link DounApp"><a>{$Fn_HB_Share->Config[LangVar][FixedMaskHBMyWallet]}</a></div>
+				</div>
+				<div class="HBBtn DounApp DounAppBtn"><a>{$Item[param][appbtn]}</a></div>
+            </div>
+         </td>
+      </tr>
+    </table>
+  </div>
+  <div class="FixedDounApp">
+	<table cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+			<div class="FixedDounAppContent">
+				<img src="{$Fn_HB_Share->Config[StaticPath]}/images/doun.png">
+				<div class="Content">
+					<div class="Title">{$Item[param][apppromptmaxtext]}</div>
+					<div class="Small">{$Item[param][apppromptsmalltext]}</div>
+				</div>
+				<div class="FixedBtn"><span class="D Bg" id="D">{$Fn_HB_Share->Config[LangVar][MsgBox_ok]}</span><span class="X">{$Fn_HB_Share->Config[LangVar][MsgBox_no]}</span></div>
+			</div>
+		</td>
+      </tr>
+    </table>	
+  </div>
+  <!--{else}-->
+  <!--{if $Item[start_dateline] > time()}-->
+  <div class="StartDatelinePoP"><span>{$Fn_HB_Share->Config[LangVar][StartDatelinePoP]}<em><!--{eval echo date("Y-m-d H:i",$Item[start_dateline]);}--></em></span></div>
+  <!--{elseif time() > $Item[end_dateline]}-->
+  <div class="StartDatelinePoP"><span>{$Fn_HB_Share->Config[LangVar][EndErr]}</span></div>
+  <!--{elseif $MyHbCount >= $Item[param][number] && $_G[uid]}-->
+  <div class="StartDatelinePoP"><span>{$Fn_HB_Share->Config[LangVar][AlreadyReceived]}</span></div>
+  <!--{else}-->
+  <div class="FixedMask FixedMaskHB a-bounceinT">
+	 <table cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+            <div class="FixedMaskContent">
+				<img src="{$Fn_HB_Share->Config[StaticPath]}/images/hbbg.png">
+				<span class="CloseBtn"></span>
+				<div class="Content">
+					<div class="Title">{$Fn_HB_Share->Config[LangVar][FixedMaskHBTitle]}</div>
+					<div class="Money"><em></em>{$Fn_HB_Share->Config[LangVar][Yuan]}</div>
+					<!--{if in_array($Fn_HB_Share->Config['PluginVar']['AppType'],array('1','2'))}-->
+					<div class="Link"><a class="MyWallet">{$Fn_HB_Share->Config[LangVar][FixedMaskHBMyWallet]}</a></div>
+					<!--{else}-->
+					<div class="Link"><a href="{$Fn_HB_Share->Config[WalletUrl]}" class="AppLink">{$Fn_HB_Share->Config[LangVar][FixedMaskHBMyWallet]}</a></div>
+					<!--{/if}-->
+				</div>
+				<div class="HBBtn"><a class="ReceiveHB State0" DataId="" DataAId="{$Item[id]}">{$Fn_HB_Share->Config[LangVar][ReceiveHB]}</a><a class="BtnShare" ShareTitle="" ShareDes="">{$Item[param][sharebtn]}</a></div>
+            </div>
+         </td>
+      </tr>
+    </table>
+  </div>
+  <div class="FixedMask FixedMaskShareHB a-bounceinT">
+	 <table cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+            <div class="FixedMaskContent">
+				<img src="{$Fn_HB_Share->Config[StaticPath]}/images/hbbg2.png">
+				<div class="Content">
+					<div class="Link" style="font-size:0.3rem;margin-top:2.7rem;line-height:0.43rem;">{$Item[param][shareprompt]}</div>
+				</div>
+				<div class="HBBtn FixedBtnShare"><a>{$Fn_HB_Share->Config[LangVar][WXFX]}</a></div>
+            </div>
+         </td>
+      </tr>
+    </table>
+  </div>
+  <!-- 定位 -->
+  <div id="FgetLocation" Lat='' Lng='' Address=''></div>
+  <!--{/if}-->
+  <!--{/if}-->
+  <div class="FixedNav">
+	<ul>
+		<!--{if !$Item[param][noapp] || $Appbyme || $QFApp || $MagApp}-->
+		<li><!--{if in_array($Fn_HB_Share->Config['PluginVar']['AppType'],array('1','2'))}--><a class="MyWallet"><img src="{$Fn_HB_Share->Config[StaticPath]}/images/qb.png"></a><!--{else}--><a href="{$Fn_HB_Share->Config[WalletUrl]}" class="AppLink"><img src="{$Fn_HB_Share->Config[StaticPath]}/images/qb.png"></a><!--{/if}--></li>
+		<!--{/if}-->
+	</ul>
+  </div>
+  <div class="FixedWallet">
+  </div>
+</div>
+<?php include template('fn_hb_share:footer');?>
+<!--{if $Item[param][app] && !$Appbyme && !$QFApp && !$MagApp && in_array($Fn_HB_Share->Config[PluginVar][AppType],array('2')) && $Fn_HB_Share->Config['PluginVar']['MoblinkKey']}-->
+<script src="//f.moblink.mob.com/3.0.1/moblink.js?appkey={$Fn_HB_Share->Config['PluginVar']['MoblinkKey']}"></script>
+<!--{/if}-->
+<script>
+<!--{if $Item[param][app] && !$Appbyme && !$QFApp && !$MagApp}-->
+<!--{if $Item[param][apppop]}-->
+$(document).on('click',".FnOpen",function(){
+	$('.fixed_box').show();
+	$('.FixedMaskHB').removeClass('a-bounceoutT').addClass('a-bounceinT').show();
+});
+$(document).on('click',".FixedMaskHB .DounApp",function(){
+	$('.FixedDounApp').show();
+});
+//关闭成功弹窗
+$(document).on('click',".FixedMaskHB .CloseBtn",function(){
+	var FixedMask = $(this).parents('.FixedMask');
+	var FixedMaskClass = FixedMask.attr('class');
+	FixedMask.removeClass('a-bounceinT').addClass('a-bounceoutT').delay(500).fadeOut('slow',function(){
+		$('.fixed_box').hide();
+	});
+});
+<!--{else}-->
+$(document).on('click',".FnOpen",function(){
+	$('.FixedDounApp').show();
+});
+<!--{/if}-->
+$(document).on('click',".FixedDounApp .X",function(){
+	$('.FixedDounApp').hide();
+});
+<!--{if in_array($Fn_HB_Share->Config['PluginVar']['AppType'],array('2')) && $Fn_HB_Share->Config['PluginVar']['MoblinkKey']}-->
+MobLink({
+	el:'#D',
+	path: "/qianfan/webview",
+	params:{
+		url: "{$Fn_HB_Share->Config[Url]}&aid={$Item[id]}"
+	}
+});
+<!--{else}-->
+$(document).on('click',".FixedDounApp .D",function(){
+	window.location.href="{$Fn_HB_Share->Config['PluginVar']['AppLink']}";
+});
+<!--{/if}-->
+
+<!--{else}-->
+
+<!--{if time() > $Item[start_dateline] && time() < $Item[end_dateline] && $MyHbCount < $Item[param][number]}-->
+/* 定位 */
+<!--{if $Item[display] && $Item[param][address]}-->
+<!--{if $Appbyme}-->
+connectSQJavascriptBridge(function(){
+	sq.getLocation(function(result){
+		$('#FgetLocation').attr({'Lng':result.lng,'Lat':result.lat,'Address':result.address});
+	});
+});
+<!--{elseif $MagApp}-->
+mag.getLocation(function(res){
+	$('#FgetLocation').attr({'Lng':res.lng,'Lat':res.lat,'Address':res.location});
+});
+<!--{elseif $QFApp}-->
+setTimeout(QFH5.getLocation(function(state,data){
+	if(state == 1){
+		$('.GpsLoad').addClass('FnOpen').html('{$Fn_HB_Share->Config[LangVar][FnOpen]}');
+		$('#FgetLocation').attr({'Lng':data.longitude,'Lat':data.latitude,'Address':data.address});
+	}else{
+		$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}','{$Item[param][gpserr]}');
+	}
+}),700);
+<!--{elseif $WxApp}-->
+wx.ready(function() {
+	wx.getLocation({
+		type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+		success: function (res) {
+			$('#FgetLocation').attr({'Lng':res.longitude,'Lat':res.latitude});
+		}
+	});
+});
+<!--{/if}-->
+<!--{/if}-->
+/* 定位 End */
+setTimeout(QFH5.getLocation(function(state,data){
+	if(state == 1){
+		$('.GpsLoad').addClass('FnOpen').html('{$Fn_HB_Share->Config[LangVar][FnOpen]}');
+		$('#FgetLocation').attr({'Lng':data.longitude,'Lat':data.latitude,'Address':data.address});
+	}else{
+		$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}','{$Item[param][gpserr]}');
+	}
+}),700);
+//开始抢红包
+$(document).on('click',".FnOpen",function(){
+	<!--{if !$_G[uid]}-->
+	FnLogin();
+	<!--{else}-->
+	GetAjaxHbShare();
+	<!--{/if}-->
+	return false;
+});
+//关闭成功弹窗
+$(document).on('click',".FixedMaskHB .CloseBtn",function(){
+	var FixedMask = $(this).parents('.FixedMask');
+	var FixedMaskClass = FixedMask.attr('class');
+	FixedMask.removeClass('a-bounceinT').addClass('a-bounceoutT').delay(500).fadeOut('slow',function(){
+		$('.fixed_box').hide();
+		if(FixedMaskClass.indexOf('FixedMaskHB') >= 0){
+			window.location.reload(true);
+		}
+	});
+	return false;
+});
+function GetAjaxHbShare(){
+	var Lat = $('#FgetLocation').attr('Lat');
+	var Lng = $('#FgetLocation').attr('Lng');
+	var Address = $('#FgetLocation').attr('Address');
+	$.ajax({
+		url: '{$Fn_HB_Share->Config[AjaxUrl]}&f=GetAjaxHbShare&aid={$Item[id]}&formhash={FORMHASH}&lat='+Lat+'&lng='+Lng+'&address='+Address,//发送请求的地址
+		type: 'get',
+		dataType:'json',
+		contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+		beforeSend:function(XMLHttpRequest){
+			$('.fixed_load').show();
+		},
+		success:function(Data){
+			$('.fixed_load').hide();
+			if(Data.State == 200){//抢到红包
+				$('.FixedMaskHB .Money em').html(Data.Money);
+				$('.FixedMaskHB .ReceiveHB').attr({'DataId':Data.HBId});
+				$('.FixedMaskHB .BtnShare').attr({'ShareTitle':Data.ShareTitle,'ShareDes':Data.ShareDes});
+				$('.fixed_box').show();
+				$('.FixedMaskHB').show();
+			}else if(Data.State == 201){//未分享
+				$('.fixed_box').show();
+				$('.FixedMaskShareHB').show();
+			}else{
+				$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',Data.Msg);
+			}
+		},
+		error:function(XMLHttpRequest){
+			$('.fixed_load').hide();
+			$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config[LangVar][Err200]}");
+		}
+	});
+	return false;
+}
+/* 分享 */
+function GetAjaxShare(Type){
+	$.ajax({
+		url: '{$Fn_HB_Share->Config[AjaxUrl]}&f=GetAjaxShare&aid={$Item[id]}&formhash={FORMHASH}&type='+Type,//发送请求的地址
+		type: 'get',
+		dataType:'json',
+		contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+		beforeSend:function(XMLHttpRequest){
+			$('.fixed_load').show();
+		},
+		success:function(Data){
+			$('.fixed_load').hide();
+			if(Data.State == 200){
+				GetAjaxHbShare();
+			}
+			$('.share_img').removeClass('a-bounceinB').addClass('a-bounceoutB').delay(500).fadeOut('slow',function(){
+				$('.fixed_box_share').hide();
+			});
+		},
+		error:function(XMLHttpRequest){
+			$('.fixed_load').hide();
+		}
+	});
+	return false;
+}
+$(document).on('click',".FixedBtnShare",function(){
+	$('.fixed_box').hide();
+	$('.FixedMaskShareHB').hide();
+	<!--{if $Appbyme}-->
+	sq.share("{$Fn_HB_Share->Config[WxShare][WxTitle]}", "{$Fn_HB_Share->Config[WxShare][WxDes]}", "{$Fn_HB_Share->Config[WxShare][WxUrl]}", function(result){
+		if(result.errmsg != 'FAIL'){
+			GetAjaxShare('app');
+		}
+	});
+	<!--{elseif $MagApp}-->
+	mag.share('<!--{if $Item[param][sharemode] == 1}-->WEIXIN_CIRCLE<!--{else}-->ALL<!--{/if}-->', function(res){
+		GetAjaxShare('app');
+	});
+	<!--{elseif $QFApp}-->
+	QFH5.setShareInfo("{$Fn_HB_Share->Config[WxShare][WxTitle]}","{$Fn_HB_Share->Config[WxShare][WxImg]}","{$Fn_HB_Share->Config[WxShare][WxDes]}","{$Fn_HB_Share->Config[WxShare][WxUrl]}",function(state,data){
+		if(state == 1){
+			GetAjaxShare('app');
+		}
+	});
+	<!--{if $Item[param][sharemode] == 1}-->
+	QFH5.openShare(1);
+	<!--{else}-->
+	QFH5.openShareDialog();
+	<!--{/if}-->
+	<!--{else}-->
+	$('.fixed_box_share').show();
+	$('.share_img').show().removeClass('a-bounceoutB').addClass('a-bounceinB');
+	<!--{/if}-->
+	return false;
+});
+
+$(document).on('click',".BtnShare",function(){
+	var ShareTitle = $(this).attr('ShareTitle');
+	var ShareDes = $(this).attr('ShareDes');
+	<!--{if $Appbyme}-->
+	sq.share(ShareTitle, ShareDes, "{$Fn_HB_Share->Config[WxShare][WxUrl]}", function(result){
+		if(result.errmsg != 'FAIL'){
+			$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config[LangVar][SuccessShareOk]}");
+		}
+	});
+	<!--{elseif $MagApp}-->
+	mag.setData({shareData: {title: ShareTitle,des:ShareDes,picurl: '{$Fn_HB_Share->Config[WxShare][WxImg]}',linkurl: '{$Fn_HB_Share->Config[WxShare][WxUrl]}'}});
+	mag.share('ALL', function(res){
+		$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config[LangVar][SuccessShareOk]}");
+	});
+	<!--{elseif $QFApp}-->
+	QFH5.setShareInfo(ShareTitle,"{$Fn_HB_Share->Config[WxShare][WxImg]}",ShareDes,"{$Fn_HB_Share->Config[WxShare][WxUrl]}",function(state,data){
+		
+	});
+	QFH5.openShareDialog();
+	<!--{else}-->
+	$('.fixed_box_share').show();
+	$('.share_img').show().removeClass('a-bounceoutB').addClass('a-bounceinB');
+	<!--{/if}-->
+	return false;
+});
+<!--{else}-->
+//未开始活动 Or 已结束
+$(document).on('click',".NoBtn",function(){
+	<!--{if !$_G[uid]}-->
+	FnLogin();
+	<!--{else}-->
+	$('.StartDatelinePoP').fadeIn(1000,function(){
+		$(this).delay(2000).fadeOut(1000);
+	});
+	<!--{/if}-->
+	return false;
+});
+<!--{/if}-->
+<!--{/if}-->
+
+$(document).on('click',".WrapMain .Nav span",function(){
+	var Index = $(this).index();
+	$(this).addClass('Hover').siblings().removeClass('Hover');
+	$('.BoxMain').hide().eq(Index).show();
+	return false;
+});
+
+<!--{if $HbShareList}-->
+$(document).on('click',".WinningLog .MoreClick",function(){
+	var _This = $(this);
+	var Page = $('.WinningLogList').attr('DataPage');
+	$.ajax({
+		url: '{$Fn_HB_Share->Config[AjaxUrl]}&f=GetAjaxHbShareList&aid={$Item[id]}&page='+Page+'&formhash={FORMHASH}',//发送请求的地址,
+		type: 'get',
+		dataType:'json',
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		beforeSend:function(XMLHttpRequest){
+			_This.addClass('Load');
+		},
+		success:function(Results){
+			var FnJson = eval(Results);
+			(function(FnJson){
+				_This.removeClass('Load')
+				if(FnJson == ''){
+					_This.html('{$Fn_HB_Share->Config[LangVar][NoDataMore]}').removeClass('MoreClick');
+				}else{
+					var Html = '';
+					for(var i in FnJson){
+						Html += '<li DataUid="'+FnJson[i].uid+'"><div class="Face"><img src="{$Fn_HB_Share->Config[PluginVar][FaceName]}/avatar.php?uid='+FnJson[i].uid+'&size=middle"></div><div class="NameTime"><div class="Name">'+FnJson[i].username+'</div><div class="Time">'+FnJson[i].dateline+'</div></div><div class="Money"><em>'+FnJson[i].money+'</em>{$Fn_HB_Share->Config[LangVar][Yuan]}</div></li>';
+					}
+					$('.WinningLogList ul').append(Html);
+					Page++;
+					$('.WinningLogList').attr('DataPage',Page);
+				}
+			})(FnJson);
+		},
+		error:function(XMLHttpRequest){
+			$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config[LangVar][AjaxError]}"+XMLHttpRequest.status);
+		}
+	});
+	return false;
+});
+$(document).on('click',".WinningLogList ul li",function(){
+	var Uid = $(this).attr('DataUId');
+	if(Uid != ''){
+		<!--{if $Appbyme}-->
+		sq.userCenter(Uid);
+		<!--{elseif $MagApp}-->
+		mag.toUserHome(Uid);
+		<!--{elseif $QFApp}-->
+		QFH5.jumpUser(Uid);
+		<!--{else}-->
+		<!--{if $Fn_HB_Share->Config['PluginVar']['UserSwitch'] && $Fn_HB_Share->Config['PluginVar']['UserAppPrompt'] && $Fn_HB_Share->Config['PluginVar']['AppLink']}-->
+		$.MsgBox.Confirm('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config['PluginVar']['UserAppPrompt']}",function(){
+			document.location='{$Fn_HB_Share->Config['PluginVar']['AppLink']}';
+		});
+		<!--{else}-->
+		document.location='home.php?mod=space&uid='+Uid;
+		<!--{/if}-->
+		<!--{/if}-->
+	}
+	return false;
+});
+<!--{/if}-->
+
+<!--{if in_array($Fn_HB_Share->Config['PluginVar']['AppType'],array('1','2'))}-->
+//我的钱包
+$(document).on('click',".MyWallet",function(e){
+	<!--{if !$_G[uid] && ($MagApp || $QFApp)}-->
+	FnLogin();
+	<!--{else}-->
+	<!--{if $MagApp}-->
+	mag.newWin('/mag/user/v1/user/wallet');
+	<!--{elseif $QFApp}-->
+	QFH5.jumpMyPackage();
+	<!--{else}-->
+	$.MsgBox.Confirm('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config['PluginVar']['NoAppWalletPrompt']}",function(){
+		document.location='{$Fn_HB_Share->Config['PluginVar']['AppLink']}';
+	});
+	<!--{/if}-->
+	<!--{/if}-->
+	return false;
+});
+<!--{/if}-->
+
+$(document).on('click',".MyHBMainList .State0,.FixedMaskHB .State0",function(){
+	var _This = $(this);
+	var Id = _This.attr('DataId');
+	var AId = _This.attr('DataAId');
+	$.ajax({
+		url: '{$Fn_HB_Share->Config[AjaxUrl]}&f=GetAjaxHbState&formhash={FORMHASH}&lid='+Id+'&aid='+AId,//发送请求的地址
+		type: 'get',
+		dataType:'json',
+		contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+		beforeSend:function(XMLHttpRequest){
+			$('.fixed_load').show();
+		},
+		success:function(Data){
+			$('.fixed_load').hide();
+			if(Data.State == 200){
+				_This.html('{$Fn_HB_Share->Config[LangVar][HbStateBtn][1]}').addClass('State1').removeClass('State0');
+				$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',Data.Msg);
+			}else if(Data.State == 201){
+				_This.html('{$Fn_HB_Share->Config[LangVar][HbStateBtn][1]}').addClass('State1').removeClass('State0');
+				$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',Data.Msg);
+			}else{
+				$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',Data.Msg);
+			}
+		},
+		error:function(XMLHttpRequest){
+			$('.fixed_load').hide();
+			$.MsgBox.Alert('{$Fn_HB_Share->Config[LangVar][Alert_title]}',"{$Fn_HB_Share->Config[LangVar][AjaxError]}"+XMLHttpRequest.status);
+		}
+	});
+	return false;
+});
+
+<!--{if !$_G[uid]}-->
+function FnLogin(){
+	<!--{if $Appbyme}-->//小云登录
+	connectSQJavascriptBridge(function(bridge){
+		sq.login(function(userInfo){
+			if(userInfo.userId != 0){
+				sq.logout(function(info){
+					alert("{$Fn_HB_Share->Config[LangVar][AppBymeErr]}");
+				});
+			}else{
+				window.location.reload(true);
+			}
+		});
+	});
+	<!--{elseif $MagApp}-->//马甲登录
+	mag.toLogin(function(){
+		$('.fixed_load').show();
+		setTimeout(function(){window.location.reload(true)},700);
+	});
+	<!--{elseif $QFApp}-->//千帆登录
+	QFH5.jumpLogin(function(state,data){
+		if(state==1){
+			QFH5.refresh(1);
+		}else{
+			alert(data.error);//data.error: string
+		}
+	});
+	<!--{else}-->
+	window.location.href="member.php?mod=logging"+"&action=login";
+	<!--{/if}-->
+	return false;
+}
+<!--{/if}-->
+</script>
+</body>
+</html>

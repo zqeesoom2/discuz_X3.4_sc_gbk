@@ -1,0 +1,168 @@
+<div class="fixed_box"></div>
+<div class="fixed_load"><span></span></div>
+<div class="share_img"><img src="{$Fn_HB_Share->Config[StaticPath]}/images/share.png"></div>
+<div class="fixed_box_share"></div>
+<!--{if $Appbyme || $MagApp || $QFApp}-->
+<script>
+$(document).on('click',"a.AppLink",function(event){
+	event.stopPropagation();
+	var Url = $(this).attr('href');
+	if(Url.indexOf('tel:') < 0){
+		<!--{if $Appbyme}-->
+		connectSQJavascriptBridge(function(){});
+		sq.urlRequest(Url);
+		<!--{elseif $MagApp}-->
+		mag.newWin(Url);
+		<!--{elseif $QFApp}-->
+		QFH5.jumpNewWebview(Url);
+		<!--{/if}-->
+		return false;
+	}
+});
+</script>
+<!--{/if}-->
+<script>
+/* 分享 */
+$(document).on('click',".share_click",function(e){
+	<!--{if $Appbyme}-->
+	sq.share("{$Fn_HB_Share->Config[WxShare][WxTitle]}", "{$Fn_HB_Share->Config[WxShare][WxDes]}", "{$Fn_HB_Share->Config[WxShare][WxUrl]}", function(result){
+	});
+	<!--{elseif $MagApp}-->
+	mag.share('ALL', function(res){
+	});
+	<!--{elseif $QFApp}-->
+	QFH5.openShareDialog();
+	<!--{else}-->
+	$('.fixed_box_share').show();
+	$('.share_img').show().removeClass('a-bounceoutB').addClass('a-bounceinB');
+	<!--{/if}-->
+});
+$('.share_img').on('click',function(e){
+	$('.share_img').removeClass('a-bounceinB').addClass('a-bounceoutB').delay(500).fadeOut('slow',function(){
+		$('.fixed_box_share').hide();
+	});;
+});
+
+/* 分享end */
+</script>
+<!--{if $WxApp}-->
+<script>
+wx.ready(function() {
+	wx.hideMenuItems({
+		menuList: ['menuItem:readMode', // 阅读模式
+		//'menuItem:openWithQQBrowser', // 
+		'menuItem:openWithSafari'
+		//'menuItem:copyUrl' // 复制链接
+		],
+		success: function(res) {
+			//alert('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+		},
+		fail: function(res) {
+			//alert(JSON.stringify(res));
+		}
+	});
+
+	var stitle = '{$Fn_HB_Share->Config[WxShare][WxTitle]}';
+	var sdesc = '{$Fn_HB_Share->Config[WxShare][WxDes]}';
+	var slink = '{$Fn_HB_Share->Config[WxShare][WxUrl]}';
+	var simg = '{$Fn_HB_Share->Config[WxShare][WxImg]}';
+
+	// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+	wx.onMenuShareAppMessage({
+		title: stitle,
+		// 分享标题
+		desc: sdesc,
+		// 分享描述
+		link: slink,
+		// 分享链接
+		imgUrl: simg,
+		// 分享图标
+		type: '',
+		// 分享类型,music、video或link，不填默认为link
+		dataUrl: '',
+		// 如果type是music或video，则要提供数据链接，默认为空
+		success: function() {
+			<!--{if !$Item[param][app] && $_GET['m'] == 'index'}-->
+			GetAjaxShare('wx');
+			<!--{/if}-->
+		},
+		cancel: function() {
+			// 用户取消分享后执行的回调函数
+		}
+	});
+
+	wx.onMenuShareTimeline({
+		title: stitle,
+		link: slink,
+		imgUrl: simg,
+		trigger: function(res) {
+			// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+			//alert('YOU 点击分享到朋友圈');
+		},
+		success: function(res) {
+			//alert('已分享');
+			<!--{if !$Item[param][app] && $_GET['m'] == 'index'}-->
+			GetAjaxShare('wx');
+			<!--{/if}-->
+		},
+		cancel: function(res) {
+			//alert('已取消icake');
+		},
+		fail: function(res) {
+			alert(JSON.stringify(res));
+		}
+	});
+
+	wx.onMenuShareQQ({
+		title: stitle,
+		desc: sdesc,
+		link: slink,
+		imgUrl: simg,
+		trigger: function(res) {
+			//alert('用户点击分享到QQ');
+		},
+		complete: function(res) {
+			//alert(JSON.stringify(res));
+		},
+		success: function(res) {
+			//alert('已分享');
+			<!--{if !$Item[param][app] && $_GET['m'] == 'index'}-->
+			GetAjaxShare('wx');
+			<!--{/if}-->
+		},
+		cancel: function(res) {
+			//alert('已取消');
+		},
+		fail: function(res) {
+			alert(JSON.stringify(res));
+		}
+	});
+
+	wx.onMenuShareWeibo({
+		title: stitle,
+		desc: sdesc,
+		link: slink,
+		imgUrl: simg,
+		trigger: function(res) {
+			//alert('用户点击分享到微博');
+		},
+		complete: function(res) {
+			alert(JSON.stringify(res));
+		},
+		success: function(res) {
+			//alert('已分享');
+			<!--{if !$Item[param][app] && $_GET['m'] == 'index'}-->
+			GetAjaxShare('wx');
+			<!--{/if}-->
+		},
+		cancel: function(res) {
+			//alert('已取消');
+		},
+		fail: function(res) {
+			alert(JSON.stringify(res));
+		}
+	});
+
+});
+</script>
+<!--{/if}-->

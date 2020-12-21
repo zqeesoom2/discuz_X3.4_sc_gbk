@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="$metakeywords" />
+<meta name="description" content="$metadescription" />
+<title>$navtitle</title>
+</head>
+<script src="static/js/jq.js?RpY" type="text/javascript"></script>
+<link href="source/plugin/aljesc/css/touch.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/aljesc/css/shouji_1.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/aljesc/css/listing.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.cmIcon.bx-logo{width:50px;height:24px;background:url("{if $config['sj_logo']}$config['sj_logo']{else}$_G['style'][boardimg]{/if}") no-repeat;-webkit-background-size:50px 24px;-moz-background-size:50px 24px;background-size:50px 24px}
+	.cmBtnWrapper{float:right; margin-left:5px;}
+	.cmBtn.cmBtnInfo{width:70px; height:35px; line-height:35px;font-size:14px;}
+	.cmBtn.cmBtnSuccess{width:70px; height:35px; line-height:35px; font-size:14px;}
+	.cmBtnWrapper{width:70px;}
+	.title{    
+    height: 37px;
+    display: block;
+    margin-top:2px;
+    text-align: left;}
+</style>
+<body>
+<article class="cmSubview cmSubviewRoot ui-subview ui-subview-root ui-subview-in">
+{template aljesc:header}
+
+<div class="header" style="position:fixed; z-index:999; top:0px;">
+    	<div class="w90 center header_a">
+
+                    <a class="header_back" href="http://3g.07430743.com/zsxx/sh/index.html"><img src="/images/inco_03.png" width="20" height="21" style="margin-top:17px;"></a>
+               <span class="find"><a style="color:#fff;">二手车</a></span>
+
+		<div style="width:152px; float:right; margin-top:10px;">
+			<span class="cmBtnWrapper user"><a class="cmBtn cmBtnInfo" href="/plugin.php?id=aljesc&act=member">我发布的</a></span>
+			<span class="cmBtnWrapper fabu"><a class="cmBtn cmBtnSuccess" href="plugin.php?id=aljesc&act=post" style="background:#ff8134">{lang aljes:index_33}</a></span>
+		</div>
+</div>
+   </div>
+
+<div style="width:100%; height:55px"></div>
+
+
+<!--<div style="width:98%; background:#f5f5f5; color:#666; padding:5px; font-size:12px;">2016新版分类信息上线啦！30元=首页+掌上湘西+频道+微信强势推荐。如有需要请添加微信号:azx2585369详细咨询</div>-->
+<div style="width:98%; background:#f5f5f5; color:#666; padding:5px; font-size:28px;"><center style="color:red;font-size:30px;">改版公测通知</center>
+为确保信息真实性,新版分类信息&lt;&lt;湘小西同城&gt;&gt;将实行手机认证.<font color=red>2018年5月4日</font>系统正式上线,<font color=red>原系统关闭</font>,请将有价值的信息移入新版(<a href="http://58.07430743.com">http://58.07430743.com</a>),同时为了便于广大网友查看,防止同条信息反复刷屏,当天同号将实行限量发送信息,对于信息量大的用户,想信息靠前的,推出置顶,竞价置顶,及其它套餐服务.欢迎使用新版!进入<a href="http://58.07430743.com" mce_href="tel:15274359617" style="background:#00bd3e; padding:3px 5px; color:#fff; font-size:26px; border-radius:5px;">新版信息</a></div>
+ <script>
+ 	var upurl=window.location.href;
+	if(upurl.indexOf("select")>0){
+		jQuery(".header_back").removeAttr("href");
+		jQuery(".header_back").attr("onclick","history.go(-1)");
+	}
+
+ </script>
+<main>
+{if $_GET['select']=='area'}
+
+<ul class="cmGridList">
+	<li>
+<a  rel="" href="plugin.php?id=aljesc&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&fangxing=$_GET['fangxing']">{lang aljesc:index_3}</a> </li>
+{loop $rs $r}
+<li>
+{if $r['subid']}
+{eval $url='&select=subarea';}
+{/if}
+<a href="plugin.php?id=aljesc&rid={$r['id']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&fangxing=$_GET['fangxing']{$url}">$r['subject']</a></li>
+{eval unset($url);}
+{/loop}
+</ul>
+{elseif $_GET['select']=='subarea'}
+
+<ul class="cmGridList">
+	<li>
+<a rel="" href="plugin.php?id=aljesc&rid={$_GET['rid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&fangxing=$_GET['fangxing']">{lang aljesc:index_4}</a> </li>
+{loop $rrs $s}
+<li>
+<a href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$s['id']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&fangxing=$_GET['fangxing']">$s['subject']</a></li>
+{/loop}
+</ul>
+{elseif $_GET['select']=='fl'}
+
+<ul class="cmGridList">
+	<li>
+<a href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&fangxing=$_GET['fangxing']">{lang aljesc:index_6}</a></li>
+{loop $pos $r}
+{if $r['subid']}
+{eval $url='&select=sublx';}
+{/if}
+<li><a href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$r['id']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}{$url}">$r['subject']</a></li>
+{eval unset($url);}
+{/loop}
+</ul>
+{elseif $_GET['select']=='sublx'}
+
+<ul class="cmGridList">
+	<li>
+<a rel="" href="plugin.php?id=aljesc&rid={$_GET['rid']}&pid={$_GET['pid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}">{lang aljesc:index_4}</a> </li>
+{loop $prs $s}
+<li>
+<a href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$s['id']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}">$s['subject']</a></li>
+{/loop}
+</ul>
+{elseif $_GET['select']=='jg'}
+
+<ul class="cmGridList">
+	<li>
+<a href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&fangxing=$_GET['fangxing']">{lang aljesc:index_6}</a> </li>
+{loop $pay_types $k $v}
+{eval $arr=explode('-',$k);}
+<li>
+<a rel="nofollow" href="plugin.php?id=aljesc&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1=$arr['0']&pay2=$arr['1']&fangxing=$_GET['fangxing']">$v</a></li>
+{/loop}
+
+</ul>
+
+{else}
+<form action="plugin.php?id=aljesc" method="post" class="filter-block" style="border:none">
+<input type="hidden" value="{FORMHASH}" name="formhash">
+<ul class="filter" style="border:none"><li><a href="plugin.php?id=aljesc&select=area&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}" class="more" style="font-size:18px; font-weight:bold;">{lang aljesc:index_2}<img src="/source/plugin/aljzp/images/icon_03.png" style="width:11px; position:absolute; top:14px; right:-5px; "></a></li>
+<li><a href="plugin.php?id=aljesc&select=fl&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}" class="more" style="font-size:18px; font-weight:bold;">类别<img src="/source/plugin/aljzp/images/icon_03.png" style="width:11px; position:absolute; top:14px; right:-5px; "></a></li>
+<li><a href="plugin.php?id=aljesc&select=jg&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}" class="more" style="font-size:18px; font-weight:bold;">{lang aljesc:index_7}<img src="/source/plugin/aljzp/images/icon_03.png" style="width:11px; position:absolute; top:14px; right:-5px; "></a></li>
+
+</ul>
+
+</form>
+</div>
+<div style="width:100%; height:auto;" class="aljesc_ad">
+   {eval echo htmlspecialchars_decode($settings['mobile_index_ad_1']['value']);}
+   </div>
+<div class="main">
+{loop $lplist $lp}
+{if $_GET['view']=='item'||($_GET['view']!='table'&&$config['isitem'])}
+<ul class="list show-image multiplex">
+	<li class="item ace" style="border:none;">
+		<a href="<!--{if $config['isrewrite']}-->{$lp['rewrite']}<!--{else}-->plugin.php?id=aljesc&act=view&lid={$lp['id']}<!--{/if}-->" data-number="0" style="padding-top:11px;">
+			<img class="image" src="{if $lp['pic1']}{eval echo $lp['pic1'].'.280x200.jpg';}{else}{if $settings['logo']['value']}{$settings['logo']['value']}{else}{$config['mr_src']}{/if}{/if}" style="width:85px; height:62px;">
+			<header>
+				<h3 class="post-title">
+				
+				{if TIMESTAMP < $lp['topetime']}<small class="cmLabel pinned" style="background:#ff8134;margin-right:3px; float:left;">推荐</small>{/if}				
+				<span class="title" style="font-size:16px;">$lp['title']</span> {if $lp['pic1']}<small class="has-images">{lang aljes:Fig}</small>{/if}</h3>
+				<!--<span class="status" style="color:#ff8134;font-size:18px;">
+				{if $lp['zujin']}{$lp['zujin']}{lang aljesc:post_10}{else}{lang aljesc:view_14}{/if}
+				
+				</span>-->
+			</header>
+			<p class="attr" style="font-size:12px;"><span class="price" style="color:#ff8134; font-size:14px;">{if $lp['zujin']}{$lp['zujin']}元{else}{lang aljesc:view_14}{/if}</span> {if $lp['pos']}&nbsp;/&nbsp;$pos_zw[$lp['pos']][subject]{/if}{if $lp['mileage']}&nbsp;/&nbsp;$lp['mileage']{lang aljesc:mileage_d}{/if}
+									<span class="status">
+			{if $lp['solve']}<small class="cmLabel solved">{lang aljes:Done}</small>{/if}</span>
+			<span style="float:right;font-size:12px">
+			<time class="friendly date">
+			<!--{eval $today=date('Y-m-d',$lp['updatetime']);}-->
+			<!--{eval $todays=date('Y-m-d',$_G['timestamp']);}-->
+			{if $today==$todays}{lang aljes:index_35}{eval echo date('H:i',$lp['updatetime']);}{else}{eval echo date('m-d',$lp['updatetime']);}{/if}</time>
+			</span>
+			</p>
+
+			
+
+			<!--<p class="addr">{$regions[$lp['region']]['subject']}{if $lp['region1']} - {$regions[$lp['region1']]['subject']}{/if}{if $lp['region2']} - {$regions[$lp['region2']]['subject']}{/if}
+			<span class=" area">
+						{eval $qiye_type=DB::result_first('select type from %t where uid=%d and sign=%d',array('aljes_attestation',$lp['uid'],'1'))}
+						{if $qiye_type == 2}
+						&nbsp;<i title="{lang aljes:License_certification}" class="picq qiye"></i>
+						{elseif $qiye_type == 1}
+						&nbsp;<i title="{lang aljes:Personal_authentication}" class="picq geren"></i>
+						{/if}
+						</span>
+			</p>-->
+
+
+		</a>
+	</li>
+</ul>
+{elseif $_GET['view']=='table'||($_GET['view']!='item'&&!$config['isitem'])}
+<ul class="list multiplex">
+	<li class="item pinned">
+		<a href="<!--{if $config['isrewrite']}-->{$lp['rewrite']}<!--{else}-->plugin.php?id=aljesc&act=view&lid={$lp['id']}<!--{/if}-->" data-number="1">
+		<header>
+			<h3 class="post-title">
+				<span class="title">$lp['title']</span>
+				{if $lp['pic1']}<small class="has-images">{lang aljesc:Fig}</small>{/if}
+				
+				
+			</h3>
+			<span class="status"><time class="friendly date">
+			<!--{eval $today=date('Y-m-d',$lp['updatetime']);}-->
+			<!--{eval $todays=date('Y-m-d',$_G['timestamp']);}-->
+			{if $today==$todays}{lang aljesc:index_35}{eval echo date('H:i',$lp['updatetime']);}{else}{eval echo date('m-d',$lp['updatetime']);}{/if}</time></span>
+		</header>
+		<p class="attr">
+			<span class="price">{if $lp['zujin']}{$lp['zujin']}元{else}{lang aljesc:view_14}{/if}</span> <span class="sub-category">&nbsp;</span><span class="status">{if $lp['solve']}&nbsp;<small class="cmLabel solved">{lang aljesc:Done}</small>{else}{if TIMESTAMP < $lp['topetime']}<small class="cmLabel pinned">{lang aljesc:index_32}</small>{/if}{/if}</span></p><p class="addr">{$regions[$lp['region']]['subject']}{if $lp['region1']} - {$regions[$lp['region1']]['subject']}{/if}{if $lp['region2']} - {$regions[$lp['region2']]['subject']}{/if}
+			<span class=" area">
+						{eval $qiye_type=DB::result_first('select type from %t where uid=%d and sign=%d',array('aljesc_attestation',$lp['uid'],'1'))}
+						{if $qiye_type == 2}
+						&nbsp;<i title="{lang aljesc:License_certification}" class="picq qiye"></i>
+						{elseif $qiye_type == 1}
+						&nbsp;<i title="{lang aljesc:Personal_authentication}" class="picq geren"></i>
+						{/if}
+						</span>
+			</p>
+		</a>
+	</li>
+</ul>
+{/if}
+{/loop}
+</div>
+</main>
+
+<div style="width:100%; height:auto;" class="aljesc_ad">
+  {eval echo htmlspecialchars_decode($settings['mobile_index_ad_2']['value']);}
+   </div>
+<div class="pages">$paging</div>
+<div style="width:100%; height:auto;" class="aljesc_ad">
+  {eval echo htmlspecialchars_decode($settings['mobile_index_ad_3']['value']);}
+   </div>
+{/if}
+</main>
+<script>
+	jQuery(".pg").find("label").hide();
+</script>
+<style type="text/css">
+	.picq {
+  background-image: url("source/plugin/aljesc/images/picq.png") !important;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: -2px;
+  width: 18px;
+}
+.qiye {
+  background-position: 0 -23px;
+}
+.geren {
+  background-position: 0 2px;
+}
+.pg strong{border-radius:15px; padding:3px 8px; color:#fff; background:#fe4c01; font-weight:100;}
+	.pg a{
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0px 2px;
+    background: #C8C8C8;
+    color: #fff;
+	border-radius:25px;
+	margin-left:3px;
+	}
+</style>
+
+
+{template aljesc:footer}
+</article>
+
+<!--{eval updatesession();}-->
+<!--{if defined('IN_MOBILE')}-->
+	<!--{eval output();}-->
+<!--{else}-->
+	<!--{eval output_preview();}-->
+<!--{/if}-->
+

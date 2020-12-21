@@ -1,0 +1,36 @@
+{if $settings['Announcement_rolling']['value']}
+ <style type="text/css"> 
+/*公告栏滚动CSS*/ 
+#twitter {  height:24px; line-height:24px; overflow:hidden; font-size:12px; } 
+#twitter ul { padding:0; } 
+#twitter li { padding:0; } 
+</style> 
+
+<div id="twitter" class="pull-right small"> 
+<ul> 
+{loop $Announcement_rolling_list  $gg}
+<li style="margin-top: 0px;"> 
+<a href="$gg[1]" style="color:{$gg[2]}">$gg[0]</a> 
+</li> 
+{/loop}
+</ul> 
+</div> 
+<!--公告板滚动--> 
+<script type="text/javascript"> 
+jq(document).ready(function(){
+    jq("#twitter li:not(:first)").css("display","none");
+    var B=jq("#twitter li:last");
+    var C=jq("#twitter li:first");
+    setInterval(function(){
+    if(B.is(":visible")){
+    C.fadeIn(500).addClass("in");B.hide()
+    }else{
+    jq("#twitter li:visible").addClass("in");
+    jq("#twitter li.in").next().fadeIn(500);
+    jq("li.in").hide().removeClass("in")}
+    },3000) //每3秒钟切换一条，你可以根据需要更改
+})
+</script> 
+{else}
+ <a class="pull-right small" href="$config['ggurl']" style="color:{$config['ggcolor']}">&nbsp;$config['gg']</a>
+{/if}

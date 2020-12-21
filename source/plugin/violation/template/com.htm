@@ -1,0 +1,13 @@
+
+<table class="tb tb2 nobdb">
+<tbody>
+<tr class="header">
+<th>组件名称</th><th style="width:480px;">组件介绍</th><th>组件状态</th></tr>
+{loop $comarray $com}
+<tr>
+<td>$com['name']</td>
+<td>$com['desc']</td>
+<td>{if file_exists($com['file'])}<font color="red">已安装</font>{else}<font color="red">未安装</font> <a href="$com['url']">(去安装)</a>{/if}</td>
+</tr>
+{/loop}
+</tbody></table>

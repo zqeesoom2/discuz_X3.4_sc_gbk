@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<root>
+
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+
+	<item id="Version"><![CDATA[X3.2]]></item>
+
+	<item id="Time"><![CDATA[2017-10-24 15:25]]></item>
+
+	<item id="From"><![CDATA[Discuz! Board (http://bbs.dz.com/)]]></item>
+
+	<item id="Data">
+
+		<item id="plugin">
+
+			<item id="available"><![CDATA[1]]></item>
+
+			<item id="adminid"><![CDATA[1]]></item>
+
+			<item id="name"><![CDATA[qfmobile]]></item>
+
+			<item id="identifier"><![CDATA[qfmobile]]></item>
+
+			<item id="description"><![CDATA[ÓëÇ§·«APPÊý¾Ý»¥Í¨£¬²»¼æÈÝÆäËûÊÖ»ú²å¼þ£¬Çë×ÃÇéÑ¡ÔñÊ¹ÓÃ¡£(×¢£ºÇë±£Ö¤Ç§·«²å¼þµÄ°æ±¾ÖÁÉÙ1.2ÒÔÉÏ)]]></item>
+
+			<item id="datatables"><![CDATA[]]></item>
+
+			<item id="directory"><![CDATA[qfmobile/]]></item>
+
+			<item id="copyright"><![CDATA[qfmobile]]></item>
+
+			<item id="version"><![CDATA[1.3]]></item>
+
+			<item id="__modules">
+
+				<item id="0">
+
+					<item id="name"><![CDATA[mobileqfmobile]]></item>
+
+					<item id="param"><![CDATA[]]></item>
+
+					<item id="menu"><![CDATA[]]></item>
+
+					<item id="url"><![CDATA[]]></item>
+
+					<item id="type"><![CDATA[28]]></item>
+
+					<item id="adminid"><![CDATA[0]]></item>
+
+					<item id="displayorder"><![CDATA[0]]></item>
+
+					<item id="navtitle"><![CDATA[]]></item>
+
+					<item id="navicon"><![CDATA[]]></item>
+
+					<item id="navsubname"><![CDATA[]]></item>
+
+					<item id="navsuburl"><![CDATA[]]></item>
+
+				</item>
+
+				<item id="1">
+
+					<item id="name"><![CDATA[qfmobile]]></item>
+
+					<item id="param"><![CDATA[]]></item>
+
+					<item id="menu"><![CDATA[]]></item>
+
+					<item id="url"><![CDATA[]]></item>
+
+					<item id="type"><![CDATA[11]]></item>
+
+					<item id="adminid"><![CDATA[0]]></item>
+
+					<item id="displayorder"><![CDATA[0]]></item>
+
+					<item id="navtitle"><![CDATA[]]></item>
+
+					<item id="navicon"><![CDATA[]]></item>
+
+					<item id="navsubname"><![CDATA[]]></item>
+
+					<item id="navsuburl"><![CDATA[]]></item>
+
+				</item>
+
+			</item>
+
+		</item>
+
+		<item id="version"><![CDATA[X3.2]]></item>
+
+		<item id="var">
+
+			<item id="0">
+
+				<item id="displayorder"><![CDATA[3]]></item>
+
+				<item id="title"><![CDATA[ÊÇ·ñ¿ªÆô×¢²áÊÖ»ú¶ÌÐÅÑéÖ¤]]></item>
+
+				<item id="description"><![CDATA[¿ªÆôºóÇ°Ì¨»áÔ±×¢²áÒ³Ãæ±ØÐëÍ¨¹ý¶ÌÐÅÑéÖ¤ÊÖ»úºÅ²ÅÄÜÍê³É×¢²á]]></item>
+
+				<item id="variable"><![CDATA[mobilereg]]></item>
+
+				<item id="type"><![CDATA[radio]]></item>
+
+				<item id="value"><![CDATA[1]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+			</item>
+
+			<item id="1">
+
+				<item id="displayorder"><![CDATA[6]]></item>
+
+				<item id="title"><![CDATA[ÊÇ·ñ¿ªÆô°ó¶¨ÊÖ»úºÅ]]></item>
+
+				<item id="description"><![CDATA[¿ªÆôºó£¬ÓÃ»§¿ÉÔÚ¸öÈËÖÐÐÄ°ó¶¨ÊÖ»úºÅ]]></item>
+
+				<item id="variable"><![CDATA[mobilebind]]></item>
+
+				<item id="type"><![CDATA[radio]]></item>
+
+				<item id="value"><![CDATA[1]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+			</item>
+
+			<item id="2">
+
+				<item id="displayorder"><![CDATA[8]]></item>
+
+				<item id="title"><![CDATA[·¢Ìû»ØÌû¿ªÆôÇ¿ÖÆ°ó¶¨ÊÖ»ú]]></item>
+
+				<item id="description"><![CDATA[¿ªÆôºó£¬ÓÃ»§·¢ÌûºÍ»Ø¸´±ØÐë°ó¶¨ÊÖ»úºÅ£¬Óë°å¿éºÍÓÃ»§×éÅäºÏÉèÖÃ¡£]]></item>
+
+				<item id="variable"><![CDATA[mobilelimit]]></item>
+
+				<item id="type"><![CDATA[radio]]></item>
+
+				<item id="value"><![CDATA[1]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+			</item>
+
+			<item id="3">
+
+				<item id="displayorder"><![CDATA[9]]></item>
+
+				<item id="title"><![CDATA[¿ªÆôÇ¿ÖÆ°ó¶¨ÊÖ»ú°æ¿é]]></item>
+
+				<item id="description"><![CDATA[ÐèÒªÇ¿ÖÆ°ó¶¨ÊÖ»ú²ÅÄÜ·¢ÌûºÍ»Ø¸´µÄ°æ¿é£¬Ñ¡Ôñ¿ÕÔòËùÓÐ°æ¿é¶¼ÐèÒª£¬±ØÐëÏÈ¿ªÆôÇ¿ÖÆ°ó¶¨ÊÖ»ú¡£]]></item>
+
+				<item id="variable"><![CDATA[mobilelimitfids]]></item>
+
+				<item id="type"><![CDATA[forums]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+				<item id="__value">
+
+					<item id="0"><![CDATA[]]></item>
+
+				</item>
+
+			</item>
+
+			<item id="4">
+
+				<item id="displayorder"><![CDATA[10]]></item>
+
+				<item id="title"><![CDATA[²»ÏÞÖÆÇ¿ÖÆ°ó¶¨ÊÖ»úÓÃ»§×é]]></item>
+
+				<item id="description"><![CDATA[²»ÐèÒªÇ¿ÖÆ°ó¶¨ÊÖ»ú²ÅÄÜ·¢ÌûºÍ»Ø¸´µÄÓÃ»§×é£¬Ñ¡Ôñ¿ÕÔòÖ¸¶¨ËùÓÐÓÃ»§¶¼ÐèÒªÇ¿ÖÆ°ó¶¨ÊÖ»ú¡£]]></item>
+
+				<item id="variable"><![CDATA[mobilelimituids]]></item>
+
+				<item id="type"><![CDATA[groups]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+				<item id="__value">
+
+					<item id="0"><![CDATA[]]></item>
+
+				</item>
+
+			</item>
+
+			<item id="5">
+
+				<item id="displayorder"><![CDATA[13]]></item>
+
+				<item id="title"><![CDATA[ÊÇ·ñ¿ªÆôÊÖ»ú×¢²áÍ¼Æ¬ÑéÖ¤]]></item>
+
+				<item id="description"><![CDATA[¿ªÆôºóÇ°Ì¨»áÔ±×¢²áÒ³ÃæÍ¨¹ýÊÖ»úºÅ¶ÌÐÅ°ó¶¨ÐèÒªÊäÈëÍ¼Æ¬ÑéÖ¤Âë·ÀÖ¹¶ñÒâ¹¥»÷Ë¢¶ÌÐÅ¡£]]></item>
+
+				<item id="variable"><![CDATA[mobileimgcode]]></item>
+
+				<item id="type"><![CDATA[radio]]></item>
+
+				<item id="value"><![CDATA[1]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+			</item>
+
+			<item id="6">
+
+				<item id="displayorder"><![CDATA[14]]></item>
+
+				<item id="title"><![CDATA[×¢²áÒ³ÃæÊÖ»ú×¢²áÌáÊ¾ÄÚÈÝ]]></item>
+
+				<item id="description"><![CDATA[ÉèÖÃÇ°Ì¨×¢²áÒ³£¬ÊÖ»ú×¢²áµÄÌáÊ¾ÐÅÏ¢]]></item>
+
+				<item id="variable"><![CDATA[mobileregtip]]></item>
+
+				<item id="type"><![CDATA[textarea]]></item>
+
+				<item id="value"><![CDATA[ÊÖ»ú×¢²á³öÏÖÎÊÌâ£¿Äú¿ÉÒÔÏòÍøÕ¾¿Í·þÇóÖú»òÕßÔÚÒâ¼ûÇø·¢Ìû·´À¡¡£]]></item>
+
+				<item id="extra"><![CDATA[]]></item>
+
+			</item>
+
+		</item>
+
+		<item id="language">
+
+			<item id="scriptlang">
+
+				<item id="qfmobile_register_mobile_exist"><![CDATA[¸ÃÊÖ»úÒÑ¾­±»×¢²á]]></item>
+
+				<item id="qfmobile_register_imgcode_error"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄÍ¼Æ¬ÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_close"><![CDATA[ÊÖ»ú×¢²áÒÑ¾­¹Ø±Õ]]></item>
+
+				<item id="qfmobile_register_mobile_error_tip"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄÊÖ»úºÅ]]></item>
+
+				<item id="qfmobile_register_verifycode_error_tip"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄ¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_snedsms_fast"><![CDATA[±§Ç¸ÄúÊÖËÙÌ«¿ìÁË]]></item>
+
+				<item id="qfmobile_register_sendsms_error"><![CDATA[·þÎñÆ÷ÎÞÏìÓ¦£¬·¢ËÍÊ§°Ü]]></item>
+
+				<item id="qfmobile_register_sendsms_succeed"><![CDATA[·¢ËÍ³É¹¦]]></item>
+
+				<item id="qfmobile_register_sendsms_failed"><![CDATA[·¢ËÍÊ§°Ü]]></item>
+
+				<item id="qfmobile_register_verifycode_failed"><![CDATA[¶ÌÐÅÑéÖ¤Âë´íÎó]]></item>
+
+				<item id="qfmobile_register_verifycode_succeed"><![CDATA[¶ÌÐÅÑéÖ¤ÂëÕýÈ·]]></item>
+
+				<item id="qfmobile_plugin_closed"><![CDATA[²å¼þÒÑ¹Ø±Õ£¡]]></item>
+
+				<item id="qfmobile_input_search_placeholder"><![CDATA[ÊÖ»úºÅ]]></item>
+
+				<item id="qfmobile_bind_mobile_not"><![CDATA[ÄúÉÐÎ´°ó¶¨ÊÖ»úºÅ,ÇëÏÈµ½PC»òÕßAPP°ó¶¨ÊÖ»úºÅ]]></item>
+
+			</item>
+
+			<item id="templatelang">
+
+				<item id="qfmobile_register_mobile"><![CDATA[ÊÖ»úºÅ]]></item>
+
+				<item id="qfmobile_register_verifycode"><![CDATA[¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_verifycode_msg"><![CDATA[ÊäÈëÄú»ñÈ¡µ½µÄ¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_verifycode_desc"><![CDATA[ÑéÖ¤Âë½«ÒÔÃâ·Ñ¶ÌÐÅµÄÐÎÊ½·¢ËÍµ½ÄúµÄÊÖ»ú]]></item>
+
+				<item id="qfmobile_register_verifycode_btn"><![CDATA[µã»÷»ñÈ¡¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_username_tip"><![CDATA[ÓÃ»§Ãû²»ÄÜÎª¿Õ]]></item>
+
+				<item id="qfmobile_register_password_tip"><![CDATA[ÃÜÂë²»ÄÜÎª¿Õ]]></item>
+
+				<item id="qfmobile_register_repassword_tip"><![CDATA[È·ÈÏÃÜÂë²»ÄÜÎª¿Õ]]></item>
+
+				<item id="qfmobile_register_mobile_error_tip"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄÊÖ»úºÅ]]></item>
+
+				<item id="qfmobile_register_verifycode_error_tip"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄ¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_checktime_second"><![CDATA[Ãëºó]]></item>
+
+				<item id="qfmobile_register_checktime_after"><![CDATA[µã»÷ÖØÐÂ·¢ËÍ]]></item>
+
+				<item id="qfmobile_register_checktime_retry"><![CDATA[µã»÷ÖØÐÂ»ñÈ¡¶ÌÐÅÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_mobile_exist"><![CDATA[¸ÃÊÖ»úÒÑ¾­±»×¢²á]]></item>
+
+				<item id="qfmobile_register_close"><![CDATA[ÊÖ»ú×¢²áÒÑ¾­¹Ø±Õ]]></item>
+
+				<item id="qfmobile_register_imgcode_error"><![CDATA[ÇëÌîÐ´ÕýÈ·µÄÍ¼Æ¬ÑéÖ¤Âë]]></item>
+
+				<item id="qfmobile_register_snedsms_fast"><![CDATA[±§Ç¸ÄúÊÖËÙÌ«¿ìÁË]]></item>
+
+				<item id="qfmobile_register_sendsms_error"><![CDATA[·þÎñÆ÷ÎÞÏìÓ¦£¬·¢ËÍÊ§°Ü]]></item>
+
+				<item id="qfmobile_register_sendsms_succeed"><![CDATA[·¢ËÍ³É¹¦]]></item>
+
+				<item id="qfmobile_register_sendsms_failed"><![CDATA[·¢ËÍÊ§°Ü]]></item>
+
+				<item id="qfmobile_register_verifycode_failed"><![CDATA[¶ÌÐÅÑéÖ¤Âë´íÎó]]></item>
+
+				<item id="qfmobile_register_verifycode_succeed"><![CDATA[¶ÌÐÅÑéÖ¤ÂëÕýÈ·]]></item>
+
+				<item id="qfmobile_bind_btn"><![CDATA[ÊÖ»ú°ó¶¨]]></item>
+
+				<item id="qfmobile_rebind_btn"><![CDATA[ÊÖ»ú»»°ó]]></item>
+
+				<item id="qfmobile_postlimit_bhind_tip1"><![CDATA[±¾Õ¾µ±Ç°°æ¿é¿ªÆôÁË°ó¶¨ÊÖ»ú²ÅÄÜ·¢²¼µÄ¹¦ÄÜ¡£]]></item>
+
+				<item id="qfmobile_postlimit_bhind_tip2"><![CDATA[ÄúÉÐÎ´°ó¶¨ÊÖ»úºÅ£¬ÇëÏÈ½øÐÐ°ó¶¨ÊÖ»úºÅ²Ù×÷¡£]]></item>
+
+				<item id="qfmobile_postlimit_bind_submit"><![CDATA[Ç°È¥°ó¶¨]]></item>
+
+				<item id="qfmobile_postlimit_next_bind"><![CDATA[ÏÂ´Î°ó¶¨]]></item>
+
+				<item id="qianfanmobile_findpwd_pwd"><![CDATA[ÊÖ»úºÅÕÒ»Ø]]></item>
+
+				<item id="qfmobile_bind_mobile_not"><![CDATA[ÄúÉÐÎ´°ó¶¨ÊÖ»úºÅ,ÇëÏÈµ½PC»òÕßAPP°ó¶¨ÊÖ»úºÅ]]></item>
+
+			</item>
+
+			<item id="installlang">
+
+				<item id=""><![CDATA[]]></item>
+
+			</item>
+
+			<item id="systemlang">
+
+				<item id="file">
+
+					<item id=""><![CDATA[]]></item>
+
+				</item>
+
+			</item>
+
+		</item>
+
+		<item id="installfile"><![CDATA[install.php]]></item>
+
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+
+	</item>
+
+</root>

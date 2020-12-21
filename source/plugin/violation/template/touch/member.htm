@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="$metakeywords" />
+<meta name="description" content="$metadescription" />
+<title>$navtitle</title>
+</head>
+<script src="source/plugin/violation/js/jq.js" type="text/javascript"></script>
+<iframe style="display:none" name="myiframe" id="myiframe"></iframe>
+<link href="source/plugin/violation/css/listing.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/violation/css/wo_posts.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.cmIcon.bx-logo{width:50px;height:24px;background:url("{if $config['sj_logo']}$config['sj_logo']{else}$_G['style'][boardimg]{/if}") no-repeat;-webkit-background-size:50px 24px;-moz-background-size:50px 24px;background-size:50px 24px}
+	.pg strong{border-radius:15px; padding:3px 8px; color:#fff; background:#fe4c01; font-weight:100;}
+	.pg a{
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0px 2px;
+    background: #C8C8C8;
+    color: #fff;
+	border-radius:25px;
+	margin-left:3px;
+	}
+</style>
+<body>
+<article class="cmSubview cmSubviewRoot ui-subview ui-subview-root ui-subview-in">
+{template violation:header}
+<div class="header" style="position:fixed; z-index:999; top:0px;">
+    	<div class="w90 center header_a">
+
+                    <a class="header_back" href="plugin.php?id=violation"><img src="/images/inco_03.png" width="20" height="21" style="margin-top:17px;"></a>
+               <span class="find"><a style="color:#fff;">我发布的</a></span>
+              <div class="find_qcy" style="float:right; width:12px;">
+               
+        	</div>
+</div>
+        
+
+   </div>
+<div style="width:100%; height:55px;"></div>
+
+<div class="min_ts center">
+ 		<p style="background:#ccc; line-height:25px; color:#fff; padding:5px;">
+<span style="width:20px; height:20px; border-radius:15px; margin-top:2px; font-size:16px; line-height:21px; background:#fff; display:block; float:left; text-align:center; margin-right:5px; font-weight:bold; margin-left:5px; color:#ccc">!</span>更新可以让信息靠前展示，相当于顶贴。
+       </p>
+</div>
+<style type="text/css">
+ .owner-toolbar {
+display: block;
+width: auto!important;
+font: 15px/1.5 Helvetica,Arial,sans-serif;
+padding: 10px 10px;
+background: #f6f6f6;
+border: 0;
+}
+.owner-toolbar a{color:#ff8000}
+</style>
+<main>
+	<section>
+		
+		<ul class="list">
+		{loop $lplist $lp}
+			<li class="item">
+			<a href="plugin.php?id=violation&act=view&lid={$lp['id']}"><header><h3 class="post-title"><span class="title" style="font-size:16px;">$lp['title']
+			
+			</span></h3>
+			<span class="status"><time class="friendly date">
+			<!--{eval $today=date('Y-m-d',$lp['updatetime']);}-->
+			<!--{eval $todays=date('Y-m-d',$_G['timestamp']);}-->
+			{if $today==$todays}今天:{eval echo date('H:i',$lp['updatetime']);}{else}{eval echo date('m-d',$lp['updatetime']);}{/if}</time></span></header>
+			<p class="attr">
+				<span class="price" style="font-size:14px;">{if $lp['zujin']}{$lp['zujin']}元{else}{lang aljesc:view_14}{/if}</span> 
+				<span class="sub-category"></span><span class="status">{if $lp['solve']}&nbsp;<small class="cmLabel solved">{lang aljesc:Done}</small>{else}{if TIMESTAMP < $lp['topetime']}<small class="cmLabel pinned">{lang aljesc:index_32}</small>{/if}{/if}</span></p>
+			<p class="addr">{$regions[$lp['region']]['subject']}</p>
+			</a>
+			<div class="owner-toolbar"><div><span>操作:</span>&nbsp;&nbsp;
+			{if !$lp['solve']}
+			<a href="plugin.php?id=violation&act=edit&lid={$lp['id']}">编辑</a>&nbsp;&nbsp;
+			{/if}
+			<a  href="plugin.php?id=violation&act=mobile_delete&lid={$lp['id']}">删除</a>&nbsp;&nbsp;
+			{if file_exists("source/plugin/violation/template/com/solve.php")}
+			{if !$lp['solve']}
+			<a class="link" href="plugin.php?id=violation&act=solve&lid={$lp['id']}&formhash={FORMHASH}" rel="nofollow">搞定了</a>&nbsp;&nbsp
+			{else}
+			<a class="link" href="plugin.php?id=violation&act=solve&lid={$lp['id']}&formhash={FORMHASH}&re=1" rel="nofollow">重新发布</a>&nbsp;&nbsp
+			{/if}
+			{/if}
+			{if file_exists("source/plugin/violation/template/com/reflash.php") && !$lp['solve']}
+			<a href="plugin.php?id=violation&act=reflash&lid={$lp['id']}" target="myiframe">更新</a>&nbsp;
+			{/if}&nbsp;&nbsp;
+			
+			</div><div></div></div>	
+			</li>
+		{/loop}
+		</ul>
+	</section>
+	
+</main>
+<style type="text/css">
+	.pages {
+padding: 10px;
+text-align: center;
+background: #EEEEEE;
+margin-top: 1px;
+clear: both;
+}
+.pages a {
+padding-left: 10px;
+}
+</style>
+<div class="pages">$paging</div>
+{template violation:footer}
+</article>
+<script src="source/plugin/violation/js/index_wo.js" onerror="tracker.resErr(this)"></script>
+</body>
+</html>
+<script type="text/javascript" src="source/plugin/violation/js/jquery.js"></script>
+<script type="text/javascript">
+    var jq = jQuery.noConflict();
+</script>
+<script type="text/javascript">
+function tips(txt, fun) {
+	jq('.tips').remove();
+	var div = jq('<div style="background: url(source/plugin/violation/images/tips.png);max-width: 85%;min-height: 77px;min-width: 270px;position: absolute;left: -1000px;top: -1000px;text-align: center;border-radius:10px;"><span style="color: #ffffff;line-height: 77px;font-size: 23px;">' + txt + '</span></div>');
+	jq('body').append(div);
+	div.css('zIndex', 9999999);
+	div.css('left', parseInt((jq(window).width() - div.width()) / 2));
+	var top = parseInt(jq(window).scrollTop() + (jq(window).height() - div.height()) / 2);
+	div.css('top', top);
+	setTimeout(function() {
+		div.remove();
+		if (fun) {
+			fun();
+		}
+	}, 2000);
+}
+
+</script>
+<script>
+	jQuery(".pg").find("label").hide();
+</script>

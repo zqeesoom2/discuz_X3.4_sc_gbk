@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="$metakeywords" />
+<meta name="description" content="$metadescription" />
+<title>$navtitle</title>
+</head>
+
+<link href="source/plugin/aljesc/css/listing.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/aljesc/css/pay.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.cmIcon.bx-logo{width:50px;height:24px;background:url("{if $config['sj_logo']}$config['sj_logo']{else}$_G['style'][boardimg]{/if}") no-repeat;-webkit-background-size:50px 24px;-moz-background-size:50px 24px;background-size:50px 24px}
+</style>
+<body>
+<article class="cmSubview cmSubviewRoot ui-subview ui-subview-root ui-subview-in">
+{template aljesc:header}
+<main>
+{if $_GET['act'] == 'top'}
+<script type="text/javascript" src="source/plugin/aljesc/js/jquery.js"></script>
+<script type="text/javascript">
+    var jq = jQuery.noConflict();
+</script>
+<iframe name="submitiframe" style="display:none;"></iframe>
+<form class="cmBtnLine" method="post" action="{$url}" enctype="multipart/form-data" target="submitiframe">
+	<input type="hidden" value="{FORMHASH}" name="formhash">
+	<table cellspacing="0" cellpadding="0" class="tfm" >
+      <tbody>
+<style type="text/css">
+	.p-label{font: 16px/1.5 Helvetica,Arial,sans-serif;}  
+</style>       
+		  <tr><td class="bdtr"><label class="p-label">{lang aljesc:addtop_3}</label></td><td>$config['toppay']{$_G['setting']['extcredits'][$config['topextcredit']]['title']}</td></tr>
+		  <tr><td class="bdtr"><label class="p-label">{lang aljesc:Do_you_have}{$_G['setting']['extcredits'][$config['topextcredit']]['title']}:&nbsp;</label></td><td>{eval echo getuserprofile('extcredits' . $config['topextcredit'])}{$_G['setting']['extcredits'][$config['topextcredit']]['title']}</td></tr>
+		  <tr>
+			<td class="bdtr"><label class="p-label">{lang aljesc:addtop_4}</label></td>
+			<td colspan="4">
+				{eval echo  floor(getuserprofile('extcredits' . $config['topextcredit'])/$config['toppay'])}
+				
+			</td>
+		</tr>
+		  <tr><td class="bdtr"><label class="p-label">{lang aljesc:addtop_5}</label></td>
+				<td><input type="text"  name="days" value="7"  onkeyup="money_1(this.value)"></td>
+		</tr>
+		
+          
+		  {if $lp['topetime']}
+		   <tr>
+			<td class="bdtr"><label class="p-label">{lang aljesc:addtop_7}</label></td>
+			<td colspan="4">
+				{eval echo gmdate('Y-m-d H:i',$lp['topetime']+8*3600);}
+				
+			</td>
+		</tr>
+		{/if}
+		<tr><td colspan="4"><div class="cmBtnLine"><a class="cmBtn back" href="javascript:;" onclick="history.go(-1);">{lang aljesc:go_back}</a><input class="cmBtn cmBtnWarning" id="formSubmit" type="submit" value="{lang aljesc:Confirm_the_top}"></div></td></tr>
+      </tbody>
+  </table>
+  
+</form>
+
+<script type="text/javascript">
+function tips(txt, fun) {
+	jq('.tips').remove();
+	var div = jq('<div style="background: url(source/plugin/aljesc/images/tips.png);max-width: 85%;min-height: 77px;min-width: 270px;position: absolute;left: -1000px;top: -1000px;text-align: center;border-radius:10px;"><span style="color: #ffffff;line-height: 77px;font-size: 23px;">' + txt + '</span></div>');
+	jq('body').append(div);
+	div.css('zIndex', 9999999);
+	div.css('left', parseInt((jq(window).width() - div.width()) / 2));
+	var top = parseInt(jq(window).scrollTop() + (jq(window).height() - div.height()) / 2);
+	div.css('top', top);
+	setTimeout(function() {
+		div.remove();
+		if (fun) {
+			fun();
+		}
+	}, 2000);
+}
+
+</script>
+{else}
+<div class="cmInfoBox cmText">
+	<p>{if $_GET['act'] == 'solve'}{if $_GET['re']}{lang aljesc:To_release_information_to_the_first_page}{else}{lang aljesc:You_sure_get_this_information}<span style="color:red; font-size:12px;">(搞定了即为您的这条信息已经完成交易确定以后本条信息不在页面上显示，但是在你发布的信息里还存在)</span>{/if}{else}{lang aljesc:member_12}{/if}</p>
+	<p>$user['title']</p>
+</div>
+<form class="cmBtnLine" method="post" action="{$url}">
+	<input type="hidden" value="{FORMHASH}" name="formhash">
+	<a class="cmBtn back" href="javascript:;" onclick="history.go(-1);">{lang aljesc:go_back}</a> <input class="cmBtn cmBtnDanger" type="submit" name="submit" value="{if $_GET['act'] == 'solve'}{if $_GET['re']}{lang aljesc:Release_confirmed}{else}{lang aljesc:Confirm_the_fix}{/if}{else}{lang aljesc:Confirm_delete}{/if}">
+</form>
+{/if}
+</main>
+{template aljesc:footer}
+</article>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<style type="text/css">
+.sidebar-filter dl{ width:260px;  padding:5px; height:70px; border-bottom:1px #e3e3e3 solid; border-top:1px #fff solid}
+.sidebar-filter dl dt{ float:left}
+.sidebar-filter dl dt img{ width:64px; height:64px }
+.sidebar-filter dl dd{ float:right; width:186px; height:65px; padding-top:5px}
+.sidebar-filter dl dd p em{color:#F60; padding:0 5px 0 0; font-family:Arial; font-size:14px;}
+.sidebar-filter ul{ padding:10px}
+.sidebar-filter h4 {
+  background: none repeat scroll 0 0 #F2F1EC;
+  margin: 0;
+  padding: 10px;
+}
+.sidebar-filter {
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+</style>
+<div class="sidebar-filter sep">
+<h4 class="typo-h5">{lang aljesc:view_10}{if file_exists("source/plugin/aljesc/template/com/qita.php")}<a href="plugin.php?id=aljesc&act=all&uid={$lp['uid']}" style="float:right;">{lang aljesc:more}</a>{/if}</h4>
+{loop $qita $t}          
+<dl>
+	<dt>
+		<a title="$t['title']" href="<!--{if $config['isrewrite']}-->{$t['rewrite']}<!--{else}-->plugin.php?id=aljesc&act=view&lid={$t['id']}<!--{/if}-->"><img src="{if $t['pic1']}{eval echo $t['pic1'].'.64x64.jpg';}{else}{if $settings['logo']['value']}{$settings['logo']['value']}{else}{$config['mr_src']}{/if}{/if}"></a>
+	</dt>
+	<dd>
+		<p><a title="$t['title']" href="<!--{if $config['isrewrite']}-->{$t['rewrite']}<!--{else}-->plugin.php?id=aljesc&act=view&lid={$t['id']}<!--{/if}-->"><!--{eval echo cutstr($t['title'],23,'');}--></a></p>
+		<p><a href="<!--{if $config['isrewrite']}-->{$t['rewrite']}<!--{else}-->plugin.php?id=aljesc&act=view&lid={$t['id']}<!--{/if}-->">{if $t['zujin']}<em>$t['zujin']</em>{lang aljesc:index_16}{else}{lang aljesc:view_14}{/if}</a></p>
+		<p>{eval echo dgmdate($t['updatetime']);}</p>
+	</dd>
+</dl>
+{/loop} 
+</div>

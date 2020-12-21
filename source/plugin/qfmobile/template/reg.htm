@@ -1,0 +1,439 @@
+{eval
+function tpl_register_input_output() {
+global $_G;
+
+$_G['sechashi'] = !empty($_G['cookie']['sechashi']) ? $_G['sechash'] + 1 : 0;
+$sechash = 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'].$_G['sechashi'];  //$sechash=SuUNZH80 ；ajax请求的&idhash=$sechash
+require_once DISCUZ_ROOT.'./source/discuz_version.php'; //在点击获取验证码时， 判断当前论坛版本的作用
+}
+<!--{block return}-->
+<!--{if !$_G[setting][sendregisterurl] || !empty($_GET[email]) }-->
+<!--{if $_G['cache']['plugin']['qfmobile']['mobilereg'] }-->
+
+<div class="rfm">
+    <table id="myphone">
+        <tr>
+            <th><span class="rq">*</span><label for="msm4Zg">{lang qfmobile:qfmobile_register_mobile}:</label></th>
+            <td><input type="text" id="mobile" name="mobile" value="" onblur="checkmobile();" class="px" tabindex="1"
+                       autocomplete="off" size="25" maxlength="11" required/></td>
+            <td class="tipcol"><i id="tip_mobile" class="p_tip"></i><kbd id="chk_mobile" class="p_chk"></kbd></td>
+        </tr>
+    </table>
+</div>
+
+<!--{if $_G['cache']['plugin']['qfmobile']['mobileimgcode'] && empty($_G['setting']['seccodedata']['rule']['register']['allow']) }-->
+<!--{if (DISCUZ_VERSION == 'X1.5' || DISCUZ_VERSION == 'X2' || DISCUZ_VERSION == 'X2.5' || DISCUZ_VERSION == 'X3')}-->
+<div class="rfm">
+    <table>
+        <tr>
+            <th><span class="rq">*</span><label for="">{lang seccode}:</label></th>
+            <td><input name="seccodeverify" id="seccodeverify_$sechash" type="text" autocomplete="off"
+                       style="width:100px" class="txt px vm" onblur="checksec('code', '$sechash')" tabindex="1"
+                       required/>
+                <a href="javascript:void(0);" onclick="updateseccode('$sechash');doane(event);" class="xi2">{lang
+                    seccode_change}</a>
+                <span id="checkseccodeverify_$sechash"><img src="{STATICURL}image/common/none.gif" width="16"
+                                                            height="16" class="vm"/></span><br/>
+                <span id="seccode_$sechash" style="padding:5px;"></span>
+                <script type="text/javascript" reload="1">updateseccode('$sechash');</script>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--{else}-->
+<span id="seccode_c$sechash"></span>
+<script type="text/javascript"
+        reload="1">updateseccode('c$sechash', '<div class="rfm"><table><tr><th><span class="rq">*</span><sec>: </th><td><sec><br /><sec></td></tr></table></div>', '');</script>
+<!--{/if}-->
+<!--{/if}-->
+
+<div class="rfm">
+    <table id="myauth">
+        <tr>
+            <th><span class="rq">*</span><label for="">{lang qfmobile:qfmobile_register_verifycode}:</label></th>
+            <td><input type="text" id="verifycode" name="verifycode" onblur="checkregverifycode();" class="px"
+                       tabindex="1" autocomplete="off" size="25" maxlength="6" required/></td>
+            <td class="tipcol"><i id="tip_verifycode" class="p_tip">{lang qfmobile:qfmobile_register_verifycode_msg}</i><kbd
+                    id="chk_verifycode" class="p_chk"></kbd></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <button id="btn_getregverifycode" class="pn" type="button" onclick="getregverifycode();"
+                        style="width:100%">{lang qfmobile:qfmobile_register_verifycode_btn}
+                </button>
+                <p><font color="red"></font></p></td>
+            <td class="tipcol"></td>
+        </tr>
+    </table>
+</div>
+<!--{if $_G['cache']['plugin']['qfmobile']['mobileregtip']}-->
+<div class="rfm">
+    <table>
+        <tr>
+            <th></th>
+            <td><font color="red">$_G['cache']['plugin']['qfmobile']['mobileregtip']</font></td>
+        </tr>
+    </table>
+</div>
+<!--{/if}-->
+
+<script type="text/javascript">
+    var intval = null;
+    var timeRemain = 90;
+    var waitTime = 90;
+
+    function checkmobile() {
+        var sechashcode = '';
+        var sechash = $('seccodeverify_c$sechash');
+
+        if (sechash) {
+            sechashcode = sechash.value;
+        }
+        var mobile = trim($('mobile').value);
+        if (!mobile.match(/^1[3456789]{1}\d{9}$/g)) {
+            errormessage('mobile', '{lang qfmobile:qfmobile_register_mobile_error_tip}');
+            return;
+        }
+
+        var x = new Ajax();
+        $('tip_mobile').parentNode.className = $('tip_mobile').parentNode.className.replace(/ p_right/, '');
+        x.get('plugin.php?id=qfmobile:check&inajax=yes&infloat=register&handlekey=register&ajaxmenu=1&action=checkmobile&formhash={FORMHASH}&mobile=' + mobile + '&' + Math.random(),
+                function (s) {
+                    errormessage('mobile', s);
+                });
+    }
+
+    function getregverifycode() {
+        <!--{if !empty($_GET[action]) }-->
+        <!--{elseif !empty($_GET[email]) }-->
+        var username = trim($('{$_G[setting][reginput][username]}').value);
+        var password = trim($('{$_G[setting][reginput][password]}').value);
+        var password2 = trim($('{$_G[setting][reginput][password2]}').value);
+        var email = trim($('{$_G[setting][reginput][email]}').value);
+        <!--{else}-->
+        var username = trim($('{$_G[setting][reginput][username]}').value);
+        var password = trim($('{$_G[setting][reginput][password]}').value);
+        var password2 = trim($('{$_G[setting][reginput][password2]}').value);
+        <!--{/if}-->
+        var mobile = trim($('mobile').value);
+        <!--{if empty($_GET[action])}-->
+        if (username == '') {
+            errormessage('{$_G[setting][reginput][username]}', '{lang qfmobile:qfmobile_register_username_tip}');
+            return;
+        } else if (password == '') {
+            errormessage('{$_G[setting][reginput][password]}', '{lang qfmobile:qfmobile_register_password_tip}');
+            return;
+        } else if (password2 == '') {
+            errormessage('{$_G[setting][reginput][password2]}', '{lang qfmobile:qfmobile_register_repassword_tip}');
+            return;
+        }
+        <!--{/if}-->
+        if (mobile == '') {
+            errormessage('mobile', '{lang qfmobile:qfmobile_register_mobile_error_tip}');
+        } else {
+            var sechashcode = '';
+            <!--{if (DISCUZ_VERSION == 'X1.5' || DISCUZ_VERSION == 'X2' || DISCUZ_VERSION == 'X2.5' || DISCUZ_VERSION == 'X3')}-->
+            var sechash = $('seccodeverify_$sechash');
+            <!--{else}-->
+            var sechash = $('seccodeverify_c$sechash');
+            <!--{/if}-->
+            if (sechash) {
+                sechashcode = sechash.value;
+            }
+
+            var x = new Ajax();
+            $('tip_mobile').parentNode.className = $('tip_mobile').parentNode.className.replace(/ p_right/, '');
+            $('btn_getregverifycode').disabled = true;
+            x.get('plugin.php?id=qfmobile:check&idhash=$sechash&formhash={FORMHASH}&seccodeverify=' + decodeURI(sechashcode) + '&inajax=yes&infloat=register&handlekey=register&ajaxmenu=1&action=getverifycode&mobile=' + mobile + '&' + Math.random(), function (s) {
+                if (s.indexOf("{lang qfmobile:qfmobile_register_sendsms_succeed}") != -1) {
+                    $('myauth').style.display = "";
+                    if (intval == null) intval = setInterval(setchecktime, 1000);
+                } else {
+                    if ($('myphone').style.display == '') {
+                        errormessage('mobile', s);
+                    } else {
+                        errormessage('verifycode', s);
+                    }
+                }
+                $('btn_getregverifycode').disabled = false;
+            });
+        }
+    }
+
+
+    function setchecktime() {
+        timeRemain -= 1;
+        if (timeRemain > 0) {
+            if ($('btn_getregverifycode')) $("btn_getregverifycode").innerHTML = '<strong><font color="red">' + timeRemain + '{lang qfmobile:qfmobile_register_checktime_second}</font>{lang qfmobile:qfmobile_register_checktime_after}</strong>';
+            if ($('btn_getregverifycode')) //$("modifyMobile").innerHTML = '';
+                if ($('btn_getregverifycode')) $("btn_getregverifycode").disabled = true;
+        } else {
+            clearInterval(intval);
+            intval = null;
+            timeRemain = waitTime;
+            $("btn_getregverifycode").disabled = false;
+            $("btn_getregverifycode").innerHTML = '<strong>{lang qfmobile:qfmobile_register_checktime_retry}</strong>';
+            $("btn_getregverifycode").onclick = function () {
+                if (timeRemain == waitTime || timeRemain == 0) {
+                    getregverifycode();
+                }
+            }
+        }
+    }
+
+
+    <!--{if $interval <= $mobilegap && false }-->
+    //$('mobileNumber').innerHTML = "$sendedmobile";
+    //$('myphone').style.display = "none";
+    $('myauth').style.display = "";
+    $("btn_getregverifycode").disabled = true;
+    $("btn_getregverifycode").innerHTML = '<strong><font color="red">' + timeRemain + '{lang qfmobile:qfmobile_register_checktime_second}</font>{lang qfmobile:qfmobile_register_checktime_after}</strong>';
+    if (intval == null) intval = setInterval(setchecktime, 1000);
+    <!--{/if}-->
+
+</script>
+
+<!--{/if}-->
+<!--{/if}-->
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+
+function tpl_register_logging_method(){
+global $_G;
+}
+<!--{block return}-->
+<!--{if $_G['cache']['plugin']['qfmobile']['mobilereg']}-->
+<script type="text/javascript">
+    var sechashcode = '';
+    var btn_reg = document.getElementById("registerformsubmit");
+    var mobile = trim($('mobile').value);
+    var verifycode = trim($('verifycode').value);
+    if(btn_reg) {
+        var x = new Ajax();
+        $('tip_verifycode').parentNode.className = $('tip_verifycode').parentNode.className.replace(/ p_right/, '');
+        x.get('plugin.php?id=qfmobile:check&idhash=$sechash&formhash={FORMHASH}&seccodeverify=' + escape(sechashcode) + '&inajax=yes&infloat=register&handlekey=register&ajaxmenu=1&action=checkverifycode&verifycode=' + verifycode + '&mobile=' + mobile + '&' + Math.random(), function (s) {
+            if (s.indexOf("{lang qfmobile:qfmobile_register_verifycode_succeed}") != -1) {
+                btn_reg.removeAttribute("disabled");
+            } else {
+                btn_reg.setAttribute("disabled", true);
+
+            }
+        });
+
+        function checkregverifycode() {
+            errormessage('verifycode');
+            var sechashcode = '';
+            var sechash = $('seccodeverify_c$sechash');
+            var mobile = trim($('mobile').value);
+            var verifycode = trim($('verifycode').value);
+            if (sechash) {
+                sechashcode = sechash.value;
+            }
+
+            if (mobile == '') {
+                errormessage('mobile', '{lang qfmobile:qfmobile_register_mobile_error_tip}');
+                return;
+            }
+            if (!verifycode.match(/^\d{6}$/g)) {
+                errormessage('verifycode', '{lang qfmobile:qfmobile_register_verifycode_error_tip}');
+                return;
+            }
+            var x = new Ajax();
+            $('tip_verifycode').parentNode.className = $('tip_verifycode').parentNode.className.replace(/ p_right/, '');
+            x.get('plugin.php?id=qfmobile:check&idhash=$sechash&formhash={FORMHASH}&seccodeverify=' + escape(sechashcode) + '&inajax=yes&infloat=register&handlekey=register&ajaxmenu=1&action=checkverifycode&verifycode=' + verifycode + '&mobile=' + mobile + '&' + Math.random(), function (s) {
+                if (s.indexOf("{lang qfmobile:qfmobile_register_verifycode_succeed}") != -1) {
+                    errormessage('verifycode', '');
+                    document.getElementById("registerformsubmit").removeAttribute("disabled");
+                }else {
+                    errormessage('verifycode', s);
+
+                }
+            });
+        }
+    }
+</script>
+<!--{/if}-->
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+
+function tpl_spacecp_profile_bottom_output(){
+global $_G;
+
+$phone = DB::result_first('SELECT phone from %t where uid=%d', array('phonebind', $_G['uid']));
+
+$_G['sechashi'] = !empty($_G['cookie']['sechashi']) ? $_G['sechash'] + 1 : 0;
+$sechash = 'S'.($_G['inajax'] ? 'A' : '').$_G['sid'].$_G['sechashi'];
+
+}
+<!--{block return}-->
+<!--{if $_G['cache']['plugin']['qfmobile']['mobilebind']}-->
+<script type="text/javascript">
+    var mobile = document.getElementsByName("mobile")[0];
+    var phone = "$phone";
+    mobile.value = phone;
+    if (mobile) {
+        if (mobile.value == "") {
+            $('td_mobile').innerHTML = '<input type="text" name="mobile" class="px" value="" readonly="readonly" tabindex="1" /><a id="bindmobile" href="plugin.php?id=qianfan:bindmobile&r=bindmobile/index" target="_blank"><b style="color: red">{lang qfmobile:qfmobile_bind_btn}</b></a>';
+        } else {
+            $('td_mobile').innerHTML = '<input type="text" name="mobile" class="px" value="' + mobile.value + '" readonly="readonly" tabindex="1" /><a id="bindmobile" href="plugin.php?id=qianfan:bindmobile&r=bindmobile/index" target="_blank"><b style="color: red">{lang qfmobile:qfmobile_rebind_btn}</b></a>';
+        }
+    }
+</script>
+<!--{/if}-->
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+function tpl_post_btn_extra_output() {
+global $_G;
+
+}
+<!--{block return}-->
+<!--{if $_G['cache']['plugin']['qfmobile']['mobilelimit']}-->
+<script type="text/javascript" language="javascript">
+    if (document.getElementById("postsubmit")) {
+        var postsubmit = document.getElementById("postsubmit");
+        var p = postsubmit.parentNode;
+        var post = document.createElement("Button");
+        post.setAttribute("type", "button");
+        post.onclick = function () {
+            showWindow('qfbind', 'plugin.php?id=qfmobile:check&&formhash={FORMHASH}&action=bindmobile&mobile=', 'get', 0);
+        };
+        post.className = postsubmit.className;
+        post.style.width = postsubmit.style.width;
+        post.style.height = postsubmit.style.height;
+        postsubmit.style.display = "none";
+        post.innerHTML = postsubmit.innerHTML;
+        p.insertBefore(post, postsubmit);
+    }
+</script>
+<!--{/if}-->
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+function tpl_forumdisplay_fastpost_btn_extra_output() {
+global $_G;
+
+}
+<!--{block return}-->
+<script type="text/javascript" language="javascript">
+    if (document.getElementById("fastpostsubmit")) {
+        var fastpostsubmit = document.getElementById("fastpostsubmit");
+        var p = fastpostsubmit.parentNode;
+        var post = document.createElement("Button");
+        post.setAttribute("type", "button");
+        post.onclick = function () {
+            showWindow('qfbind', 'plugin.php?id=qfmobile:check&&formhash={FORMHASH}&action=bindmobile&mobile=', 'get', 0);
+        };
+        post.className = fastpostsubmit.className;
+        post.style.width = fastpostsubmit.style.width;
+        post.style.height = fastpostsubmit.style.height;
+        fastpostsubmit.style.display = "none";
+        post.innerHTML = fastpostsubmit.innerHTML;
+        p.insertBefore(post, fastpostsubmit);
+    }
+</script>
+<!--{/block}-->
+<!--{eval return $return;}-->register_logging_method
+{eval
+}
+
+function tpl_post_infloat_btn_extra_output() {
+global $_G;
+
+}
+<!--{block return}-->
+<script type="text/javascript" language="javascript">
+    if (document.getElementById("postsubmit")) {
+        var postsubmit = document.getElementById("postsubmit");
+        var p = postsubmit.parentNode;
+        var post = document.createElement("Button");
+        post.setAttribute("type", "button");
+        post.onclick = function () {
+            showWindow('qfbind', 'plugin.php?id=qfmobile:check&&formhash={FORMHASH}&action=bindmobile&mobile=', 'get', 0);
+        };
+        post.className = postsubmit.className;
+        post.style.width = postsubmit.style.width;
+        post.style.height = postsubmit.style.height;
+        postsubmit.style.display = "none";
+        post.innerHTML = postsubmit.innerHTML;
+        p.insertBefore(post, postsubmit);
+    }
+
+    if (document.getElementById("fastpostsubmit")) {
+        var postsubmit = document.getElementById("fastpostsubmit");
+        var p = postsubmit.parentNode;
+        var post = document.createElement("Button");
+        post.setAttribute("type", "button");
+        post.onclick = function () {
+            showWindow('qfbind', 'plugin.php?id=qfmobile:check&&formhash={FORMHASH}&action=bindmobile&mobile=', 'get', 0);
+        };
+        post.className = postsubmit.className;
+        post.style.width = postsubmit.style.width;
+        post.style.height = postsubmit.style.height;
+        postsubmit.style.display = "none";
+        post.innerHTML = postsubmit.innerHTML;
+        p.insertBefore(post, postsubmit);
+    }
+
+</script>
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+function tpl_viewthread_fastpost_content_output() {
+global $_G;
+
+}
+<!--{block return}-->
+<script type="text/javascript" language="javascript">
+    if (document.getElementById("vreplysubmit")) {
+        var fastpostsubmit = document.getElementById("vreplysubmit");
+        var p = fastpostsubmit.parentNode;
+        var post = document.createElement("Button");
+        post.setAttribute("type", "button");
+        post.onclick = function () {
+            showWindow('qfbind', 'plugin.php?id=qfmobile:check&&formhash={FORMHASH}&action=bindmobile&mobile=', 'get', 0);
+        };
+        post.className = fastpostsubmit.className;
+        post.style.width = fastpostsubmit.style.width;
+        post.style.height = fastpostsubmit.style.height;
+        fastpostsubmit.style.display = "none";
+        post.innerHTML = fastpostsubmit.innerHTML;
+        p.insertBefore(post, fastpostsubmit);
+    }
+</script>
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+function tpl_logging_input_output(){
+global $_G;
+
+}
+<!--{block return}-->
+<!--{if $_G['cache']['plugin']['qfmobile']['mobilepwd']}-->
+<script type="text/javascript">
+
+</script>
+<!--{/if}-->
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+
+}
+

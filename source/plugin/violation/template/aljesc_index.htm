@@ -1,0 +1,352 @@
+{template common/header}
+<link href="source/plugin/violation/css/v3.css" rel="stylesheet">
+<link href="source/plugin/violation/css/category.css" rel="stylesheet">
+<style id="diy_style" type="text/css"></style>
+
+<!--{if $_G['adminid']==1}-->
+<div class="flxxA">
+<!--{ad/flxxa}-->
+</div>
+<!--{/if}-->
+<!--<div style="width:1000px; height:110px; margin:6px 0;"><a href="#" target="_blank"><img src="http://t.07430743.com/ad/2017/7/qpjd.jpg " style="opacity: 1;"></a></div>-->
+<!--<div style="width:970px; height:72px;  margin:6px 0;"><a href="http://www.07430743.com/plugin.php?id=aljzp&act=view&lid=74830" target="_blank"><img src="http://t.07430743.com/ad/2017/7/zhaop.jpg" style="opacity: 1;"></a></div>-->
+
+<div style="height:100px; width:1000px;">
+	<img src="http://t.07430743.com/ad/2016/5/sy.jpg"/>
+</div>
+
+<div style="height:100px; width:1000px; margin-top:5px;">
+	<a><img src="http://t.07430743.com/ad/2017/1/1.jpg" height="100" width="1000" border="0"/></a>
+</div>
+
+<div class="bm cl" id="pt">
+    <div class="z">
+        <a title="{$_G['setting']['bbname']}" class="nvhm" href="./">{$_G['setting']['bbname']}</a><em>&rsaquo;</em><a href="<!--{if $config['isrewrite']}-->{$config['re_index']}<!--{else}-->plugin.php?id=aljesc<!--{/if}-->">$config['daohang']</a></div>
+    {if $_G['uid']}<div class="z" style="float:right;padding-right:0;"><a data-type="user" data-toggle="userAuth" href="plugin.php?id=violation&act=member" id="manage"><i class="icon-cog"></i>{lang violation:index_1}</a></div>{/if}
+</div>
+<style type="text/css">
+.filter-box .items {
+  overflow: hidden;
+}
+span.more-link, a.button, .button{
+	margin-top:0px;
+}
+h4{
+	margin:0px;
+}
+</style>
+<!--<script type="text/javascript" src="source/plugin/violation/js/jquery.js"></script>
+<script>
+jq=jQuery.noConflict();
+
+</script>-->
+<script type="text/javascript">
+	function viewpos(a) {
+		jQuery(".pos").attr("style","height:auto;");
+	}
+	function viewareas(a) {
+		jQuery(".areas").attr("style","height:auto;");
+	}
+</script>
+<!--[diy=aljesc_00]--><div id="aljesc_00" class="area"></div><!--[/diy]-->
+<div class="wp cl" style="margin-bottom:10px; background:#fff;">
+    <div class="container">
+        <div class="filter-box" id="top-filters">
+            <form method="post" action="{eval echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];}">
+				<div class="fieldset ">
+                    <h4 class="legend">价格</h4>
+                    <div class="items" >
+                        {if empty($_GET['pay1']) && empty($_GET['pay2'])}<strong>不限</strong>{else}<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">不限</a>{/if}
+						
+						{loop $pay_types $k $v}
+						{eval $arr=explode('-',$k);}
+                        {if $_GET['pay1']==$arr['0']&$_GET['pay2']==$arr['1']}<strong>$v</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1=$arr['0']&pay2=$arr['1']&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$v</a>{/if}
+                        {/loop}
+                        {if file_exists('source/plugin/violation/template/com/moneyso.htm')}
+                        <span class="range">
+                            <label>自定义区间：</label>
+                            <input type="number" class="number from-number" value="$_GET['pay1']" name="pay1" min="0">
+                            <label>~</label>
+                            <input type="number" class="number to-number" value="$_GET['pay2']" name="pay2" min="0">
+                            <label>万元</label>
+                            <input type="submit" class="button button-inline" value="筛选">
+                        </span>
+                        {/if}
+                    </div>
+                </div>
+				 <div class="fieldset ">
+                    <h4 class="legend">类别</h4>
+                    <div class="pos items" style="height:22px;">
+						<!--<a href="javascript:;"  class="more dropdown-ignore"  onclick="viewpos(this)">&#26356;&#22810;&#187;</a>-->
+                        {if empty($_GET['pid'])}<strong>不限</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']">不限</a>{/if}
+                        {loop $pos $r}
+                        {if $_GET['pid']==$r['id']}<strong>$r['subject']</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$r['id']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$r['subject']</a>{/if}
+                        {/loop}
+                    </div>
+                    {if $_GET['pid']&&$prs}
+                    <div class="subareas items">
+                        {if empty($_GET['subpid'])}<strong>{lang violation:index_4}</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">全部</a>{/if}
+                        {loop $prs $s}
+                        {if $_GET['subpid']==$s['id']}<strong>$s['subject']</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$s['id']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$s['subject']</a>{/if}
+                        {/loop}
+                    </div>
+                    {/if}
+                </div>
+                <div class="fieldset">
+                    <h4 class="legend">地区</h4>
+                    <div class="areas items"  style="height:22px;">
+						<!--<a href="javascript:;"  class="more dropdown-ignore"  onclick="viewareas(this)">&#26356;&#22810;&#187;</a>-->
+                        {if empty($_GET['rid'])}<strong>全部</strong>{else}<a rel="" href="plugin.php?id=violation&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">全部</a>{/if}
+                        {loop $rs $r}
+                        {if $_GET['rid']==$r['id']}<strong>$r['subject']</strong>{else}<a href="plugin.php?id=violation&rid={$r['id']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$r['subject']</a>{/if}
+                        {/loop}
+						
+                    </div>
+                    {if $_GET['rid']&&$rrs}
+                    <div class="subareas items">
+                        {if empty($_GET['subrid'])}<strong>{lang violation:index_4}</strong>{else}<a rel="" href="plugin.php?id=violation&rid={$_GET['rid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">全部</a>{/if}
+                        {loop $rrs $s}
+                        {if $_GET['subrid']==$s['id']}<strong>$s['subject']</strong>{else}<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$s['id']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$s['subject']</a>{/if}
+                        {/loop}
+                    </div>
+                    {/if}
+					{if $_GET['subrid']&&$subrrs}
+                    <div class="subareas items">
+                        {if empty($_GET['subsubrid'])}<strong>{lang violation:index_4}</strong>{else}<a rel="" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">全部/a>{/if}
+                        {loop $subrrs $s}
+                        {if $_GET['subsubrid']==$s['id']}<strong>$s['subject']</strong>{else}<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$s['id']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$s['subject']</a>{/if}
+                        {/loop}
+                    </div>
+                    {/if}
+                </div>
+                <div class="fieldset  compact-field">
+					<h4 class="legend">上牌年份</h4>
+					<div class="items">
+						{if empty($_GET['p_year1']) && empty($_GET['p_year2'])}<strong>不限</strong>{else}<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">不限</a>{/if}
+						
+						{loop $particular_year_types $k $v}
+						{eval $arr=explode('-',$k);}
+                        {if $_GET['p_year1']==$arr['0']&$_GET['p_year2']==$arr['1']}<strong>$v</strong>{else}<a rel="nofollow" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&p_year1=$arr['0']&p_year2=$arr['1']&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&wanted=$_GET['wanted']&view=$_GET['view']&solve=$_GET['solve']">$v</a>{/if}
+                        {/loop}
+                        
+                        <span class="range">
+                            <label>自定义区间：</label>
+                            <input type="number" class="number from-number" value="$_GET['p_year1']" name="p_year1" min="0">
+                            <label>~</label>
+                            <input type="number" class="number to-number" value="$_GET['p_year2']" name="p_year2" min="0">
+                            
+                            <input type="submit" class="button button-inline" value="筛选">
+                        </span>
+                    </div>
+				</div>
+               <div class="fieldset  compact-field">
+					<h4 class="legend">供求</h4>
+					<div class="items">
+						{if empty($_GET['wanted'])}<strong>不限</strong>{else}<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&view=$_GET['view']&solve=$_GET['solve']">不限</a>{/if}
+						{if $_GET['wanted'] == 1}<strong>出售</strong>{else}<a rel="" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&wanted=1&view=$_GET['view']&solve=$_GET['solve']">出售</a> {/if}
+						{if $_GET['wanted'] == 2}<strong>求购</strong>{else}<a rel="" href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&wanted=2&view=$_GET['view']&solve=$_GET['solve']">求购</a> {/if}
+					</div>
+				</div>
+				 
+            </form>
+
+        </div>
+    </div>
+
+<style type="text/css">
+	.tab-listing {
+  border-bottom: 2px solid {if file_exists('source/plugin/violation/template/com/color.htm')}$config['y_color']{else}#e74c3c{/if};
+  border-left: 0 none;
+}
+.tab-listing .active {
+  border-color: {if file_exists('source/plugin/violation/template/com/color.htm')}$config['y_color']{else}#e74c3c{/if};
+}
+.tab-title-lj .active {
+  background: none repeat scroll 0 0 #fff;
+  margin-top: 0;
+  z-index: 2;
+}
+.tab-listing li {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: white;
+  border-color: #e6e0e0 #e6e0e0 ;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 1px 0;
+  height: 35px;
+  margin-right: 15px;
+}
+.tab-listing .active a {
+  background-color: {if file_exists('source/plugin/violation/template/com/color.htm')}$config['y_color']{else}#e74c3c{/if};
+  color: white;
+}
+.tab-listing a {
+  font-size: 110%;
+  line-height: 35px;
+}
+.tab-title-lj a {
+  color: #000;
+  display: block;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+#publistbtn,#publistbtn2{
+padding:5px 22px;
+font-size:16px;
+float:left;
+}
+
+</style>
+    <div class="container">
+        <div class="grid grid-16" id="main" style="width:100%; ">
+            <!--改变view的功能栏-->
+            
+                 {if file_exists('source/plugin/violation/template/com/so.htm')}
+            {template violation:com/so}
+            {/if}
+            <a class=" button_lj"  href="plugin.php?id=violation&act=post" id="publistbtn2"><i class="icon-post"></i>发布信息</a>
+
+		<a class=" button_lj"  href="plugin.php?id=violation&act=member" id="publistbtn"><i class="icon-post"></i>信息管理</a>
+
+
+		<div style="height:0px;width: 980px; margin: 0 auto; float:left; margin-top:7px; margin-left:10px; overflow: hidden;">
+	<a href="http://bbs.07430743.com/thread-1251830-1-1.html" target="_blank"><img src="http://t.07430743.com/ad/2015/10/fp.jpg" height="40" width="980" border="0"></a>
+	<!--<a href="http://58.07430743.com/" target="_blank" style="display:block;margin-top:10px;"><img src="http://t.07430743.com/ad/2018/fp2.png" height="40" width="980" border="0"></a>--></div>
+           <!-- <center style="
+    font-size: 30px;margin-top:50px;
+    color: red;
+">改版公测通知</center>
+  <h1 style="
+    font-size: 26px;
+    color: #000000;
+">为确保信息真实性,新版分类信息&lt;&lt;湘小西同城&gt;&gt;将实行手机认证.<font color=blue>原系统已停止更新发布信息</font>,<font color=red>2018年5月4日</font>新系统正式上线,<font color=red>原系统关闭</font>,请将有价值的信息移入新版(<a href="http://58.07430743.com">http://58.07430743.com</a>),
+      同时为了便于广大网友查看,防止同条信息反复刷屏,当天同号将实行限量发送信息,对于信息量大的用户,想信息靠前的,推出置顶,竞价置顶,及其它套餐服务.欢迎使用新版!</h1>-->
+	</div>
+			
+			</div>
+            
+
+		
+
+
+			<div class="section_lj sep">
+			{if file_exists("source/plugin/violation/template/com/solve.php")  && $config['is_daohang']}
+			<ul class="tab-title-lj clearfix tab-listing" style="z-index:1;margin-bottom:10px;">
+				<li class="tab-title-item {if !$_GET['solve']}active{/if}">
+					<a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']">{lang violation:index_22}</a>
+				</li>
+				<li class="tab-title-item {if $_GET['solve']}active{/if}">
+					<a  href="plugin.php?id=violation&solve=1&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=$_GET['view']">{lang violation:Done_1}</a>
+				</li>
+			</ul>
+			{/if}
+			<div id="changeview"><div id="hasImage" ><label id="viewImage" style="position: relative;top:0px;">共有<font style="color:#ec5524;font-size:16px;">{$num}</font>条数据</label></div><ul class="item"><span>浏览方式：</span><li ><a {if $_GET['view']=='item'||($_GET['view']!='table'&&$config['isitem'])} style="background: none repeat scroll 0 0 {if file_exists('source/plugin/violation/template/com/color.htm')}$config['y_color']{else}#e74c3c{/if};border: 0 none;color: white;pointer-events: none;"{/if} href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=item&solve=$_GET['solve']"><i class="icon-viewItem"></i> &nbsp;图文</a></li><li class="table"><a href="plugin.php?id=violation&rid={$_GET['rid']}&subrid={$_GET['subrid']}&subsubrid={$_GET['subsubrid']}&pid={$_GET['pid']}&subpid={$_GET['subpid']}&pay1={$_GET['pay1']}&pay2={$_GET['pay2']}&p_year1={$_GET['p_year1']}&p_year2={$_GET['p_year2']}&wanted=$_GET['wanted']&view=table&solve=$_GET['solve']" {if $_GET['view']=='table'||($_GET['view']!='item'&&!$config['isitem'])} style="background: none repeat scroll 0 0 {if file_exists('source/plugin/violation/template/com/color.htm')}$config['y_color']{else}#e74c3c{/if};border: 0 none;color: white;pointer-events: none;"{/if}><i class="icon-viewTitle"></i> &nbsp;列表</a></li></ul></div>
+			</div>
+            
+            <div class="section_lj" style="padding:0 10px;">
+                
+                <div class="section_lj" id="normal-list">
+                    <ul class="sep" id="media">
+					{if $_GET['view']=='item'||($_GET['view']!='table'&&$config['isitem'])}
+                        {loop $lplist $lp}
+                        <li class="media clearfix" data-aid="310701844">
+                            <a class="media-cap" target="_blank" href="<!--{if $config['isrewrite']}-->{$lp['rewrite']}<!--{else}-->plugin.php?id=violation&act=view&lid={$lp['id']}<!--{/if}-->">
+                                <img alt="$lp['title']" src="{if $lp['pic1']}{eval echo $lp['pic1'].'.280x200.jpg';}{else}{if $settings['logo']['value']}{$settings['logo']['value']}{else}{$config['mr_src']}{/if}{/if}">
+                            </a>
+                            <div class="media-body">
+                                <div class="media-body-title">
+                                    <small class="pull-right" style="text-align: center;">
+									{if $_G['cache']['plugin']['aljyy'][$pluginid]}
+										{template aljyy:list_yuyue}
+									{else}
+									<span class="highlight"><b style="font-size:16px;">{if $lp['zujin']}$lp['zujin']元{else}{lang violation:view_14}{/if}</b></span>
+									{/if}
+									</small>
+                                    <a target="_blank" class="alj_a" href="<!--{if $config['isrewrite']}-->{$lp['rewrite']}<!--{else}-->plugin.php?id=violation&act=view&lid={$lp['id']}<!--{/if}-->" >$lp['title']</a>
+									<span class="ico area">
+						{eval $qiye_type=DB::result_first('select type from %t where uid=%d and sign=%d',array('aljesc_attestation',$lp['uid'],'1'))}
+						{if $qiye_type == 2}
+						<i title="{lang violation:License_certification}" class="picq qiye"></i>
+						{elseif $qiye_type == 1}
+						<i title="{lang violation:Personal_authentication}" class="picq geren"></i>
+						{/if}
+						</span>
+									{if TIMESTAMP < $lp['topetime']}&nbsp;<small class="tag tag-warn">顶</small>{/if}{if $lp['solve']}&nbsp;<small class="tag tag-true-green" data-original-title="" title="" style="font-size:12px;background-color: #81ba15;">{lang violation:Done}</small>{/if}
+                                </div>
+								<div class="typo-small"><!--{eval echo cutstr(stripBBCode($lp['content']),90,'');}--> </div>
+								<div class="typo-small">
+								{$regions[$lp['region']]['subject']} 
+								{if $lp['region1']}
+								- {$regions[$lp['region1']]['subject']}
+								{/if}
+								{if $lp['region2']}
+								- {$regions[$lp['region2']]['subject']} 
+								{/if}
+								{if $lp['region3']}
+								- $lp['region3']
+								{/if}
+								</div>
+                                <div class="typo-small">
+                                    {eval echo dgmdate($lp['updatetime'],'u');}{if $lp['pos']}&nbsp;/&nbsp;$pos_zw[$lp['pos']][subject]{/if}{if $lp['particular_year']}&nbsp;/&nbsp;$lp['particular_year']{/if}{if $lp['mileage']}&nbsp;/&nbsp;$lp['mileage']{lang violation:mileage_d}{/if}
+									{if $_G['cache']['plugin']['aljyy'][$pluginid]}&nbsp;/&nbsp;<span class="highlight"><b>{if $lp['zujin']}$lp['zujin']万元{else}{lang violation:view_14}{/if}</b></span>{/if}
+                                </div>
+                            </div>
+                        </li>
+                        {/loop}
+						{elseif $_GET['view']=='table'||($_GET['view']!='item'&&!$config['isitem'])}
+						{loop $lplist $lp}
+						<li class="table-view-item clearfix  item-regular" data-cpm-sign="" data-aid="232798484"><div class="clearfix"><span class="table-view-body" ><a target="_blank" href="<!--{if $config['isrewrite']}-->{$lp['rewrite']}<!--{else}-->plugin.php?id=violation&act=view&lid={$lp['id']}<!--{/if}-->">$lp['title']</a>
+						<span class="ico area">
+						{eval $qiye_type=DB::result_first('select type from %t where uid=%d and sign=%d',array('aljesc_attestation',$lp['uid'],'1'))}
+						{if $qiye_type == 2}
+						<i title="{lang violation:License_certification}" class="picq qiye"></i>
+						{elseif $qiye_type == 1}
+						<i title="{lang violation:Personal_authentication}" class="picq geren"></i>
+						{/if}
+						</span>
+						{if TIMESTAMP < $lp['topetime']}&nbsp;<small class="tag tag-warn">顶</small>{/if}{if $lp['solve']}&nbsp;
+									<small class="tag tag-true-green" data-original-title="" title="" style="font-size:12px;background-color: #81ba15;">{lang violation:Done}</small>{/if}</span><div class="table-view-cap"><span class="highlight" ><b>{if $lp['zujin']}$lp['zujin']万元{else}{lang violation:view_14}{/if}</b></span></div><div class="table-view-block">{if $lp['content']}<!--{eval echo cutstr(stripBBCode($lp['content']),24,'');}-->{else}&nbsp;{/if}</div><div class="table-view-cap">
+						<!--{eval $today=date('Y-m-d',$lp['updatetime']);}-->
+						<!--{eval $todays=date('Y-m-d',$_G['timestamp']);}-->
+						{if $today==$todays}今天{eval echo date('H:i',$lp['updatetime']);}{else}{eval echo date('m-d',$lp['updatetime']);}{/if}</div></div></li>
+						{/loop}
+						{/if}
+                    </ul>
+                </div>
+
+                <div class="pagenav clearfix sep">
+                    $paging
+                </div>
+            </div>
+        </div>
+<style type="text/css">
+.picq {
+  background-image: url("source/plugin/violation/images/picq.png") !important;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: -2px;
+  width: 18px;
+}
+.qiye {
+  background-position: 0 -23px;
+}
+.geren {
+  background-position: 0 2px;
+}
+</style>
+
+    </div>
+	<!--[diy=aljesc_01]--><div id="aljesc_01" class="area"></div><!--[/diy]-->
+</div>
+<div style="display:none"><script src="http://s4.cnzz.com/stat.php?id=1256921267&web_id=1256921267" language="JavaScript"></script></div>
+{if file_exists('source/plugin/violation/template/com/color.htm')}
+{template violation:com/color}
+{/if}
+
+{template common/footer}

@@ -1,0 +1,112 @@
+<link href="source/plugin/violation/css/v2.css" rel="stylesheet">
+
+<script>
+jQuery.noConflict();
+function bbb(b){
+	var c='#div_'+b;
+	if(jQuery(c).css('display')=='none'){
+		jQuery(c).show();
+	}else{
+		jQuery(c).hide();	
+	}	
+}
+</script>				
+<style>
+	.cap{float:left; width:100%; background:#e68d06;color:#fff; font-size:18px; height:35px; line-height:35px; padding:0;}
+	.comment-form{height:95px;}
+</style>
+
+<div id="append_parent"></div>
+<iframe name="formsubmit" style="display: none;" ></iframe> 
+			<div id="comments" class="cap">&nbsp;&nbsp;留言</div>
+			
+			{if $_G['uid']==$lp['uid']}
+			<div class="add-comment shrink" id="add-comment"><div class="alert"><i class="icon-info"></i>&nbsp;不能给自己发布的信息留言</div></div>
+			{else}
+			<div id="add-comment" class="add-comment" style="float: left; width: 98%;height:100px;">
+			
+			<form type="2" method="post" action="plugin.php?id=violation&act=ask" enctype="multipart/form-data" target="formsubmit">
+			<input type="hidden" name="formhash" value="{FORMHASH}">
+			<input type="hidden" value="{$_GET['lid']}" name="lid" id="lid">
+			<textarea required="" maxlength="200" name="message" placeholder="" data-template="" class="comment-textarea" style="width: 100%;height: 50px; padding:0;"></textarea>
+			<div class="action">
+			<input type="submit" class="button_lj" value="留言" style="width: 21%;height: 32px;margin-top: 5px; float: right; border: none;
+			background:#e68d06;color: #fff;">
+			</div>
+			</form>
+			
+			</div>
+			{/if}
+			<div id="comments" style="float:left; width:98%;">
+				<ul class="comments">
+					{loop $commentlist $comment}
+					<li class="comment comment-warp">
+						<a class="comment-cap" target="_blank" href="home.php?mod=space&uid={$comment['uid']}">
+							<img src="{eval echo avatar($comment['uid'],'small',true);}">
+						</a>
+						<div class="comment-body">
+							<div class="comment-body-title">
+								<a>$comment['username']</a>
+								<small class="pull-right">{eval echo gmdate('Y-m-d H:i:s',$comment['dateline']+8*3600);}</small>
+							</div>
+							<div>{eval echo discuzcode($comment['content'])}</div>
+						</div>
+						{if $_G['uid']==$lp['uid']}
+						<div class="typo-small">
+							<a class="comment-action-reply" href="javascript:;" onclick="bbb({$comment[id]});">回复</a>&nbsp;<a class="comment-action-delete" href="plugin.php?id=violation&act=commentdel&formhash={FORMHASH}&cid={$comment[id]}&lid={$comment[lid]}">删除</a>
+						</div>
+						{/if}
+						<div class="comment-form" style="display: none;" id="div_{$comment[id]}">
+							<form method="post" action="plugin.php?id=violation&act=reply" enctype="multipart/form-data" target="formsubmit">
+								<textarea maxlength="200" name="message" class="replay_hls"></textarea>
+								<input type="hidden" value="{$comment['lid']}" name="lid" id="lid">
+								<input type="hidden" size="5" value="{$comment['id']}" name="upid" id="upid">
+								<input type="hidden" name="formhash" value="{FORMHASH}">
+								<input type="submit" class="button_lj" id="button_lj" value="回复" style="width: 21%;height: 32px;margin-top: 5px;
+								float: right; border: none;background:#ff8134;color: #fff;">
+							</form>
+						</div>
+						
+						{loop C::t('#violation#aljesc_comment')->fetch_all_by_upid($comment['id'],$comment['lid']) $reply}
+						<div class="comment comment-reply">
+							<a class="comment-cap" target="_blank" href="home.php?mod=space&uid={$reply['uid']}">
+							<img src="{eval echo avatar($reply['uid'],'small',true);}"></a>
+							<a>$reply['username']</a>
+							<div class="comment-body">
+							<div>{eval echo discuzcode($reply['content'])}</div>
+							</div>
+							{if $_G['uid']==$lp['uid']}
+							<div class="typo-small">
+								<a class="comment-action-delete" href="plugin.php?id=violation&act=commentdel&formhash={FORMHASH}&cid={$reply[id]}&lid={$reply[lid]}">删除</a>
+							</div>
+							{/if}
+						</div>
+						{/loop}
+					
+				</li>
+				{/loop}
+			</ul>
+			</div>
+
+	<div id="a" style="width: 45%; height: 70px;color: rgb(255, 255, 255);font-size: 22px;position: fixed; top: 50%;background: rgba(0, 0, 0, 0.6); border-radius: 7px;
+    left: 28%;line-height: 70px; text-align: center; display:none;"></div>
+<script>
+
+	jQuery("#button_lj").click(function(){
+		if(jQuery(".replay_hls").val()==""){
+			jQuery("#a").show();
+			document.getElementById("a").innerHTML = "评论不能为空";
+			//document.write("<div style='width:100px; height:50px; background:rgba(0,0,0,0.6);color:#fff; font-size:16px; position:absolute; top:50%;'>评论不能为空</div>");
+			//alert("评论不能为空");
+			setTimeout(function(){window.location.reload();},1000)
+		}
+		else{
+			jQuery("#a").show();
+			document.getElementById("a").innerHTML = "评论成功";
+			//document.write("<div style='width:100px; height:50px; background:rgba(0,0,0,0.6);color:#fff; font-size:16px;  position:absolute; top:50%;'>评论成功</div>");
+			//alert("评论成功");
+			setTimeout(function(){window.location.reload();},1000)
+		}
+
+	})
+</script>

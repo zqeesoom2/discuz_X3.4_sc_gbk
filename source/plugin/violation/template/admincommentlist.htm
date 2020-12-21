@@ -1,0 +1,21 @@
+{template common/header_ajax}
+<h3 class="flb">
+	<em>评论内容管理</em>
+		<span><a href="javascript:;" class="flbc" onclick="hideWindow('edit');" title="{lang close}">{lang close}</a></span>
+	
+</h3>
+		<div class="c" style="width:600px;">
+        
+        
+        	<table cellspacing="0" cellpadding="0" class="dt">
+<tbody><tr>
+<th>UID</th><th>用户名</th><th>内容</th><th>提交时间</th><th>操作</th>
+</tr>
+{loop $commentlist $c}
+<tr class="header"><td>{$c['uid']}</td><td>{$c['username']}</td><td>{eval echo dhtmlspecialchars($c['content']);}</td><td>{eval echo gmdate('Y-m-d H:i:s',$c['dateline']+8*3600);}</td><td><a href="admin.php?action=plugins&operation=config&identifier=violation&pmod=data&act=deletecomment&lid={$_GET['lid']}&cid={$c['id']}" ajaxtarget="fwin_content_edit">删除</a></td></tr>
+{/loop}
+<tr><td colspan="6">$paging</td></tr>
+</tbody></table>
+	
+</div>
+{template common/footer_ajax}

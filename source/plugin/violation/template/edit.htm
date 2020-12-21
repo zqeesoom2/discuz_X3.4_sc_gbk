@@ -1,0 +1,406 @@
+<script type="text/javascript" src="source/plugin/violation/js/calendar.js"></script>
+<div  style="float:left;">
+<h1 class="ph mbm xi1" style="margin-left:10px;">编辑</h1>
+<form enctype="multipart/form-data"   action="admin.php?action=plugins&operation=config&identifier=$pluginid&pmod=data&act=edit" autocomplete="off" id="addgoods_form" method="post">
+ <input type="hidden" name="formhash" value="{FORMHASH}">
+ <input type="hidden" name="lid" value="{$_GET['lid']}">
+  <table cellspacing="0" cellpadding="0" class="tfm">
+      <tbody>
+         <tr>
+			<td class="bdtr">供求：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" value="1" {if $lp['wanted']=='1' || !$lp['wanted']}checked="checked"{/if} class="form-radio" title="{lang aljesc:wanted_t}" order="0" name="wanted" maxlength="50">出售
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" value="2" class="form-radio" title="{lang aljesc:wanted_t}" order="0" name="wanted" maxlength="50" {if $lp['wanted']=='2'}checked="checked"{/if}>求购
+				</label>
+			</td>
+		 </tr>
+		 <tr>
+			<td class="bdtr">标题：</td>
+			<td>
+				<input type="text" value="$lp['title']" data-parent=".p-line" class="input input-60" title="$lp['title']" order="1"  name="title" maxlength="25">
+			</td>
+		</tr>
+		<tr>
+			<td class="bdtr">品牌车系：</td>
+    		<td colspan="4">
+				<select value="" data-parent=".p-line" class="input"  order="9" data-sub="Linkage_region"  name="pos" id="pos" maxlength="100" type="text" onchange="ajaxget('plugin.php?id=violation&act=getpos&rid=' + $('pos').value, 'getpos')">
+					<option data-target="#" value=""></option>
+					{loop $pos $r}
+					<option  value="$r['id']" {if $lp['pos']==$r['id']}selected{/if}>$r['subject']</option>
+					{/loop}
+				</select>
+				<span id="getpos">
+					{if $lp['pos']&&$lp['pos1']}
+					<select required="required" name="pos1" class="sub-area input active" >
+						<option value="" id=""> </option>
+						{loop $prs $rr}
+						<option value="$rr['id']" {if $rr[id]==$lp['pos1']}selected{/if}>$rr['subject']</option>
+						{/loop}
+					</select>
+					{/if}
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="bdtr">车型：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['models']" data-parent=".p-line" class="input ui-autocomplete-input" title="{lang aljesc:models_t}"  name="models" maxlength="100" autocomplete="off">
+					<span class="p-note">例如： 2010款 1.6l 手动 舒适型</span>
+				</label>
+			</td>
+		</tr>	
+		<tr>
+			<td class="bdtr">上牌年份：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" onclick="showcalendar(event, this)" value="$lp['particular_year']" data-parent=".p-line" class="input input-5"  name="particular_year" maxlength="30">
+				</label>
+			</td>
+		</tr>	
+		<tr>
+			<td class="bdtr">行驶里程：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['mileage']" data-parent=".p-line" class="input input-7" title="{lang aljesc:mileage_t}" order="6" pattern="^(|([0-9]+)(.[0-9]+)?)$" numeric="1" name="mileage" maxlength="7"><span class="unit">{lang aljesc:mileage_d}</span>
+				</label>
+			</td>
+		</tr>	
+		<tr>
+			<td class="bdtr">价格：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="{$lp['zujin']}" data-parent=".p-line" class="input input-5" title="{lang aljesc:post_26}" order="5" pattern="^(.*[0-9]+.*|)$"  filterlabels="{lang aljesc:post_28}" filters="[0 TO 500],[500 TO 1000],[1000 TO 1500],[1500 TO 2000],[2000 TO 3000],[3000 TO 4000],[4000 TO *]" numeric="1" name="zujin" maxlength="10">
+					<span class="unit">万元</span>
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="bdtr">描述：</td>
+			<td>
+				<div class="publish-detail-item publish-detail-item-top" >
+				<link href="source/plugin/violation/css/adminedit.css" rel="stylesheet">
+				<script src="source/plugin/violation/js/seditor.js" type="text/javascript" reload="1"></script>
+					<div class="tedt" style="width:100%;">
+						<div class="bar">
+							<div class="fpd">
+								<a href="javascript:;" title="{lang aljesc:s19}" class="fbld" onclick="seditor_insertunit('reply', '[b]', '[/b]');doane(event);">B</a>
+								<a fwin="apply" href="javascript:;" title="{lang aljesc:s20}" class="fclr" id="replyforecolor" onclick="showColorBox(this.id, 2, 'reply');doane(event);" initialized="true">Color</a>
+								<a fwin="apply" id="replyimg" href="javascript:;" title="{lang aljesc:s21}" class="fmg" onclick="seditor_menu('reply', 'img');doane(event);">Image</a>
+								<a fwin="apply" id="replyurl" href="javascript:;" title="{lang aljesc:s22}" class="flnk" onclick="seditor_menu('reply', 'url');doane(event);">Link</a>
+							</div>
+						</div>
+					<div class="area" style="background:#FFF;">
+						<textarea fwin="apply" rows="3" name="content" class="pt" id="replymessage" style="background:#FFF;width:100%">{$lp['content']}</textarea>
+					</div>
+					</div>
+                </div>
+			</td>
+		</tr>
+		<tr>
+            <th class="bdtr">上传照片：</th>
+            <td>
+                <div class="pull-left" id="swfupload">
+					<input type="file" name="pic1"><br>
+					{if $lp['pic1']}<img src="{eval echo $lp['pic1'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic1" value="{$lp['pic1']}">
+					<input type="file" name="pic2"><br>
+					{if $lp['pic2']}<img src="{eval echo $lp['pic2'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic2" value="{$lp['pic2']}">
+					<input type="file" name="pic3"><br> 
+					{if $lp['pic3']}<img src="{eval echo $lp['pic3'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic3" value="{$lp['pic3']}">
+					<input type="file" name="pic4"><br>
+					{if $lp['pic4']}<img src="{eval echo $lp['pic4'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic4" value="{$lp['pic4']}">
+					<input type="file" name="pic5"><br>   
+					{if $lp['pic5']}<img src="{eval echo $lp['pic5'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic5" value="{$lp['pic5']}"> 
+					<input type="file" name="pic6"><br>
+					{if $lp['pic6']}<img src="{eval echo $lp['pic6'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic6" value="{$lp['pic6']}">
+					<input type="file" name="pic7"><br>
+					{if $lp['pic7']}<img src="{eval echo $lp['pic7'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic7" value="{$lp['pic7']}">
+					<input type="file" name="pic8"><br>
+					{if $lp['pic8']}<img src="{eval echo $lp['pic8'].'.255x192.jpg';}"><br>{/if}
+					<input type="hidden" name="pic8" value="{$lp['pic8']}">
+				</div>
+			</td>
+            <td>&nbsp;</td>
+        </tr>
+		<tr>
+            <th class="bdtr">交易地点：</th>
+            <td>
+				<select value="" data-parent=".p-line" class="input" title="{lang aljesc:post_14}" order="9" data-sub="Linkage_region"  othername="{lang aljesc:post_15}" area3="showEmptyFilter=1" area2="showEmptyFilter=1" level="area2,area3" remember="1" name="region" id="region" group="{lang aljesc:post_16}" maxlength="100" type="text" onchange="ajaxget('plugin.php?id=violation&act=getregion&rid=' + $('region').value, 'getregion')">
+					<option data-target="#" value=""> </option>
+					{loop $rs $r}
+					<option  value="$r['id']" {if $lp['region']==$r['id']}selected{/if}>$r['subject']</option>
+					{/loop}
+				</select>
+				<span id="getregion">
+					{if $lp['region']&&$lp['region1']}
+					<select required="required" name="region1" class="sub-area input active" id="m5627">
+						<option value="" id=""> </option>
+						{loop $rrs $rr}
+						<option value="$rr['id']" {if $rr[id]==$lp['region1']}selected{/if}>$rr['subject']</option>
+						{/loop}
+					</select>
+					{/if}
+				</span>
+				<span name="region1" id="region1">
+				{if $lp['region2']}
+				<select name="region2" style="width:120px;">
+				<!--{loop C::t('#aljesc#aljesc_region')->fetch_all_by_upid($lp['region1']) $rid $r}-->
+				<option value="$rid" {if $rid==$lp['region2']}selected{/if}>$r['subject']</option>
+				<!--{/loop}-->
+				</select>
+				{/if}
+				</span>
+				<input type="text" value="{$lp['region3']}" data-parent=".p-line"  class="input"  maxlength="100" name="region3">
+			</td>
+            <td>&nbsp;</td>
+        </tr>
+		
+		<tr>
+              <th class="bdtr">QQ号</th>
+              <td><input type="text" value="{$lp['qq']}" data-parent=".p-line" class="input input-6" title="{lang aljesc:post_34}" order="8" pattern="^(.*[0-9]+.*|)$" remember="true" numeric="1" name="qq" maxlength="14"></td>
+              <td>&nbsp;</td>
+        </tr>
+		<tr>
+              <th class="bdtr">联系人：</th>
+              <td><input class="input input-5" type="text" value="$lp['lxr']" data-parent=".p-line" class="input input-60" title="$lp['lxr']" order="1"  name="lxr" maxlength="25"></td>
+              <td>如：李先生</td>
+        </tr>
+		<tr>
+              <th class="bdtr">联系电话：</th>
+              <td> <input type="text" value="{$lp['contact']}" data-parent=".p-line" class="input input-5" title="{lang aljesc:post_24}" order="11" pattern="^\d[\d-]{3,20}\d$"  hidevaluedinput="1" name="contact" maxlength="30"><small id="contact-tips"></small></td>
+              <td>例:138******** 或 0591-88888888</td>
+        </tr>
+		<tr>
+			<td class="bdtr">排量</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['displacement']" data-parent=".p-line" class="input" title="{lang aljesc:displacement_t}" order="14" pattern="^(|([0-9]+)(.[0-9]+)?)$" numeric="1" name="displacement" maxlength="7"><span class="unit">L</span>         
+                </label>
+			</td>
+			<td>此处只支持输入数字与"."</td>
+		</tr>
+		<tr>
+			<td class="bdtr">速箱</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="{lang aljesc:gearbox_t}" order="15"  name="gearbox" maxlength="100" type="text">
+					<option value=""></option>
+					{loop $gearbox_types $k $v}
+					<option value="$k" {if $k==$lp['gearbox']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">燃油类型</td>
+			<td>
+				<input type="text" value="$lp['fuel']" data-parent=".p-line" class="input" title="{lang aljesc:fuel_t}" order="16" name="fuel" maxlength="10">
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">排放标准</td>
+			<td>
+				<input type="text" value="$lp['emission_standard']" data-parent=".p-line" class="input" title="{lang aljesc:emission_standard_t}" order="17" name="emission_standard" maxlength="10">
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">车辆颜色：</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="{lang aljesc:vehicle_color}" order="18" name="vehicle_color" maxlength="100" type="text">
+					<option value=""></option>
+					{loop $vehicle_color_types $k $v}
+					<option value="$k" {if $k==$lp['vehicle_color']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">车型级别</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="{lang aljesc:vehicle_level_t}" order="19" datatype="leixing" name="vehicle_level" maxlength="100" type="text">
+					<option value=""> </option>
+					{loop $vehicle_level_types $k $v}
+					<option value="$k" {if $k==$lp['vehicle_level']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:use}</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="{lang aljesc:use_t}" order="20" name="use" maxlength="100" type="text">
+					<option value=""></option>
+					{loop $use_types $k $v}
+					<option value="$k" {if $k==$lp['use']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:inspection_expires}</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['inspection_expires']" data-parent=".p-line" class="input input-5"  name="inspection_expires" maxlength="30">
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:strong_cross}</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['strong_cross']" data-parent=".p-line" class="input input-5"  name="strong_cross" maxlength="30">
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">商业险到期</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['commercial_insurance']" data-parent=".p-line" class="input input-5"  name="commercial_insurance" maxlength="30">
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:transfer_fees}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer_fees'] == '包含'}checked="checked"{/if} value="包含" class="form-radio" title="过户费" order="24" name="transfer_fees" maxlength="100">不包含
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer_fees'] == '不包含'}checked="checked"{/if} value="不包含" class="form-radio" title="过户费" order="24" name="transfer_fees" maxlength="100">不包含
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">行驶证</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:registration_certificate}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="{lang aljesc:registration_certificate_t}" order="26" name="registration_certificate" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="{lang aljesc:registration_certificate_t}" order="26" name="registration_certificate" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="{lang aljesc:registration_certificate_t}" order="26" name="registration_certificate" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:invoice}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="{lang aljesc:invoice_t}" order="27" name="invoice" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="{lang aljesc:invoice_t}" order="27" name="invoice" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="{lang aljesc:invoice_t}" order="27" name="invoice" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:repair_records}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="{lang aljesc:repair_records_t}" order="28" name="repair_records" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="{lang aljesc:repair_records_t}" order="28" name="repair_records" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="{lang aljesc:repair_records_t}" order="28" name="repair_records" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:purchase_tax}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="{lang aljesc:purchase_tax_t}" order="29" name="purchase_tax" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="{lang aljesc:purchase_tax_t}" order="29" name="purchase_tax" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] =='补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="{lang aljesc:purchase_tax_t}" order="29" name="purchase_tax" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:a_major_accident}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['a_major_accident'] == '有'}checked="checked"{/if} value="有" class="form-radio" title="{lang aljesc:a_major_accident_t}" order="30" name="a_major_accident" maxlength="100">有
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['a_major_accident'] == '无'}checked="checked"{/if} value="无" class="form-radio" title="{lang aljesc:a_major_accident_t}" order="30" name="a_major_accident" maxlength="100">无
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:transfer}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer'] == '能'}checked="checked"{/if} value="能" class="form-radio" title="{lang aljesc:transfer_t}" order="31" name="transfer" maxlength="100">能
+
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer'] == '不能'}checked="checked"{/if} value="不能" class="form-radio" title="{lang aljesc:transfer_t}" order="31" name="transfer" maxlength="100">不能
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="bdtr">{lang aljesc:mortgage}</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['mortgage'] == '能'}checked="checked"{/if} value="能" class="form-radio" title="{lang aljesc:mortgage_t}" order="32" name="mortgage" maxlength="100">能
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['mortgage'] == '不能'}checked="checked"{/if} value="不能" class="form-radio" title="{lang aljesc:mortgage_t}" order="32" name="mortgage" maxlength="100">不能
+				</label>
+			</td>
+			<td></td>
+		</tr>
+        <tr>
+            <th></th>
+            <td colspan="2"><button  class="pn pnc vm" value="true" id="submit" name="submit" type="submit"><strong>免费发布</strong></button></td>
+        </tr>
+      </tbody>
+  </table>
+  </form>
+</div>

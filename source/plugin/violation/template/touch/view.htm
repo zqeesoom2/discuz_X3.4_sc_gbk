@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="$metakeywords" />
+<meta name="description" content="$metadescription" />
+<title>$navtitle</title>
+<script src="source/plugin/violation/js/jq.js" type="text/javascript"></script>
+<link href="source/plugin/violation/css/shouji_1.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/violation/css/shouji_2.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/violation/css/listing.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/violation/css/post.css" rel="stylesheet" type="text/css">
+</head><body class="">
+<script type="text/javascript" src="source/plugin/violation/js/jquery.js"></script>
+<script type="text/javascript">
+    var jq = jQuery.noConflict();
+</script>
+<article class="cmSubview ui-subview post ui-subview-in" id="post" >
+
+{template violation:header}
+<div class="header" style="position:fixed; z-index:999; top:0px;">
+    	<div class="w90 center header_a">
+
+                    <a class="header_back" href="plugin.php?id=violation"><img src="source/plugin/violation/images/inco_01.png" width="20" height="21" style="margin-top:17px;"></a>
+               <span class="find"><a style="color:#fff;">信息详情</a></span>
+              <div class="find_qcy" style="float:right; width:12px;">
+               
+        	</div>
+</div>
+        
+  		
+   </div>
+<div style="width:100%; height:55px;"></div>
+
+<!-- <script>
+ 	var upurl=document.referrer;
+	if(upurl.indexOf("view")>0){
+		jQuery(".header_back").removeAttr("onclick");
+		jQuery(".header_back").attr("href","plugin.php?id=aljesc");
+	}
+
+ </script>-->
+
+
+
+<main style="width:95%;background:#fff;">
+<div class="resume-dialog hide">
+<div class="dialog-title"></div>
+<div class="dialog-content"><div class="actions"></div></div></div>
+<div class="hide" id="select-modal"></div><article id="image-viewer" hidden tabindex="1"><h1></h1><figure class="current"><img></figure><figure class="next"><img></figure><figure class="prev"><img></figure></article>
+
+
+
+<article class="post" style="background:#fff;">
+
+<header>
+<h1 style="font-size:20px;">{$lp['title']}{if $lp['solve']}&nbsp;<span class="cmLabel solved">搞定了</span>{/if}</h1>
+<p class="byline"><time class="friendly datetime" datetime="{eval echo gmdate('Y-m-d H:i',$lp['updatetime']+8*3600);}">{$lp['username']}&nbsp&nbsp{eval echo gmdate('Y-m-d H:i',$lp['updatetime']+8*3600);}</time>下一页
+<!--<data id="visits"> <span id="counter">{$lp['views']}</span>{lang aljes:view_4} </data>-->
+</p>
+</header>
+<style type="text/css">
+.btn_Favorite {
+position: absolute;
+right: 0;
+top: 42px;
+width: 63px;
+height: 26px;
+line-height: 26px;
+background-color: #fff;
+border: 1px solid #E0E1E2;
+text-align: center;
+color: #7a7e88;
+font-size: 12px;
+margin-right: 15px;
+}
+.btn_Favorite .ico {
+background: url(source/plugin/aljesc/images/common_ico.png) no-repeat;
+background-size: 22px auto;
+}
+.btn_Favorite .ico {
+display: inline-block;
+width: 12px;
+height: 12px;
+background-position: 0 -21px;
+vertical-align: -1px;
+margin-right: 3px;
+}
+.gallery li{
+-webkit-box-align: center;
+-webkit-box-pack: center;
+-webkit-align-items: center;
+align-items: center;
+display: -webkit-box;
+display: -webkit-flex;
+display: flex;
+height: 115px;
+-webkit-justify-content: center;
+justify-content: center;
+margin-right: 10px;
+}
+.gallery ul{
+display: -webkit-box;
+-webkit-transform: translate3d(50px,0,0);
+-webkit-transition: 150ms linear;
+transition: 150ms linear;
+-webkit-transform-style: preserve-3d;
+}
+article.post section.images div.gallery{height:120px;}
+#contact-number{padding: .5em .8em;}
+.info_js{width:100%; margin:0 auto; margin-top:10px;}
+	.info_js_zy{float:left; width:50%;}
+	.info_js_zy span{color:#cacaca;}
+	.info_js ul li{color:#6a6a6a; height:30px; font-size:14px; font-weight:bold;}
+	.info_jj{width:100%;height:15px; background:#f7f7f7; border-top:1px solid #eeeeee; border-bottom: 1px solid #eeeeee; float:left;}
+	.info_content img{width:100%; margin-top:5px;}
+	.info_content{float:left; width:100%;}
+	.info_content h1{margin-top:10px !important; font-size:18px;}
+	.info_content p{font-size:16px; line-height:25px;}
+</style>
+
+
+
+<div class="info_js">
+	<ul>
+		<li style="width:100%; height:35px; font-size:18px; color:#ff8134"><span style="color:#cacaca">价格:</span>{if $lp['zujin']}{$lp['zujin']}元{else}{lang aljesc:view_14}{/if}</li>
+
+		{if $lp['pos']}<li class="info_js_zy"><span>类型：</span>{$pos_zw[$lp['pos']][subject]}</li>{/if}
+		
+		{if $lp['gearbox']}<li class="info_js_zy"><span>{lang aljesc:gearbox}</span>{$gearbox_types[$lp['gearbox']]}</li>{/if}
+		
+		{if $lp['qq']}<li class="info_js_zy"><span>原价：</span>$lp['qq']元</li>{/if}
+		{if $lp['mileage']}<li class="info_js_zy"><span>{lang aljesc:mileage}</span>{$lp['mileage']}万公里</li>{/if}
+
+		
+		{if $lp['region']}<li class="info_js_zy"><span>所在地</span>{$regions[$lp['region']]['subject']}</li>{/if}
+		
+
+
+
+		{if $lp['particular_year']}<li class="info_js_zy"><span >{lang aljesc:particular_year}</span>{$lp['particular_year']}{/if}
+		{if $lp['displacement']}<li class="info_js_zy">  <span>{lang aljesc:displacement}</span>{$lp['displacement']}L</li>{/if}
+		{if $lp['gearbox']}<li class="info_js_zy">  <span>{lang aljesc:gearbox}</span>{$gearbox_types[$lp['gearbox']]}</li>{/if}
+				{if $lp['fuel']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:fuel}</span>
+						{$lp['fuel']}
+					</li>
+				{/if}
+				{if $lp['emission_standard']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:emission_standard}</span>
+						{$lp['emission_standard']}
+				{/if}
+				{if $lp['vehicle_color']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:vehicle_color}</span>
+						{$vehicle_color_types[$lp['vehicle_color']]}
+					</li>
+				{/if}
+				
+
+				{if $lp['use']}
+					<li  class="info_js_zy">  
+						<span>{lang aljesc:use}</span>
+						{$use_types[$lp['use']]}
+					</li>
+				{/if}
+				
+				{if $lp['transfer_fees']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:transfer_fees}</span>
+						{$lp['transfer_fees']}
+					</li>
+				{/if}
+				{if $lp['driving_license']}
+					<li class="info_js_zy">  
+						<span >行驶证</span>
+						{$lp['driving_license']}
+					</li>
+				{/if}
+				{if $lp['registration_certificate']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:registration_certificate}</span>
+						{$lp['registration_certificate']}
+					</li>
+				{/if}
+				{if $lp['invoice']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:invoice}</span>
+						{$lp['invoice']}
+					</li>
+				{/if}
+				{if $lp['repair_records']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:repair_records}</span>
+						{$lp['repair_records']}
+					</li>
+				{/if}
+				{if $lp['purchase_tax']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:purchase_tax}</span>
+						{$lp['purchase_tax']}
+					</li>
+				{/if}
+				{if $lp['a_major_accident']}
+					<li class="info_js_zy">  
+						<span >{lang aljesc:a_major_accident}</span>
+						{$lp['a_major_accident']}
+					</li>
+				{/if}
+				{if $lp['transfer']}
+					<li class="info_js_zy">  
+						<span>{lang aljesc:transfer}</span>
+						{$lp['transfer']}
+					</li>
+				{/if}
+				{if $lp['mortgage']}
+					<li class="info_js_zy">  
+						<span>{lang aljesc:mortgage}</span>
+						{$lp['mortgage']}
+					</li>
+				{/if}
+				{if $lp['models']}<li class="info_js_zy" style="width:100%;  height:35px; float:left;"><span>{lang aljesc:models}</span>{$lp['models']}</li>{/if}
+
+				{if $lp['inspection_expires']}
+					<li style="width:100%; height:35px; float:left;">  
+						<span style="color:#cacaca">{lang aljesc:inspection_expires}</span>
+						{$lp['inspection_expires']}
+					</li>
+				{/if}
+				{if $lp['strong_cross']}
+					<li style="width:100%; height:35px;float:left;"> 
+						<span style="color:#cacaca">{lang aljesc:strong_cross}</span>
+						{$lp['strong_cross']}
+					</li>
+				{/if}
+				{if $lp['commercial_insurance']}
+					<li style="width:100%; height:35px;float:left;"> 
+						<span style="color:#cacaca">{lang aljesc:commercial_insurance}</span>
+						{$lp['commercial_insurance']}
+					</li>
+				{/if}
+				{if $lp['lxr']}<li class="info_js_zy"><span>{lang aljesc:post_37}</span>{$lp['lxr']}</li>{/if}
+
+		
+	</ul>
+<section class="contact" style="float:left; padding:0; width:100%;margin-bottom:20px;border:none; ">{if !$lp['solve']}<a id="contact-number" href="{if !$_G['uid']&&$config['isyouke']}member.php?mod=logging&action=login&infloat=yes{else}tel:{$lp['contact']}{/if}" style="
+    width: 100%;
+    padding: 0px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    text-align: center;
+">{if $config['isyouke']}{if $_G['uid']}{$lp['contact']}{else}$tel{/if}{else}{$lp['contact']}{/if}</a>{else}&nbsp;{/if}
+{if $_G['cache']['plugin']['aljyy'][$pluginid]}{template aljyy:view_yuyue}{/if}
+</section>
+</div>
+
+<div class="info_jj"></div>
+
+<div class="info_content">
+	<h1>详细说明</h1>
+	<p>{eval echo discuzcode($lp['content'])}
+	
+	{if $lp['pic1']}
+		{if $lp['pic1']}
+		<img lazyload src="$lp[pic1].640x480.jpg"  title="" data-index="0" data-src1x="$lp['pic1']" data-src2x="$lp['pic1']">
+		{/if}
+		{if $lp['pic2']}
+		<img lazyload src="$lp['pic2'].640x480.jpg" title="" data-index="1"  data-src1x="$lp['pic2']" data-src2x="$lp['pic2']">
+		{/if}
+		{if $lp['pic3']}
+		<img lazyload src="$lp['pic3'].640x480.jpg" title="" data-index="2"  data-src1x="$lp['pic3']" data-src2x="$lp['pic3']">
+		{/if}
+		{if $lp['pic4']}
+	<img lazyload src="$lp['pic4'].640x480.jpg" title="" data-index="3"  data-src1x="$lp['pic4']" data-src2x="$lp['pic4']">
+		{/if}
+		{if $lp['pic5']}
+		<img lazyload src="$lp['pic5'].640x480.jpg" title="" data-index="4"  data-src1x="$lp['pic5']" data-src2x="$lp['pic5']">
+		{/if}
+		{if $lp['pic6']}
+	<img lazyload src="$lp['pic6'].640x480.jpg"  title="" data-index="5" data-src1x="$lp['pic6']" data-src2x="$lp['pic6']">
+		{/if}
+
+	{/if}
+	</p>
+</div>
+
+
+{if file_exists('source/plugin/violation/template/touch/com/commen.htm')}
+				{template violation:com/commen}
+			{/if}
+
+
+<style type="text/css">
+	article.post section.contact a#contact-number::after{content:'点击拨打';margin-left:.333em;font-size:12px}
+</style>
+
+
+
+
+
+ <style type="text/css">
+.ico-rzv-b, .ico-rzv-o {
+  background: url("source/plugin/violation/images/ico-d-1.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  display: inline-block;
+  height: 22px;
+}
+.ico-rzv-o {
+  background-position: 0 -23px;
+  width: 102px;
+}
+.ico-rzv-b {
+  width: 114px;
+}
+</style>
+<div class="adsense-block">
+</div></article></main>
+{template violation:footer}
+<script type="text/javascript">
+function tips(txt, fun) {
+	jq('.tips').remove();
+	var div = jq('<div style="background: url(source/plugin/violation/images/tips.png);max-width: 85%;min-height: 77px;min-width: 270px;position: absolute;left: -1000px;top: -1000px;text-align: center;border-radius:10px;"><span style="color: #ffffff;line-height: 77px;font-size: 23px;">' + txt + '</span></div>');
+	jq('body').append(div);
+	div.css('zIndex', 9999999);
+	div.css('left', parseInt((jq(window).width() - div.width()) / 2));
+	var top = parseInt(jq(window).scrollTop() + (jq(window).height() - div.height()) / 2);
+	div.css('top', top);
+	setTimeout(function() {
+		div.remove();
+		if (fun) {
+			fun();
+		}
+	}, 2000);
+}
+
+</script>
+<script type="text/javascript">
+	<!--
+		var isIe = (document.all) ? true : false;
+//设置select的可见状态
+function setSelectState(state) {
+    var objl = document.getElementsByTagName('select');
+    for (var i = 0; i < objl.length; i++) {
+        objl[i].style.visibility = state;
+    }
+}
+function mousePosition(ev) {
+    if (ev.pageX || ev.pageY) {
+        return { x: ev.pageX, y: ev.pageY };
+    }
+    return {
+        x: ev.clientX + document.body.scrollLeft - document.body.clientLeft, y: ev.clientY + document.body.scrollTop - document.body.clientTop
+    };
+}
+//弹出方法
+function showMessageBox(wTitle, content, pos, wWidth) {
+    closeWindow();
+    var bWidth = parseInt(document.documentElement.scrollWidth);
+    var bHeight = parseInt(document.documentElement.scrollHeight);
+    if (isIe) {
+        setSelectState('hidden');
+    }
+    var back = document.createElement("div");
+    back.id = "back";
+    var styleStr = "top:0px;left:0px;position:absolute;background:#666;width:" + bWidth + "px;height:" + bHeight + "px;";
+    styleStr += (isIe) ? "filter:alpha(opacity=0);" : "opacity:0;";
+    back.style.cssText = styleStr;
+    document.body.appendChild(back);
+    showBackground(back, 50);
+    var mesW = document.createElement("div");
+    mesW.id = "mesWindow";
+    mesW.className = "mesWindow";
+    mesW.innerHTML = "<div class='mesWindowTop'></div><div class='mesWindowContent' id='mesWindowContent'>" + content + "</div><div class='mesWindowBottom'></div>";
+    styleStr = "left:" + (((pos.x - wWidth) > 0) ? 10 : 10) + "px;top:" + (pos.y) + "px;position:absolute;width:" + wWidth + "px;";
+    mesW.style.cssText = styleStr;
+    document.body.appendChild(mesW);
+}
+//让背景渐渐变暗
+function showBackground(obj, endInt) {
+    if (isIe) {
+        obj.filters.alpha.opacity += 1;
+        if (obj.filters.alpha.opacity < endInt) {
+            setTimeout(function() { showBackground(obj, endInt) }, 5);
+        }
+    } else {
+        var al = parseFloat(obj.style.opacity); al += 0.01;
+        obj.style.opacity = al;
+        if (al < (endInt / 100))
+        { setTimeout(function() { showBackground(obj, endInt) }, 5); }
+    }
+}
+//关闭窗口
+function closeWindow() {
+    if (document.getElementById('back') != null) {
+        document.getElementById('back').parentNode.removeChild(document.getElementById('back'));
+    }
+    if (document.getElementById('mesWindow') != null) {
+        document.getElementById('mesWindow').parentNode.removeChild(document.getElementById('mesWindow'));
+    }
+    if (isIe) {
+        setSelectState('');
+    }
+}
+//测试弹出
+function testMessageBox(ev, ob) {
+    var objPos = mousePosition(ev);
+
+    messContent = "<div style='text-align:center;filter:alpha(opacity=60);' onclick='closeWindow();'><img src='" + ob + "'   /></div>";
+    showMessageBox('', messContent, objPos, '98%');
+}
+	//-->
+	</script>
+	<style type="text/css">
+	.mesWindowContent img{width:98%};
+</style>
+<!--{eval updatesession();}-->
+<!--{if defined('IN_MOBILE')}-->
+	<!--{eval output();}-->
+<!--{else}-->
+	<!--{eval output_preview();}-->
+<!--{/if}-->
+</body></html>

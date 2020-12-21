@@ -1,0 +1,59 @@
+{template common/header}
+<iframe style="display:none" name="myiframe" id="myiframe"></iframe>
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="./" class="nvhm" title="{$_G['setting']['bbname']}">{$_G['setting']['bbname']}</a> <em>&amp;rsquot;</em>
+        <a href="<!--{if $config['isrewrite']}-->{$config['re_index']}<!--{else}-->plugin.php?id=violation<!--{/if}-->">$config['daohang']</a>
+</div>
+</div>
+<style type="text/css">
+	.tag-warn, .tag-green {
+  background: none repeat scroll 0 0 #f1c40d;
+  color: #fff !important;
+  font-size:12px;
+  padding: 2px 5px;
+}
+</style>
+
+<div id="ct" class="ct2_a wp cl">
+<div class="appl">
+<div class="tbn">
+<h2 class="mt bbda">$config['daohang']</h2>
+{template violation:mnav}
+</div>
+</div>
+<div class="mn pbm" style="border:none; margin:0">
+<div class="tbmu cl">
+<div style="float:left;margin-right:10px;">
+    选择用户
+<select name="user" id="user" onchange="location.href='plugin.php?id=violation&act=adminlp&uid='+$('user').value" >
+<option value="">请选择</option>
+    {loop $users $user}
+    
+    <option value="{$user['uid']}" {if $user['uid']==$_GET['uid']}selected{/if}>{$user['username']}</option>
+    {/loop}
+</select>
+</div>
+<form  enctype="multipart/form-data" action="plugin.php?id=violation&act=adminlp" method="post" type="2" style="width:350px;float:left;">
+<input type="hidden" name="formhash" value="{FORMHASH}"><input type="text" name="search" value="$_GET['search']"><input type="submit" >
+</form>
+<a href="plugin.php?id=violation&act=post" class="y pn pnc"><strong>发布信息</strong></a>
+<table cellspacing="0" cellpadding="0" class="dt">
+<tbody><tr>
+<th>编号</th><th>发布者uid</th><th>发布者</th><th>标题</th><th>发布时间</th><th>操作</th>
+</tr>
+{loop $lplist $lp}
+<tr ><td>{$lp['id']}</td><td>{$lp['uid']}</td><td>{$lp['username']}</td><td><a target="_blank" href="plugin.php?id=violation&act=view&lid={$lp['id']}">{$lp['title']}</a>{if TIMESTAMP < $lp['topetime']}&nbsp;<small class="tag tag-warn">顶</small>{/if}</td><td>{eval echo dgmdate($lp['addtime']);}</td>
+    <td><a href="plugin.php?id=violation&act=reflash&lid={$lp['id']}" target="myiframe">更新</a>&nbsp;
+        <a href="plugin.php?id=violation&act=top&lid={$lp['id']}" onclick="showWindow('resumeadd',this.href)">置顶</a>&nbsp;
+        <a href="plugin.php?id=violation&act=edit&lid={$lp['id']}">编辑</a>
+<a onclick="showDialog('{lang aljesc:member_12}','confirm','',function(){location.href='plugin.php?id=violation&act=delete&lid={$lp['id']}'});return false;" href="#">删除</a>
+
+</td></tr>
+{/loop}
+</tbody></table>
+<div style="margin-top:10px;">$paging</div>
+<div style="border:1px dashed #f60;background-color:#FFC" class="notice">友情提示：更新可以让信息更靠前的位置展示哦，刷新每次需要 <font color="red">{$config['reflashpay']}</font> {$_G['setting']['extcredits'][$config['reflashextcredit']]['title']}</div>
+</div>
+</div>	</div>
+{template common/footer}

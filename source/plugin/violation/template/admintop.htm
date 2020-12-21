@@ -1,0 +1,41 @@
+{template common/header}
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="./" class="nvhm" title="{$_G['setting']['bbname']}">{$_G['setting']['bbname']}</a> <em>&amp;rsquot;</em>
+        <a href="<!--{if $config['isrewrite']}-->{$config['re_index']}<!--{else}-->plugin.php?id=violation<!--{/if}-->">$config['daohang']</a>
+</div>
+</div>
+
+<div id="ct" class="ct2_a wp cl">
+<div class="appl">
+<div class="tbn">
+<h2 class="mt bbda">$config['daohang']</h2>
+{template violation:mnav}
+</div>
+</div>
+<div class="mn pbm" style="border:none; margin:0">
+<div class="tbmu cl">
+<a href="plugin.php?id=violation&act=post" class="y pn pnc"><strong>发布信息</strong></a>
+<table cellspacing="0" cellpadding="0" class="dt">
+<tbody><tr>
+<th>编号</th><th>标题</th><th>发布者</th><th>操作人</th><th>消耗{$_G['setting']['extcredits'][$config['reflashextcredit']]['title']}</th><th>置顶时间</th><th>到期时间</th>
+</tr>
+{loop $logs $log}
+{eval $lp=C::t('#violation#aljesc')->fetch($log['lid']);}
+<tr >
+    <td>{$log['lid']}</td>
+    <td>{if $log['title']}{$log['title']}{elseif $lp['title']}{$lp['title']}{else}旧数据{/if}</td>
+    <td>{if $log['name']}{$log['name']}{elseif $lp['username']}{$lp['username']}{else}旧数据{/if}</td>
+    <td>{$log['username']}</td>
+    <td>{$log['pay']}</td>
+    <td>{eval echo dgmdate($log['dateline']);}</td>
+	<td>{if $log['endtime']}{eval echo dgmdate($log['endtime']);}{else}旧数据{/if}</td>
+</tr>
+
+{/loop}
+</tbody></table>
+<div style="margin-top:10px;">$paging</div>
+<div class="notice" style="border:1px dashed #f60;background-color:#FFC">相同信息的到期时间以排在最前的一条为准！！</div>
+</div>
+</div>	</div>
+{template common/footer}

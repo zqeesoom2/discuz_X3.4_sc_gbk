@@ -1,0 +1,58 @@
+{template common/header}
+<iframe style="display:none" name="myiframe" id="myiframe"></iframe>
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="./" class="nvhm" title="{$_G['setting']['bbname']}">{$_G['setting']['bbname']}</a> <em>&rsaquo;</em>
+        <a href="<!--{if $config['isrewrite']}-->{$config['re_index']}<!--{else}-->plugin.php?id=aljesc<!--{/if}-->">$config['daohang']</a>
+</div>
+</div>
+
+<div id="ct" class="ct2_a wp cl">
+<div class="appl">
+<div class="tbn">
+<h2 class="mt bbda">$config['daohang']</h2>
+{template violation:mnav}
+</div>
+</div>
+<div class="mn pbm" style="border:none; margin:0">
+<div class="tbmu cl">
+<a href="plugin.php?id=aljesc&act=post" class="y pn pnc"><strong>&#21457;&#24067;&#20449;&#24687;</strong></a>
+<style type="text/css">
+.tag {
+    background: none repeat scroll 0 0 #f2f1ec;
+    border-radius: 2px;
+    color: #999 !important;
+    font-size: 12px;
+    padding: 2px 5px;
+}
+.tag-true-green {
+    background-color: #81ba15;
+    color: #fff !important;
+}
+
+.tag-warn, .tag-green {
+    background: none repeat scroll 0 0 #f1c40d;
+    color: #fff !important;
+}
+</style>
+
+<table cellspacing="0" cellpadding="0" class="dt">
+<tbody><tr>
+<th>ID</th><th>&#26631;&#39064;</th><th>&#21457;&#24067;&#26102;&#38388;</th><th>&#25910;&#34255;&#26102;&#38388;</th><th>&#25805;&#20316;</th>
+</tr>
+{loop $logs $log}
+{eval $lp=C::t('#violation#aljesc')->fetch($log['lid']);}
+<tr ><td>{$lp['id']}</td><td><a target="_blank" href="plugin.php?id=aljesc&act=view&lid={$lp['id']}">{$lp['title']}</a>{if TIMESTAMP < $lp['topetime']}&nbsp;<small class="tag tag-warn">{lang aljesc:index_32}</small>{/if}{if $lp['solve']}&nbsp;<small class="tag tag-true-green" data-original-title="" title="" style="font-size:12px;">{lang aljesc:Done}</small>{/if}</td><td>{eval echo dgmdate($lp['addtime']);}</td><td>{eval echo dgmdate($log['dateline']);}</td>
+    <td>
+        
+<a onclick="showDialog('&#20320;&#30830;&#23450;&#35201;&#21024;&#38500;&#21527;&#65311;','confirm','',function(){location.href='plugin.php?id=aljesc&act=collection_del&cid={$log['id']}'});return false;" href="#">&#21024;&#38500;</a>
+		
+</td></tr>
+{/loop}
+<tr><td colspan="14">$paging</td></tr>
+</tbody></table>
+
+</div>
+
+</div>	</div>
+{template common/footer}

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" content="$metakeywords" />
+<meta name="description" content="$metadescription" />
+<title>$navtitle</title>
+</head>
+<script type="text/javascript">var STYLEID = '{STYLEID}', STATICURL = '{STATICURL}', IMGDIR = '{IMGDIR}', VERHASH = '{VERHASH}', charset = '{CHARSET}', discuz_uid = '$_G[uid]', cookiepre = '{$_G[config][cookie][cookiepre]}', cookiedomain = '{$_G[config][cookie][cookiedomain]}', cookiepath = '{$_G[config][cookie][cookiepath]}', showusercard = '{$_G[setting][showusercard]}', attackevasive = '{$_G[config][security][attackevasive]}', disallowfloat = '{$_G[setting][disallowfloat]}', creditnotice = '<!--{if $_G['setting']['creditnotice']}-->$_G['setting']['creditnames']<!--{/if}-->', defaultstyle = '$_G[style][defaultextstyle]', REPORTURL = '$_G[currenturl_encode]', SITEURL = '$_G[siteurl]', JSPATH = '$_G[setting][jspath]';</script>
+<script type="text/javascript" src="source/plugin/violation/js/common.js" charset="utf-8"></script>
+<link href="source/plugin/violation/css/listing.css" rel="stylesheet" type="text/css">
+<link href="source/plugin/violation/css/fabu.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="source/plugin/violation/js/calendar.js"></script>
+<style type="text/css">
+	.cmIcon.bx-logo{width:50px;height:24px;background:url("{if $config['sj_logo']}$config['sj_logo']{else}$_G['style'][boardimg]{/if}") no-repeat;-webkit-background-size:50px 24px;-moz-background-size:50px 24px;background-size:50px 24px}
+	.center{margin:0 auto;}
+	.min_ts{width:100%;}
+</style>
+<body>
+<article class="cmSubview cmSubviewRoot ui-subview ui-subview-root ui-subview-in">
+{template violation:header}
+
+<div class="header" style="position:fixed; z-index:999; top:0px;">
+    	<div class="w90 center header_a">
+
+                    <a class="header_back" href="plugin.php?id=violation"><img src="source/plugin/violation/images/inco_01.png" width="20" height="21" style="margin-top:17px;"></a>
+               <span class="find"><a style="color:#fff;">发布信息</a></span>
+              <div class="find_qcy" style="float:right; width:12px;">
+               
+        	</div>
+</div>
+        
+
+   </div>
+<div style="width:100%; height:55px;"></div>
+<div class="min_ts center">
+ 		<p style="background:#ccc; line-height:25px; color:#fff; padding:5px;">
+<span style="width:20px; height:20px; border-radius:15px; margin-top:2px; font-size:16px; line-height:21px; background:#fff; display:block; float:left; text-align:center; margin-right:5px; font-weight:bold; margin-left:5px; color:#ccc">!</span>填写的信息越多,交易更容易达成。
+       </p>
+</div>
+
+<main>
+<style type="text/css">
+	div.grid3 a {
+  width: 104px;
+}
+div.grid2 a, div.grid3 a, div.grid4 a, div.grid5 a {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EDEDED ;
+  border-image: none;
+  border-style: solid solid solid none;
+  border-width: 1px 1px 1px medium;
+  display: inline-block;
+  line-height: 3em;
+  margin-right: -5px;
+  margin-top: -1px;
+  text-align: center;
+}
+.red{color:red}
+</style>
+
+
+<div id="append_parent"></div>
+
+<!--<script type="text/javascript" src="source/plugin/aljesc/js/calendar.js"></script>-->
+
+<iframe style="display:none" name="myiframe" id="myiframe"></iframe>
+<form class="form" method="post" id="postform"  enctype="multipart/form-data" action="plugin.php?id=violation&act={$_GET['act']}&lid={$lp['id']}&sj=1" target="myiframe">
+<input type="hidden" value="{FORMHASH}" name="formhash">
+<table width=100%>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">*</span> 供求</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" value="1" {if $lp['wanted']=='1' || !$lp['wanted']}checked="checked"{/if} class="form-radio" title="供求" order="0" name="wanted" maxlength="50">出售
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" value="2" class="form-radio" title="供求" order="0" name="wanted" maxlength="50" {if $lp['wanted']=='2'}checked="checked"{/if}>求购
+				</label>
+			</td>
+		 </tr>
+<tr style="height:55px;">
+<td style="width:95px;"><span class="red required">*</span>标题：</td><td><input type="text" value="$lp['title']" data-parent=".p-line" class="input input-60"  order="1"  name="title" maxlength="25" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;"></td>
+</tr>
+<tr style="height:55px;">
+<td><span class="red required">*</span>&nbsp分类：</td><td>
+<select value="" data-parent=".p-line" class="input"  order="9" data-sub="Linkage_region"  name="pos" id="pos" maxlength="100" type="text" onchange="ajaxget('plugin.php?id=violation&act=getpos&rid=' + $('pos').value, 'getpos')" style=" border: 1px solid #ddd; height: 35px; width:93%;">
+                            <option data-target="#" value=""></option>
+                            {loop $pos $r}
+                            <option  value="$r['id']" {if $lp['pos']==$r['id']}selected{/if}>$r['subject']</option>
+                            {/loop}
+                        </select>
+                        <span id="getpos">
+                            {if $lp['pos']&&$lp['pos1']}
+                            <select required="required" name="pos1" class="sub-area input active" style="margin-top: 10px; border: 1px solid #ddd; height: 35px; width:93%;" >
+                                <option value="" id=""> </option>
+                                {loop $prs $rr}
+                                <option value="$rr['id']" {if $rr[id]==$lp['pos1']}selected{/if}>$rr['subject']</option>
+                                {/loop}
+                            </select>
+                            {/if}
+                        </span>
+</td>
+</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 车型：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['models']" data-parent=".p-line" class="input ui-autocomplete-input" title="车型"  name="models" maxlength="100" autocomplete="off" placeholder="例如： 2010款 1.6l 手动 舒适型" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+					
+				</label>
+			</td>
+		</tr>	
+		<tr style="height:55px;">
+			<td class="bdtr" style="width:95px;"><span class="red required">&nbsp;</span> 上牌年份：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" onclick="showcalendar(event, this)" value="$lp['particular_year']" data-parent=".p-line" class="input input-5"  name="particular_year" maxlength="30" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;"> 
+				</label>
+			</td>
+		</tr>	
+		<tr style="height:55px;">
+			<td class="bdtr" style="width:105px;"><span class="red required">&nbsp;</span> 行驶里程：</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['mileage']" data-parent=".p-line" class="input input-7" title="行驶里程" order="6" pattern="^(|([0-9]+)(.[0-9]+)?)$" numeric="1" name="mileage" maxlength="7" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:75%;">&nbsp;<span class="unit">万公里</span>
+				</label>
+			</td>
+		</tr>	
+
+<tr style="height:55px;">
+<td><span class="red required">&nbsp;</span> 原价：</td><td><input type="text" value="{$lp['qq']}" data-parent=".p-line" class="input input-6" title="QQ号" order="8" pattern="^(.*[0-9]+.*|)$" remember="true" numeric="1" name="qq" maxlength="14" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:80%;">&nbsp;<span class="unit">元</span></td>
+</tr>
+
+<tr style="height:55px;">
+<td><span class="red required">*</span> 价格：</td><td><input type="text" value="{$lp['zujin']}" data-parent=".p-line" class="input input-5" title="价格" order="5" pattern="^(.*[0-9]+.*|)$"  name="zujin" maxlength="10" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:80%;">
+                            <span class="unit">元</span></td>
+</tr>
+
+<tr style="height:55px;">
+<td><span class="red required">&nbsp;</span>描述：</td><td><textarea value="{$lp['content']}" data-parent=".p-line" class="input input-5" title="" order="6" name="content" maxlength="5000" type="text" style="overflow: hidden; word-wrap: break-word; resize: none; height: 100px;border: 1px solid #ddd;
+   
+    width:93%;">{$lp['content']}</textarea></td>
+</tr>
+<tr >
+<td  style="width:85px;"><span class="red required"></span>&nbsp;&nbsp;上传照片：</td>
+<td>
+<input type="file" name="pic1" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic1'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic2" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic2'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic3" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic3'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic4" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic4'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic5" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic5'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic6" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic6'].'.64x64.jpg';}"><br>{/if}
+<input type="file" name="pic7" style="width:210px; height:35px"><br>
+{if $lp['pic1']}<img src="{eval echo $lp['pic7'].'.64x64.jpg';}"><br>{/if}
+</td>
+</tr>
+
+<tr style="height:55px;">
+<td ><span class="red required">*</span> 交易地点</td><td>
+<select value="" data-parent=".p-line" class="input" title="地区" order="9" data-sub="Linkage_dq"  othername="联系电话" area3="showEmptyFilter=1" area2="showEmptyFilter=1" level="area2,area3" remember="1" name="region" id="region" group="描述" maxlength="100" type="text" onchange="ajaxget('plugin.php?id=violation&act=getregion&rid=' + $('region').value, 'getregion')" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+                            <option data-target="#" value=""> </option>
+                            {loop $rs $r}
+                            <option  value="$r['id']" {if $lp['region']==$r['id']}selected{/if}>$r['subject']</option>
+                            {/loop}
+                        </select>
+                        <span id="getregion">
+                            {if $lp['region']&&$lp['region1']}
+                            <select required="required" name="region1" class="sub-area input active" id="m5627">
+                                <option value="" id=""> </option>
+                                {loop $rrs $rr}
+                                <option value="$rr['id']" {if $rr[id]==$lp['region1']}selected{/if}>$rr['subject']</option>
+                                {/loop}
+                            </select>
+                            {/if}
+                        </span>
+                        <span name="region1" id="region1">
+						{if $lp['region2']}
+						<select name="region2" style="width:120px;">
+						<!--{loop C::t('#violation#aljesc_region')->fetch_all_by_upid($lp['region1']) $rid $r}-->
+						<option value="$rid" {if $rid==$lp['region2']}selected{/if}>$r['subject']</option>
+						<!--{/loop}-->
+						</select>
+						{/if}
+						</span>
+						<!--<input type="text" value="{$lp['region3']}" data-parent=".p-line"  class="input" name="region3"  maxlength="100">-->
+</td>
+
+
+<tr style="height:55px;">
+<td style="width:95px;"><span class="red required">&nbsp;</span> 联系人：</td><td><input class="input input-5" type="text" value="$lp['lxr']" data-parent=".p-line" class="input input-60" title="$lp['lxr']" order="1"  name="lxr" maxlength="25" placeholder="如：李先生" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;"></td>
+</tr>
+<tr style="height:55px;">
+<td><span class="red required">*</span> 联系电话：</td><td><input type="text" value="{$lp['contact']}" data-parent=".p-line" class="input input-5" title="" order="11" pattern="^\d[\d-]{3,20}\d$"  hidevaluedinput="1" name="contact" maxlength="30" placeholder="例:138******** 或 0591-88888888" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;"></td>
+</tr>
+<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span>排量:</td>
+			<td>
+				<label class="form-label">
+					<input type="text" value="$lp['displacement']" data-parent=".p-line" class="input" title="排量" order="14" pattern="^(|([0-9]+)(.[0-9]+)?)$" numeric="1" name="displacement" maxlength="7" placeholder='此处只支持输入数字与"."' style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;"><span class="unit">L</span>         
+                </label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 变速箱：</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="变速箱" order="15"  name="gearbox" maxlength="100" type="text" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+					<option value=""></option>
+					{loop $gearbox_types $k $v}
+					<option value="$k" {if $k==$lp['gearbox']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span>燃油类型：</td>
+			<td>
+				<input type="text" value="$lp['fuel']" data-parent=".p-line" class="input" title="燃油类型" order="16" name="fuel" maxlength="10" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 排放标准：</td>
+			<td>
+				<input type="text" value="$lp['emission_standard']" data-parent=".p-line" class="input" title="排放标准" order="17" name="emission_standard" maxlength="10" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 车辆颜色：</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="车辆颜色" order="18" name="vehicle_color" maxlength="100" type="text" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+					<option value=""></option>
+					{loop $vehicle_color_types $k $v}
+					<option value="$k" {if $k==$lp['vehicle_color']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 车型级别：</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="车型级别" order="19" datatype="leixing" name="vehicle_level" maxlength="100" type="text" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+					<option value=""> </option>
+					{loop $vehicle_level_types $k $v}
+					<option value="$k" {if $k==$lp['vehicle_level']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 车辆用途：</td>
+			<td>
+				<select value="" data-parent=".p-line" class="input" title="车辆用途" order="20" name="use" maxlength="100" type="text" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+					<option value=""></option>
+					{loop $use_types $k $v}
+					<option value="$k" {if $k==$lp['use']}selected{/if}>$v</option>
+					{/loop}
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 年检到期：</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['inspection_expires']" data-parent=".p-line" class="input input-5"  name="inspection_expires" maxlength="30" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 交强险到期：</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['strong_cross']" data-parent=".p-line" class="input input-5"  name="strong_cross" maxlength="30" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:55px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 商业险到期：</td>
+			<td>
+				<input type="text" onclick="showcalendar(event, this)" value="$lp['commercial_insurance']" data-parent=".p-line" class="input input-5"  name="commercial_insurance" maxlength="30" style=" border: 1px solid #ddd;
+    height: 35px;
+    width:93%;">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 过户费：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer_fees'] == '包含'}checked="checked"{/if} value="包含" class="form-radio" title="过户费" order="24" name="transfer_fees" maxlength="100">包含
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer_fees'] == '不包含'}checked="checked"{/if} value="不包含" class="form-radio" title="过户费" order="24" name="transfer_fees" maxlength="100">不包含
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 行驶证：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['driving_license'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="行驶证" order="25" name="driving_license" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 登记证：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="行驶证" order="26" name="registration_certificate" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="行驶证" order="26" name="registration_certificate" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['registration_certificate'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="行驶证" order="26" name="registration_certificate" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 购车发票：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="购车发票" order="27" name="invoice" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="购车发票" order="27" name="invoice" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['invoice'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="购车发票" order="27" name="invoice" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 维修记录：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="维修记录" order="28" name="repair_records" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="维修记录" order="28" name="repair_records" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['repair_records'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="维修记录" order="28" name="repair_records" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span>购置税：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] == '齐全'}checked="checked"{/if} value="齐全" class="form-radio" title="购置税" order="29" name="purchase_tax" maxlength="100">齐全
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] == '丢失'}checked="checked"{/if} value="丢失" class="form-radio" title="购置税" order="29" name="purchase_tax" maxlength="100">丢失
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['purchase_tax'] == '补办中'}checked="checked"{/if} value="补办中" class="form-radio" title="购置税" order="29" name="purchase_tax" maxlength="100">补办中
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 重大事故：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['a_major_accident'] == '有'}checked="checked"{/if} value="有" class="form-radio" title="重大事故" order="30" name="a_major_accident" maxlength="100">有
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['a_major_accident'] == '无'}checked="checked"{/if} value="无" class="form-radio" title="重大事故" order="30" name="a_major_accident" maxlength="100">无
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span> 能否过户：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer'] == '能'}checked="checked"{/if} value="能" class="form-radio" title="能否过户" order="31" name="transfer" maxlength="100">能
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['transfer'] == '不能'}checked="checked"{/if} value="不能" class="form-radio" title="能否过户" order="31" name="transfer" maxlength="100">不能
+				</label>
+			</td>
+			<td></td>
+		</tr>
+		<tr style="height:38px;">
+			<td class="bdtr"><span class="red required">&nbsp;</span>能否按揭：</td>
+			<td>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['mortgage'] == '能'}checked="checked"{/if} value="能" class="form-radio" title="能否按揭" order="32" name="mortgage" maxlength="100">能
+				</label>
+				<label class="form-label">
+					<input type="radio" data-parent=".p-line" {if $lp['mortgage'] == '不能'}checked="checked"{/if} value="不能" class="form-radio" title="能否按揭" order="32" name="mortgage" maxlength="100">不能
+				</label>
+			</td>
+			<td></td>
+		</tr>
+<tr style="height:58px;">
+<td colspan=2 style="height:40px;">             
+	<input class="cmBtn cmBtnSuccess form-submit" name="mobile_fabu" type="submit" value="免费发布">
+</td>
+</tr>
+</form>
+</table>
+
+</main>
+{template violation:footer}
+</article>
+<script type="text/javascript" src="source/plugin/violation/js/jquery.js"></script>
+<script type="text/javascript">
+    var jq = jQuery.noConflict();
+</script>
+<script type="text/javascript">
+function tips(txt, fun) {
+	jq('.tips').remove();
+	var div = jq('<div style="background: url(source/plugin/violation/images/tips.png);max-width: 85%;min-height: 77px;min-width: 270px;position: absolute;left: -1000px;top: -1000px;text-align: center;border-radius:10px;"><span style="color: #ffffff;line-height: 77px;font-size: 23px;">' + txt + '</span></div>');
+	jq('body').append(div);
+	div.css('zIndex', 9999999);
+	div.css('left', parseInt((jq(window).width() - div.width()) / 2));
+	var top = parseInt(jq(window).scrollTop() + (jq(window).height() - div.height()) / 2);
+	div.css('top', top);
+	setTimeout(function() {
+		div.remove();
+		if (fun) {
+			fun();
+		}
+	}, 2000);
+}
+
+</script>
+<!--{eval updatesession();}-->
+<!--{if defined('IN_MOBILE')}-->
+	<!--{eval output();}-->
+<!--{else}-->
+	<!--{eval output_preview();}-->
+<!--{/if}-->

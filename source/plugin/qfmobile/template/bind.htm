@@ -1,0 +1,44 @@
+<!--{template common/header}-->
+<h3 class="flb" >
+    <em id="return_$_GET[handlekey]">
+        {lang qfmobile:qfmobile_bind_btn}
+    </em>
+    <span style="font-family: 'Microsoft YaHei', 'Hiragino Sans GB', 'STHeiti', Tahoma, 'SimHei', sans-serif"><a href="javascript:void(0)" onclick="hideWindow('$_GET[handlekey]'); window.location.reload();" class="flbc" title="{lang close}">{lang close}</a></span>
+</h3>
+<!--from action=plugin.php?id=qfmobile:bindmobile&r=bindmobile/index 中bindmobile.inc.php后台并没有设置，自己在插件目录定义，系统会自动请求到这边-->
+<form id="bindmobileform" name="bindmobileform"
+      action="plugin.php?id=qfmobile:bindmobile&r=bindmobile/index" method="post"
+      autocomplete="off" target="_blank" onsubmit="$('flag').value = '1';ajaxpost(this.id, 'return_$_GET[handlekey]');">
+    <div class="c tfm">
+        <table id="myphone">
+            <tr>
+                <td>
+                    <div>
+                        <p><strong>{lang qfmobile:qfmobile_postlimit_bhind_tip1}</strong></p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <p><strong>{lang qfmobile:qfmobile_postlimit_bhind_tip2}</strong></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+    </div>
+    <p class="o pns">
+        <span style="padding: 15px 100px 15px 10px">
+            <button type="button" name="bindmobilesubmit_btn" id="nextbind_btn" value="true" class="pn pnc" onclick="hideWindow('$_GET[handlekey]');window.location.reload();"><strong>{lang
+                qfmobile:qfmobile_postlimit_next_bind}</strong></button>
+        </span>
+        <span>
+            <button type="submit" name="bindmobilesubmit_btn" id="bindmobilesubmit_btn" value="true" class="pn pnc"><strong>{lang
+                qfmobile:qfmobile_postlimit_bind_submit}<!-- 前去绑定 --></strong></button>
+        </span>
+    </p>
+</form>
+<!--{template common/footer}-->

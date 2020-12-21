@@ -1,0 +1,10 @@
+{template common/header}
+{if $rs}
+<select required="required" name="pos1" class="sub-area input active" >
+    <option value="" id="">&#35831;&#36873;&#25321;</option>
+    {loop $rs $r}
+    <option value="$r['id']">$r['subject']</option>
+    {/loop}
+</select>
+{/if}
+{template common/footer}

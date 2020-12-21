@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{$navtitle}</title>
+<meta name="keywords" content="{$metakeywords}">
+<meta name="description" content="{$metadescription}">
+<script src="{$Fn_HB_Share->Config[StaticPath]}/js/jquery-1.9.1.min.js"></script>
+<style>
+* {
+	margin:0;
+	padding:0;
+}
+.both {
+	margin:0;
+	padding:0;
+	height:0px;
+	overflow:hidden;
+	clear:both;
+*display:inline;
+}
+.List, .SubmitAdd,.Textarea {
+	width:1080px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.List {
+	margin-top:7px;
+}
+.List ul li,.ToDiv{
+	float:left;
+	display:inline;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	margin:5px 0 0 0;
+}
+.List ul li .Div {
+	float:left;
+	display:inline;
+}
+.List ul li .Div span,.ToDiv span {
+	float:left;
+	display:inline;
+	margin:0 0px 0 0;
+}
+.List ul li .Div input,.ToDiv input {
+	float:left;
+	display:inline;
+	height:25px;
+	line-height:25px;
+	width:80px;
+	margin:7px 20px 0 10px;
+	padding:0 0 0 5px;
+	border:1px solid #ccc;
+	background:#fff;
+}
+.List ul li .Del {
+	float:left;
+	display:inline;
+	margin:0 0px 0 0;
+	cursor:pointer
+}
+.SubmitAdd span {
+	float:left;
+	display:inline;
+	margin:15px 15px 0 0;
+	height:40px;
+	width:100px;
+	text-align:center;
+	overflow:hidden;
+	line-height:40px;
+	color:#fff;
+	border-radius:5px;
+	cursor:pointer
+}
+.SubmitAdd span.Submit {
+	background:#00A0E8;
+}
+.SubmitAdd span.Add {
+	background:#ff7916;
+}
+.Textarea{margin-top:20px;}
+.Textarea textarea{width:90%;height:300px;}
+</style>
+</head>
+<body>
+<form role="form" id="getform" name="getform" enctype="multipart/form-data" action="{$Fn_HB_Share->Config[CalculationUrl]}" method="post">
+  <input type="hidden" name="formhash" value="{FORMHASH}"/>
+  <input type="hidden" name="f" value="calculation"/>
+  <div class="List">
+    <ul>
+	  <!--{if $_POST[money]}-->
+	  <!--{loop $_POST[money] $Key $Val}-->
+	  <li>
+        <div class="Money Div"><span>{$Fn_HB_Share->Config[LangVar][MoneyTitle]}</span>
+          <input type="text" name="money[]" value="{$Val}">
+        </div>
+        <div class="Num Div"><span>{$Fn_HB_Share->Config[LangVar][CalculationRandNum]}</span>
+          <input type="text" name="num[]" value="{$_POST['num'][$Key]}">
+        </div>
+		<div class="Num Div"><span>{$Fn_HB_Share->Config[LangVar][CalculationMinimum]}</span>
+          <input type="text" name="min_money[]" value="{$_POST['min_money'][$Key]}">
+        </div>
+      </li>
+	  <!--{/loop}-->
+	  <!--{else}-->
+      <li>
+        <div class="Money Div"><span>{$Fn_HB_Share->Config[LangVar][MoneyTitle]}</span>
+          <input type="text" name="money[]" value="">
+        </div>
+        <div class="Num Div"><span>{$Fn_HB_Share->Config[LangVar][CalculationRandNum]}</span>
+          <input type="text" name="num[]" value="">
+        </div>
+		<div class="Num Div"><span>{$Fn_HB_Share->Config[LangVar][CalculationMinimum]}</span>
+          <input type="text" name="min_money[]" value="0.01">
+        </div>
+      </li>
+      <!--{/if}-->
+    </ul>
+    <div class="both"></div>
+	<div class="both"></div>
+  </div>
+
+</form>
+<div class="SubmitAdd"><span class="Submit">{$Fn_HB_Share->Config[LangVar][CalculationSubmit]}</span>
+  <div class="both"></div>
+</div>
+<!--{if $Html}-->
+<div class="Textarea"><textarea>{$Html}</textarea><div>
+<!--{/if}-->
+<script>
+$(document).on('click',".SubmitAdd .Submit",function(){
+	$('#getform').submit();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+.input_area {
+border: 1px solid #e2e2e2;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+padding: 10px;
+min-height: 20px;
+font-size: 14px;
+color: #777;
+background: #fff;
+}
+.input_area textarea {
+display: block;
+width: 100%;
+border: none;
+height: 25px;
+line-height: 20px;
+}
+	.input_btm {
+font-size: 12px;
+color: #666;
+height: 40px;
+line-height: 40px;
+border-bottom: 1px solid #f0f0f0;
+padding-bottom: 5px;
+}
+.input_smt {
+display: block;
+width: 50px;
+height: 28px;
+line-height: 28px;
+text-align: center;
+color: #fff;
+font-size: 13px;
+background: #21acfd;
+float: right;
+margin-top: 8px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+border-color: #21acfd;
+}
+.card_box {
+clear: both;
+margin-bottom: 10px;
+background: #fff;
+}
+.card_layer {
+border: 1px solid #d9d9d9;
+border-radius: 4px;
+}
+.p_tab_wrap {
+clear: both;
+overflow: hidden;
+padding: 0 12px;
+height: 34px;
+line-height: 34px;
+background: #fff;
+border-bottom: 1px solid #ececec;
+font-size: 14px;
+border-radius: 4px 4px 0 0;
+}
+.p_tab_wrap strong {
+color: #1a1a1a;
+}
+.fl {
+float: left;
+}
+.fr {
+float: right;
+}
+.p_tab_wrap a {
+color: #5494ea;
+}
+.commentInfo {
+clear: both;
+padding: 5px 12px;
+}
+.commentInfo li {
+color: #2c2c2c;
+line-height: 22px;
+padding: 5px 0;
+font-size: 14px;
+overflow: hidden;
+}
+.commentInfo .user {
+padding-right: 72px;
+height: 22px;
+position: relative;
+color: #5494ea;
+}
+.commentInfo .name {
+width: auto;
+max-width: 100%;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+padding-right: 15px;
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+display: inline-block;
+}
+.commentInfo .date {
+position: absolute;
+right: 0;
+top: -1px;
+font-size: 12px;
+color: #aaa;
+padding-top: 2px;
+}
+.commentInfo .content {
+padding: 2px 0;
+text-align: justify;
+}
+element.style {
+}
+.more_link {
+display: block;
+cursor: pointer;
+color: #1a1a1a;
+font-size: 14px;
+background: #f8f8f8;
+height: 30px;
+line-height: 30px;
+text-align: center;
+margin: 4px 10px 10px;
+clear: both;
+overflow: hidden;
+}

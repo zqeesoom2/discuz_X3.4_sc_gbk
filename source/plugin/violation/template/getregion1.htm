@@ -1,0 +1,9 @@
+{template common/header}
+{if $rlist}
+<select name="region2" class="sub-area input active">
+<!--{loop $rlist $rid $r}-->
+<option value="$r['id']">$r['subject']</option>
+<!--{/loop}-->
+</select>
+{/if}
+{template common/footer}
